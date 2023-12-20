@@ -18,15 +18,23 @@
   <meta name="author" content="Zheng">
   <meta name="keywords" content="">
   
-    <meta property="og:type" content="article">
+    <meta name="description" content="1. 什么是DockerDocker 是一个用于构建、部署和管理容器化应用的开源平台。这些容器是标准化的可执行组件，结合了应用源代码以及在任何环境中运行该代码所需的操作系统 (OS) 库和依赖项。 Docker的作用：  轻量级的虚拟化：Docker 容器提供了一种轻量级的虚拟化方式，相较于传统的虚拟机，Docker 容器启动速度更快，占用资源更少 环境一致性：Docker 可以让开发者打包他们的">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Docker学习">
 <meta property="og:url" content="https://lzhengjy.gitee.io/2023/12/13/Docker%E5%AD%A6%E4%B9%A0/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1. 什么是DockerDocker 是一个用于构建、部署和管理容器化应用的开源平台。这些容器是标准化的可执行组件，结合了应用源代码以及在任何环境中运行该代码所需的操作系统 (OS) 库和依赖项。 Docker的作用：  轻量级的虚拟化：Docker 容器提供了一种轻量级的虚拟化方式，相较于传统的虚拟机，Docker 容器启动速度更快，占用资源更少 环境一致性：Docker 可以让开发者打包他们的">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lzhengjy.gitee.io/2023/12/13/Docker%E5%AD%A6%E4%B9%A0/image-20231217205124016.png">
+<meta property="og:image" content="https://lzhengjy.gitee.io/2023/12/13/Docker%E5%AD%A6%E4%B9%A0/image-20231217205218810.png">
+<meta property="og:image" content="https://lzhengjy.gitee.io/2023/12/13/Docker%E5%AD%A6%E4%B9%A0/image-20231217204228958.png">
+<meta property="og:image" content="https://lzhengjy.gitee.io/2023/12/13/Docker%E5%AD%A6%E4%B9%A0/image-20231218163616881.png">
 <meta property="article:published_time" content="2023-12-13T05:55:07.000Z">
-<meta property="article:modified_time" content="2023-12-13T15:19:12.819Z">
+<meta property="article:modified_time" content="2023-12-18T15:55:37.040Z">
 <meta property="article:author" content="Zheng">
+<meta property="article:tag" content="Docker">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lzhengjy.gitee.io/2023/12/13/Docker%E5%AD%A6%E4%B9%A0/image-20231217205124016.png">
   
   
   
@@ -219,7 +227,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 字
+          2.1k 字
         
       </span>
     
@@ -230,7 +238,7 @@
         
         
         
-          1 分钟
+          18 分钟
         
       </span>
     
@@ -272,7 +280,107 @@
             
               <div class="markdown-body">
                 
-                
+                <h3 id="1-什么是Docker"><a href="#1-什么是Docker" class="headerlink" title="1. 什么是Docker"></a>1. 什么是Docker</h3><p>Docker 是一个用于构建、部署和管理容器化应用的开源平台。这些容器是标准化的可执行组件，结合了应用源代码以及在任何环境中运行该代码所需的操作系统 (OS) 库和依赖项。</p>
+<p><strong>Docker的作用：</strong></p>
+<ul>
+<li>轻量级的虚拟化：Docker 容器提供了一种轻量级的虚拟化方式，相较于传统的虚拟机，Docker 容器启动速度更快，占用资源更少</li>
+<li><strong>环境一致性</strong>：Docker 可以让开发者打包他们的应用以及依赖包到一个可移植的容器中，这样就可以确保应用在不同环境中的一致性</li>
+<li><strong>提高资源利用率</strong>：开发人员使用容器在硬件上运行的应用副本数量是使用虚拟机的数倍。这可以减少云支出</li>
+<li><strong>提高开发效率</strong>：Docker 容器化应用可以“一次编写，随处运行”。与虚拟机相比，容器的部署、配置和重启过程更迅速且更简单</li>
+<li><strong>快速交付软件</strong>：Docker 可以让你将应用程序与基础架构分开，从而可以快速交付软件。你可以大大减少编写代码和在生产环境中运行代码之间的延迟</li>
+</ul>
+<br>
+
+
+
+<hr>
+<h3 id="2-安装Docker"><a href="#2-安装Docker" class="headerlink" title="2. 安装Docker"></a>2. 安装Docker</h3><p><strong>卸载旧版</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs linxu">yum remove docker \<br>	docker-client \<br>	docker-ciient-latest \<br>	docker-common \<br>	docker-latest \<br>	docker-latest-logrotate \<br>	docker-logrotate \<br>	docker-engine<br></code></pre></td></tr></table></figure>
+
+<br>
+
+
+
+<p><strong>配置Docker的yum库</strong></p>
+<p>安装一个yun工具</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs linux">yum install -y yum-utils<br></code></pre></td></tr></table></figure>
+
+<p>安装完毕后，执行命令，配置Docker的yum源</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs linux">yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo<br></code></pre></td></tr></table></figure>
+
+<p>安装Docker</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs linux">yum install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin<br></code></pre></td></tr></table></figure>
+
+<br>
+
+
+
+<p><strong>启动和校验</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs linux"># 启动docker<br>systemctl start docker<br><br># 停止docker<br>systemctl stop docker<br><br># 重启<br>systemctl restart docker<br><br># 开机自启<br>systemctl enable docker<br><br># 执行docker ps命令，如果不报错说明启动成功了<br></code></pre></td></tr></table></figure>
+
+<br>
+
+
+
+<hr>
+<h3 id="3-快速入门"><a href="#3-快速入门" class="headerlink" title="3. 快速入门"></a>3. 快速入门</h3><p>使用Docker来安装MySQL，先停掉Linux中的MySQL</p>
+<p>安装MySQL的指令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs linux">docker run -d \<br>	--name mysql \<br>	-p 3306:3306 \<br>	-e TZ=Asia/Shanghai \<br>	-e MYSQL_ROOT_PASSWORD=123 \<br>	mysql<br></code></pre></td></tr></table></figure>
+
+<br>
+
+<p>可以通过本机电脑连接到虚拟机的MySQL</p>
+<img src="/2023/12/13/Docker%E5%AD%A6%E4%B9%A0/image-20231217205124016.png" srcset="/img/loading.gif" lazyload alt="image-20231217205124016" style="zoom:67%;">
+
+<p><img src="/2023/12/13/Docker%E5%AD%A6%E4%B9%A0/image-20231217205218810.png" srcset="/img/loading.gif" lazyload alt="image-20231217205218810"></p>
+<p>当我们利用Docker安装应用时，Docker会自动搜索并下载应用镜像。镜像不仅包含应用本身，还包含应用运行所需要的环境、配置、系统函数库。Docker会在运行镜像时创建一个隔离环境，称为容器</p>
+<p>Docker官网维护的公共<strong>镜像仓库</strong>：<a target="_blank" rel="noopener" href="https://hub.docker.com/">Docker Hub Container Image Library | App Containerization</a></p>
+<img src="/2023/12/13/Docker%E5%AD%A6%E4%B9%A0/image-20231217204228958.png" srcset="/img/loading.gif" lazyload alt="image-20231217204228958" style="zoom: 50%;">
+
+<br>
+
+
+
+<p><strong>命令解读</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs linux">docker run -d \<br>	--name mysql \<br>	-p 3306:3306 \<br>	-e TZ=Asia/Shanghai \<br>	-e MYSQL_ROOT_PASSWORD=123 \<br>	mysql<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>docker run</strong> ：创建并运行一个容器，**-d**是让容器在后台运行</li>
+<li><strong>–name mysql</strong> ：给容器起一个名字，必须唯一</li>
+<li><strong>-p 3306:3306</strong> ：设置端口映射，前面是主机端口，后面是容器端口</li>
+<li><strong>-e KEY&#x3D;VALUE</strong> : 设置环境变量，不同的容器需要不同的环境变量，可以在Docker的镜像仓库查看有容器哪些环境变量</li>
+<li><strong>mysql</strong> ：指定运行的镜像名字，镜像名称一般由两部分组成：[repository]:[tag]<ul>
+<li>repository是镜像名</li>
+<li>tag是版本号</li>
+<li>如果没有版本号则默认是最新版本的镜像</li>
+</ul>
+</li>
+</ul>
+<br>
+
+
+
+<hr>
+<h3 id="4-常见命令"><a href="#4-常见命令" class="headerlink" title="4. 常见命令"></a>4. 常见命令</h3><p>Docker最常见的命令就是操作镜像和容器，详情见<a target="_blank" rel="noopener" href="https://docs.docker.com/">官方文档</a></p>
+<img src="/2023/12/13/Docker%E5%AD%A6%E4%B9%A0/image-20231218163616881.png" srcset="/img/loading.gif" lazyload alt="image-20231218163616881" style="zoom:67%;">
+
+<ul>
+<li>docker pull：从镜像仓库拉取或更新指定镜像</li>
+<li>docker pull：把本地镜像推送到远程镜像仓库中去</li>
+<li>docker images：列出本地存储的所有docker镜像</li>
+<li>docker rmi：从主机节点中删除一个或多个镜像，-f是强制删除</li>
+<li>docker build：根据DockerFile和context来自定义docker镜像</li>
+<li>docker save：把打包好的镜像以压缩包的形式保存到本地</li>
+<li>docker load：把压缩文件加载在本地镜像中</li>
+<li>docker run：创建一个新的容器并运行</li>
+<li>docker stop：停止容器</li>
+<li>docker start：启动容器</li>
+<li>docker logs：获取容器的日志</li>
+<li>docker exec：通过这个命令可以在不需要进入容器的情况下直接与容器内的环境进行交互</li>
+<li>docker ps：列出正在运行的docker容器,-a是显示所有容器包括未运行的</li>
+<li>docker rm：删除一个或多个容器，添加-f可以强制删除正在运行的容器</li>
+</ul>
+
                 
               </div>
             
@@ -280,6 +388,13 @@
             <div>
               <div class="post-metas my-3">
   
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Docker/" class="print-no-link">#Docker</a>
+      
+    </div>
   
 </div>
 
