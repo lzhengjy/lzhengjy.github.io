@@ -20,32 +20,32 @@
   
     <meta name="description" content="该笔记是根据B站视频学习编写 1. 什么是DockerDocker 是一个用于构建、部署和管理容器化应用的开源平台。这些容器是标准化的可执行组件，结合了应用源代码以及在任何环境中运行该代码所需的操作系统 (OS) 库和依赖项。 Docker的作用：  轻量级的虚拟化：Docker 容器提供了一种轻量级的虚拟化方式，相较于传统的虚拟机，Docker 容器启动速度更快，占用资源更少 环境一致性：Doc">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Docker学习">
-<meta property="og:url" content="https://lzhengjy.gitee.io/2023/12/13/Docker%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:title" content="Docker">
+<meta property="og:url" content="https://lzhengjy.gitee.io/2023/12/13/Docker/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="该笔记是根据B站视频学习编写 1. 什么是DockerDocker 是一个用于构建、部署和管理容器化应用的开源平台。这些容器是标准化的可执行组件，结合了应用源代码以及在任何环境中运行该代码所需的操作系统 (OS) 库和依赖项。 Docker的作用：  轻量级的虚拟化：Docker 容器提供了一种轻量级的虚拟化方式，相较于传统的虚拟机，Docker 容器启动速度更快，占用资源更少 环境一致性：Doc">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2023/12/13/Docker%E5%AD%A6%E4%B9%A0/image-20231217205124016.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2023/12/13/Docker%E5%AD%A6%E4%B9%A0/image-20231217205218810.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2023/12/13/Docker%E5%AD%A6%E4%B9%A0/image-20231217204228958.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2023/12/13/Docker%E5%AD%A6%E4%B9%A0/image-20231218163616881.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2023/12/13/Docker%E5%AD%A6%E4%B9%A0/image-20231220161446653.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2023/12/13/Docker%E5%AD%A6%E4%B9%A0/image-20231220164110981.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2023/12/13/Docker%E5%AD%A6%E4%B9%A0/image-20231223170500748.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2023/12/13/Docker%E5%AD%A6%E4%B9%A0/image-20231223202118445.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2023/12/13/Docker%E5%AD%A6%E4%B9%A0/image-20231223203413708.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2023/12/13/Docker%E5%AD%A6%E4%B9%A0/image-20231223204110631.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2023/12/13/Docker%E5%AD%A6%E4%B9%A0/image-20231223205249964.png">
-<meta property="article:published_time" content="2023-12-13T05:55:07.000Z">
-<meta property="article:modified_time" content="2023-12-23T14:28:38.525Z">
+<meta property="og:image" content="https://lzhengjy.gitee.io/2023/12/13/Docker/image-20231217205124016.png">
+<meta property="og:image" content="https://lzhengjy.gitee.io/2023/12/13/Docker/image-20231217205218810.png">
+<meta property="og:image" content="https://lzhengjy.gitee.io/2023/12/13/Docker/image-20231217204228958.png">
+<meta property="og:image" content="https://lzhengjy.gitee.io/2023/12/13/Docker/image-20231218163616881.png">
+<meta property="og:image" content="https://lzhengjy.gitee.io/2023/12/13/Docker/image-20231220161446653.png">
+<meta property="og:image" content="https://lzhengjy.gitee.io/2023/12/13/Docker/image-20231220164110981.png">
+<meta property="og:image" content="https://lzhengjy.gitee.io/2023/12/13/Docker/image-20231223170500748.png">
+<meta property="og:image" content="https://lzhengjy.gitee.io/2023/12/13/Docker/image-20231223202118445.png">
+<meta property="og:image" content="https://lzhengjy.gitee.io/2023/12/13/Docker/image-20231223203413708.png">
+<meta property="og:image" content="https://lzhengjy.gitee.io/2023/12/13/Docker/image-20231223204110631.png">
+<meta property="og:image" content="https://lzhengjy.gitee.io/2023/12/13/Docker/image-20231223205249964.png">
+<meta property="article:published_time" content="2023-12-13T14:45:59.000Z">
+<meta property="article:modified_time" content="2023-12-23T14:49:31.350Z">
 <meta property="article:author" content="Zheng">
 <meta property="article:tag" content="Docker">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://lzhengjy.gitee.io/2023/12/13/Docker%E5%AD%A6%E4%B9%A0/image-20231217205124016.png">
+<meta name="twitter:image" content="https://lzhengjy.gitee.io/2023/12/13/Docker/image-20231217205124016.png">
   
   
   
-  <title>Docker学习 - Hexo</title>
+  <title>Docker - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -211,7 +211,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Docker学习"></span>
+            <span id="subtitle" data-typed-text="Docker"></span>
           
         </div>
 
@@ -222,8 +222,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-12-13 13:55" pubdate>
-          2023年12月13日 下午
+        <time datetime="2023-12-13 22:45" pubdate>
+          2023年12月13日 晚上
         </time>
       </span>
     
@@ -282,7 +282,7 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Docker学习</h1>
+            <h1 id="seo-header">Docker</h1>
             
             
               <div class="markdown-body">
@@ -338,12 +338,12 @@
 <br>
 
 <p>可以通过本机电脑连接到虚拟机的MySQL</p>
-<img src="/2023/12/13/Docker%E5%AD%A6%E4%B9%A0/image-20231217205124016.png" srcset="/img/loading.gif" lazyload alt="image-20231217205124016" style="zoom:67%;">
+<img src="/2023/12/13/Docker/image-20231217205124016.png" srcset="/img/loading.gif" lazyload alt="image-20231217205124016" style="zoom:67%;">
 
-<p><img src="/2023/12/13/Docker%E5%AD%A6%E4%B9%A0/image-20231217205218810.png" srcset="/img/loading.gif" lazyload alt="image-20231217205218810"></p>
+<p><img src="/2023/12/13/Docker/image-20231217205218810.png" srcset="/img/loading.gif" lazyload alt="image-20231217205218810"></p>
 <p>当我们利用Docker安装应用时，Docker会自动搜索并下载应用镜像。镜像不仅包含应用本身，还包含应用运行所需要的环境、配置、系统函数库。Docker会在运行镜像时创建一个隔离环境，称为容器</p>
 <p>Docker官网维护的公共<strong>镜像仓库</strong>：<a target="_blank" rel="noopener" href="https://hub.docker.com/">Docker Hub Container Image Library | App Containerization</a></p>
-<img src="/2023/12/13/Docker%E5%AD%A6%E4%B9%A0/image-20231217204228958.png" srcset="/img/loading.gif" lazyload alt="image-20231217204228958" style="zoom: 50%;">
+<img src="/2023/12/13/Docker/image-20231217204228958.png" srcset="/img/loading.gif" lazyload alt="image-20231217204228958" style="zoom: 50%;">
 
 <br>
 
@@ -370,7 +370,7 @@
 
 <hr>
 <h3 id="4-常见命令"><a href="#4-常见命令" class="headerlink" title="4. 常见命令"></a>4. 常见命令</h3><p>Docker最常见的命令就是操作镜像和容器，详情见<a target="_blank" rel="noopener" href="https://docs.docker.com/">官方文档</a></p>
-<img src="/2023/12/13/Docker%E5%AD%A6%E4%B9%A0/image-20231218163616881.png" srcset="/img/loading.gif" lazyload alt="image-20231218163616881" style="zoom:67%;">
+<img src="/2023/12/13/Docker/image-20231218163616881.png" srcset="/img/loading.gif" lazyload alt="image-20231218163616881" style="zoom:67%;">
 
 <ul>
 <li>docker pull：从镜像仓库拉取或更新指定镜像</li>
@@ -411,7 +411,7 @@
 
 
 <p>数据卷是容器内目录和宿主机目录之间映射的桥梁</p>
-<img src="/2023/12/13/Docker%E5%AD%A6%E4%B9%A0/image-20231220161446653.png" srcset="/img/loading.gif" lazyload alt="image-20231220161446653" style="zoom: 50%; ">
+<img src="/2023/12/13/Docker/image-20231220161446653.png" srcset="/img/loading.gif" lazyload alt="image-20231220161446653" style="zoom: 50%; ">
 
 <br>
 
@@ -465,7 +465,7 @@
 
 
 
-<p><img src="/2023/12/13/Docker%E5%AD%A6%E4%B9%A0/image-20231220164110981.png" srcset="/img/loading.gif" lazyload alt="image-20231220164110981"></p>
+<p><img src="/2023/12/13/Docker/image-20231220164110981.png" srcset="/img/loading.gif" lazyload alt="image-20231220164110981"></p>
 <ul>
 <li>通过docker run -d –name nginx -p 180:180 -v html:&#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html nginx 创建并运行一个容器，并挂载数据卷</li>
 <li>html:&#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html   html容器名， &#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html要挂载的容器中的目录</li>
@@ -498,7 +498,7 @@
 <hr>
 <h3 id="7-自定义镜像"><a href="#7-自定义镜像" class="headerlink" title="7. 自定义镜像"></a>7. 自定义镜像</h3><p><strong>镜像结构</strong></p>
 <p>镜像中包含了应用程序所需要的运行环境、函数库、配置、以及应用本身等各种文件，这些文件分层打包</p>
-<img src="/2023/12/13/Docker%E5%AD%A6%E4%B9%A0/image-20231223170500748.png" srcset="/img/loading.gif" lazyload alt="image-20231223170500748" style="zoom: 67%;">
+<img src="/2023/12/13/Docker/image-20231223170500748.png" srcset="/img/loading.gif" lazyload alt="image-20231223170500748" style="zoom: 67%;">
 
 <br>
 
@@ -579,7 +579,7 @@
 <li><strong>Container模式</strong>：处于这个模式下的Docker容器会共享一个网络栈，这样两个容器之间可以使用localhost高效快速通信</li>
 </ul>
 <p><strong>默认情况下、所有容器都是以bridge方式连接到Docker的一个虚拟网桥上</strong></p>
-<img src="/2023/12/13/Docker%E5%AD%A6%E4%B9%A0/image-20231223202118445.png" srcset="/img/loading.gif" lazyload alt="image-20231223202118445" style="zoom:67%;">
+<img src="/2023/12/13/Docker/image-20231223202118445.png" srcset="/img/loading.gif" lazyload alt="image-20231223202118445" style="zoom:67%;">
 
 <br>
 
@@ -628,7 +628,7 @@
 
 
 <p>创建一个自定义网络</p>
-<img src="/2023/12/13/Docker%E5%AD%A6%E4%B9%A0/image-20231223203413708.png" srcset="/img/loading.gif" lazyload alt="image-20231223203413708" style="zoom:80%;">
+<img src="/2023/12/13/Docker/image-20231223203413708.png" srcset="/img/loading.gif" lazyload alt="image-20231223203413708" style="zoom:80%;">
 
 <br>
 
@@ -638,7 +638,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs linux">docker network connect zheng mysql<br></code></pre></td></tr></table></figure>
 
 <p>通过docker inspect mysql查看mysql容器的网络</p>
-<img src="/2023/12/13/Docker%E5%AD%A6%E4%B9%A0/image-20231223204110631.png" srcset="/img/loading.gif" lazyload alt="image-20231223204110631" style="zoom:80%;">
+<img src="/2023/12/13/Docker/image-20231223204110631.png" srcset="/img/loading.gif" lazyload alt="image-20231223204110631" style="zoom:80%;">
 
 <p>可以看见已经把容器添加到自定义网络中了</p>
 <br>
@@ -650,7 +650,7 @@
 
 
 
-<img src="/2023/12/13/Docker%E5%AD%A6%E4%B9%A0/image-20231223205249964.png" srcset="/img/loading.gif" lazyload alt="image-20231223205249964" style="zoom: 80%;">
+<img src="/2023/12/13/Docker/image-20231223205249964.png" srcset="/img/loading.gif" lazyload alt="image-20231223205249964" style="zoom: 80%;">
 
 <br>
 
@@ -664,27 +664,6 @@
             <hr/>
             <div>
               <div class="post-metas my-3">
-  
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/Linux/" class="category-chain-item">Linux</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
   
   
     <div class="post-meta">
@@ -702,8 +681,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Docker学习</div>
-      <div>https://lzhengjy.gitee.io/2023/12/13/Docker学习/</div>
+      <div>Docker</div>
+      <div>https://lzhengjy.gitee.io/2023/12/13/Docker/</div>
     </div>
     <div class="license-meta">
       
@@ -747,9 +726,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/12/13/Docker/" title="Docker">
+                      <a href="/2023/12/23/Java%E5%8F%8D%E5%B0%84/" title="Java反射">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Docker</span>
+                        <span class="hidden-mobile">Java反射</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -757,8 +736,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/12/02/InnoDB%E5%BC%95%E6%93%8E/" title="InnoDB引擎">
-                        <span class="hidden-mobile">InnoDB引擎</span>
+                      <a href="/2023/12/13/Docker%E5%AD%A6%E4%B9%A0/" title="Docker学习">
+                        <span class="hidden-mobile">Docker学习</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
