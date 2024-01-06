@@ -1,0 +1,848 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zheng">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="路由器在园区网中的作用主要有两种作用：  一种是园区网的边界路由器，实现内部网和外部网（广域网）的连接 另一种是园区网的核心路由器，实现多个局域网（或子网）互连      有线规范和通信介质标准详细见 p 57 这里只列出快速以太网    分类 802.3规范 通信介质 介质标准 传输距离 物理拓扑    快速以太网 802.3u 5类双绞线 100 Base-T 100 m 星形   快速以太网">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络复习题">
+<meta property="og:url" content="https://lzhengjy.gitee.io/2024/01/06/%E7%BD%91%E7%BB%9C%E5%A4%8D%E4%B9%A0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="路由器在园区网中的作用主要有两种作用：  一种是园区网的边界路由器，实现内部网和外部网（广域网）的连接 另一种是园区网的核心路由器，实现多个局域网（或子网）互连      有线规范和通信介质标准详细见 p 57 这里只列出快速以太网    分类 802.3规范 通信介质 介质标准 传输距离 物理拓扑    快速以太网 802.3u 5类双绞线 100 Base-T 100 m 星形   快速以太网">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-01-06T05:24:33.000Z">
+<meta property="article:modified_time" content="2024-01-06T08:34:47.250Z">
+<meta property="article:author" content="Zheng">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>网络复习题 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lzhengjy.gitee.io","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zheng</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="网络复习题"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-01-06 13:24" pubdate>
+          2024年1月6日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          15 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">网络复习题</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h4 id="路由器在园区网中的作用"><a href="#路由器在园区网中的作用" class="headerlink" title="路由器在园区网中的作用"></a>路由器在园区网中的作用</h4><p>主要有两种作用：</p>
+<ul>
+<li>一种是园区网的边界路由器，实现内部网和外部网（广域网）的连接</li>
+<li>另一种是园区网的核心路由器，实现多个局域网（或子网）互连</li>
+</ul>
+<br>
+
+
+
+<h4 id="有线规范和通信介质标准"><a href="#有线规范和通信介质标准" class="headerlink" title="有线规范和通信介质标准"></a>有线规范和通信介质标准</h4><p>详细见 p 57</p>
+<p>这里只列出快速以太网</p>
+<table>
+<thead>
+<tr>
+<th align="center">分类</th>
+<th align="center">802.3规范</th>
+<th align="center">通信介质</th>
+<th align="center">介质标准</th>
+<th align="center">传输距离</th>
+<th align="center">物理拓扑</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">快速以太网</td>
+<td align="center">802.3u</td>
+<td align="center">5类双绞线</td>
+<td align="center">100 Base-T</td>
+<td align="center">100 m</td>
+<td align="center">星形</td>
+</tr>
+<tr>
+<td align="center">快速以太网</td>
+<td align="center">802.3u</td>
+<td align="center">MMF&#x2F;SMF光纤</td>
+<td align="center">100 Base-F</td>
+<td align="center">2000 m</td>
+<td align="center">点到点</td>
+</tr>
+</tbody></table>
+<br>
+
+
+
+<h4 id="p-109-习题7"><a href="#p-109-习题7" class="headerlink" title="p 109 习题7"></a>p 109 习题7</h4><br>
+
+
+
+<h4 id="p-109-习题8"><a href="#p-109-习题8" class="headerlink" title="p 109 习题8"></a>p 109 习题8</h4><br>
+
+<h4 id="p-131-习题4"><a href="#p-131-习题4" class="headerlink" title="p 131 习题4"></a>p 131 习题4</h4><p>无线局域网拓扑结构有哪些？如何进行无线网络覆盖？</p>
+<br>
+
+
+
+<h4 id="云计算的分类"><a href="#云计算的分类" class="headerlink" title="云计算的分类"></a>云计算的分类</h4><ul>
+<li>公有云：为公众提供开放计算、存储等服务的“公有云”，如阿里云</li>
+<li>私有云：由特定组织建立的Intranet，为组织内部提供服务</li>
+<li>混合云：通过门户网站为公众提供服务</li>
+</ul>
+<h4 id="————"><a href="#————" class="headerlink" title="————-"></a>————-</h4><hr>
+<h4 id="网络协议的构成要素"><a href="#网络协议的构成要素" class="headerlink" title="网络协议的构成要素"></a>网络协议的构成要素</h4><p>网络协议由三个要素构成：语法、语义、时序</p>
+<br>
+
+
+
+<h4 id="网络拓扑结构分类"><a href="#网络拓扑结构分类" class="headerlink" title="网络拓扑结构分类"></a>网络拓扑结构分类</h4><ul>
+<li>总线型拓扑结构</li>
+<li>星形拓扑结构</li>
+<li>扩展星形拓扑结构</li>
+<li>树形拓扑结构</li>
+<li>环形拓扑结构</li>
+<li>网形拓扑结构</li>
+</ul>
+<br>
+
+
+
+<h4 id="网络结构层次"><a href="#网络结构层次" class="headerlink" title="**网络结构层次"></a>**网络结构层次</h4><p>以往网络常采用典型的三层结构：核心层+汇聚层+接入层</p>
+<p>现在采用高效的扁平结构：核心层+接入层</p>
+<br>
+
+
+
+<h4 id="云计算分类"><a href="#云计算分类" class="headerlink" title="云计算分类"></a>云计算分类</h4><p>云计算分为：共有云，所有云，混合云三类</p>
+<br>
+
+
+
+<h4 id="网络工程实施步骤"><a href="#网络工程实施步骤" class="headerlink" title="**网络工程实施步骤"></a>**网络工程实施步骤</h4><p>总体上可分为三个阶段：工程设计阶段、工程实施阶段、工程验收阶段</p>
+<p>每个阶段还可以分解为若干个步骤(详细见p23)</p>
+<br>
+
+
+
+<h4 id="综合布线系统的组成"><a href="#综合布线系统的组成" class="headerlink" title="综合布线系统的组成"></a>综合布线系统的组成</h4><p>综合布线系统一般包括：工作区子系统、水平子系统、管理子系统、垂直子系统、建筑群子系统、设备间子系统</p>
+<br>
+
+
+
+<h4 id="工作子系统"><a href="#工作子系统" class="headerlink" title="工作子系统"></a>工作子系统</h4><p>工作子系统又称为服务区子系统</p>
+<p>可以将工作区子系统分为三个设计等级</p>
+<ul>
+<li>基本型</li>
+<li>增强型</li>
+<li>综合型</li>
+</ul>
+<br>
+
+
+
+<h4 id="UPS的工作原理"><a href="#UPS的工作原理" class="headerlink" title="UPS的工作原理"></a>UPS的工作原理</h4><p>UPS是一种含有储能装置、以逆变器为主要组成部分的恒压、撗频的电源设备。它主要的功能就是，当市电输入正常时，会将电流稳压后供应给负载使用；当市电中断时，会及时向用电设备提供电能，使设备仍能持续工作一段时间，以便处理好未完成的工作</p>
+<br>
+
+
+
+<h4 id="交换机的交换技术"><a href="#交换机的交换技术" class="headerlink" title="交换机的交换技术"></a>交换机的交换技术</h4><p>交换机一般使用存储转发、快速转发、自由分段三种交换技术</p>
+<br>
+
+
+
+<h4 id="网桥工作原理"><a href="#网桥工作原理" class="headerlink" title="网桥工作原理"></a>网桥工作原理</h4><p>网桥工作在数据链路层，根据MAC地址（物理地址）进行数据帧接收、地址过滤与数据帧转发，以实现多个网段之间的数据帧交换</p>
+<br>
+
+
+
+<h4 id="VLAN实现途径"><a href="#VLAN实现途径" class="headerlink" title="VLAN实现途径"></a>VLAN实现途径</h4><p>VLAN建立主要用三种途径：</p>
+<ul>
+<li>基于端口的VLAN</li>
+<li>基于MAC地址的VLAN</li>
+<li>基于IP地址的VLAN</li>
+</ul>
+<br>
+
+
+
+<h4 id="VLAN的优点"><a href="#VLAN的优点" class="headerlink" title="VLAN的优点"></a>VLAN的优点</h4><ul>
+<li>控制广播风暴</li>
+<li>增强网络的安全性</li>
+<li>增强网络管理</li>
+</ul>
+<br>
+
+
+
+<h4 id="VLAN间路由配置"><a href="#VLAN间路由配置" class="headerlink" title="VLAN间路由配置"></a>VLAN间路由配置</h4><p>交换机划分VLAN后，不同VLAN的PC在数据链路层就无法通信了。不同VLAN间的通信需要路由器实现。<font color="red">使用路由器通常会采用单臂路由技术</font>。实践中，VLAN间路由器是通过<font color="red">第三层交换机</font>实现</p>
+<br>
+
+
+
+<h4 id="路由协议与被路由协议"><a href="#路由协议与被路由协议" class="headerlink" title="路由协议与被路由协议"></a>路由协议与被路由协议</h4><p>详细见p 91-93</p>
+<p>路由协议按照路由器互连拓扑可分为静态路由和动态路由</p>
+<br>
+
+
+
+<h4 id="OSPF的特点"><a href="#OSPF的特点" class="headerlink" title="OSPF的特点"></a>OSPF的特点</h4><p>可适应大规模的网，路由变化收敛速度快，无路由自环，支持变长子网掩码，支持等值路由，支持局域划分，提供路由分级管理，支持验证，支持以多播地址发送协议报文</p>
+<br>
+
+
+
+<h4 id="OSPF网络类型"><a href="#OSPF网络类型" class="headerlink" title="OSPF网络类型"></a>OSPF网络类型</h4><ul>
+<li>广播多路访问型</li>
+<li>非广播多路访问型</li>
+<li>点到点型</li>
+<li>点到多点型</li>
+</ul>
+<br>
+
+
+
+<h4 id="策略路由与策略路由映射图"><a href="#策略路由与策略路由映射图" class="headerlink" title="策略路由与策略路由映射图"></a>策略路由与策略路由映射图</h4><p>策略路由是一种支持数据包按照既定规则路由及转发的技术</p>
+<p>路由映射图决定了一个数据包的下一跳转发路由设备的端口地址</p>
+<br>
+
+
+
+<h4 id="服务器的功能与分类"><a href="#服务器的功能与分类" class="headerlink" title="**服务器的功能与分类"></a>**服务器的功能与分类</h4><p>功能：</p>
+<ul>
+<li>服务器为多个用户提供服务时更可靠</li>
+<li>服务器的可伸缩性和高可用性</li>
+</ul>
+<p>分类：</p>
+<ul>
+<li>文件服务器</li>
+<li>数据库服务器</li>
+<li>Internet通用服务器</li>
+<li>功能服务器</li>
+</ul>
+<br>
+
+
+
+<h4 id="IPv6"><a href="#IPv6" class="headerlink" title="IPv6"></a>IPv6</h4><p>IPv6地址是128位二进制数</p>
+<br>
+
+
+
+<h4 id="IPv4向IPv6过渡的方法"><a href="#IPv4向IPv6过渡的方法" class="headerlink" title="**IPv4向IPv6过渡的方法"></a>**IPv4向IPv6过渡的方法</h4><p>目前有三种方法</p>
+<ul>
+<li>兼容IPv4的IPv6地址</li>
+<li>双IP协议栈</li>
+<li>基于IPv4隧道的IPv6</li>
+</ul>
+<br>
+
+
+
+<h4 id="DMZ"><a href="#DMZ" class="headerlink" title="DMZ"></a>DMZ</h4><p>DMZ（非军事区），允许使用防火墙从Intranet 网络隔离出一个网段，然后把对外网的Web&#x2F;Mail服务器置于这个网络中</p>
+<br>
+
+
+
+<h4 id="ACL"><a href="#ACL" class="headerlink" title="**ACL"></a>**ACL</h4><p>ACL(访问控制列表)<br>ACL的定义是基于协议的</p>
+<p>ACL的作用: </p>
+<ul>
+<li>可以限制网络流量，提高网络性能</li>
+<li>提供对通信流量的控制手段</li>
+<li>是网络安全访问的基本手段</li>
+<li>可以在路由器端口处决定哪种类型的通信流量被转发或者被阻塞</li>
+</ul>
+<p>ACL的分类：</p>
+<ul>
+<li>标准ACL（表号取值范围1-99），只检查数据包的源地址</li>
+<li>扩展ACL（表号取值范围为100-199），既检查数据包的源地址，也检查数据包的目的地址</li>
+</ul>
+<br>
+
+
+
+<h4 id="NAT应用方式"><a href="#NAT应用方式" class="headerlink" title="NAT应用方式"></a>NAT应用方式</h4><ul>
+<li>静态地址转换：适用于企业内部服务器向企业网外部提供服务</li>
+<li>动态地址转换：适用于租用的IPv4地址数量较多的情况</li>
+<li>端口地址复用：适用于IPv4地址数很少，多个用户需要同时访问Internet的情况</li>
+</ul>
+<br>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>网络复习题</div>
+      <div>https://lzhengjy.gitee.io/2024/01/06/网络复习/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zheng</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年1月6日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/01/02/MyBatis-Plus/" title="MyBatis-Plus">
+                        <span class="hidden-mobile">MyBatis-Plus</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
