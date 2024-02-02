@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://lzhengjy.gitee.io/2023/12/02/InnoDB%E5%BC%95%E6%93%8E/image-20231213202354900.png">
 <meta property="og:image" content="https://lzhengjy.gitee.io/2023/12/02/InnoDB%E5%BC%95%E6%93%8E/image-20231213223050767.png">
 <meta property="article:published_time" content="2023-12-02T13:47:13.000Z">
-<meta property="article:modified_time" content="2023-12-13T15:17:37.476Z">
+<meta property="article:modified_time" content="2024-01-17T11:24:02.363Z">
 <meta property="article:author" content="Zheng">
 <meta property="article:tag" content="MySQL">
 <meta name="twitter:card" content="summary_large_image">
@@ -341,7 +341,7 @@
 
 
 <ul>
-<li>Buffer Pool: 缓冲池是主内存中的一个区域，里面可以缓存磁盘上一些经常操作的真实数据，在执行增删改查操作时，先操作缓冲池中的数据，若缓冲池没有数据，则从磁盘中加载并缓存。如何再以一定频率刷新到磁盘，从而减少磁盘IO，加快处理速度</li>
+<li>Buffer Pool: 缓冲池是主内存中的一个区域，里面可以缓存磁盘上一些经常操作的真实数据，在执行增删改查操作时，先操作缓冲池中的数据，若缓冲池没有数据，则从磁盘中加载并缓存。然后再以一定频率刷新到磁盘，从而减少磁盘IO，加快处理速度</li>
 <li>缓冲池以Page页为单位，底层采用链表数据结构管理Page。根据状态，将Page分为三种类型：<ul>
 <li>free page：空闲page，未被使用</li>
 <li>clean page：被使用page，数据没有被修改过</li>
