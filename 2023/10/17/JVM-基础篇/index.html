@@ -25,44 +25,44 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="一. JVM1. 初识JVM什么是JVM？ JVM 全程 Java Virtual Machine，中文译名Java虚拟机JVM本质上是一个运行在计算机上的程序，他的&lt;&#x2F;职责是运行Java字节码文件   2. JVM的功能 解释和运行 对字节码文件中的指令，实时的解释成机器码，让计算机执行   内存管理 自动为对象、方法等分配内存 自动的垃圾回收机制，回收不再利用的对象   即时编">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231017143311.png">
-<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231017144235.png">
-<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231017144309.png">
-<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231017145327.png">
-<meta property="og:image" content="https://lzhengjy.github.io/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231018133846.png">
-<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231026135449.png">
-<meta property="og:image" content="https://lzhengjy.github.io/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231026135908.png">
-<meta property="og:image" content="https://lzhengjy.github.io/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231026135928.png">
-<meta property="og:image" content="https://lzhengjy.github.io/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231026140014.png">
-<meta property="og:image" content="https://lzhengjy.github.io/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231026140032.png">
-<meta property="og:image" content="https://lzhengjy.github.io/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231026140135.png">
-<meta property="og:image" content="https://lzhengjy.github.io/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231026150614.png">
-<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231026161923.png">
-<meta property="og:image" content="https://lzhengjy.github.io/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231026162108.png">
-<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231027105433.png">
-<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231027163754.png">
-<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231027164322.png">
-<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231027164338.png">
-<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028121044.png">
-<meta property="og:image" content="https://lzhengjy.github.io/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028121407.png">
-<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028121602.png">
-<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028122520.png">
-<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028133012.png">
-<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028133121.png">
-<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028133906.png">
-<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028133928.png">
-<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028133958.png">
-<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028134029.png">
-<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028134100.png">
-<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028141240.png">
-<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028142605.png">
-<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028142623.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231017143311.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231017144235.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231017144309.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231017145327.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231018133846.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231026135449.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231026135908.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231026135928.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231026140014.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231026140032.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231026140135.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231026150614.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231026161923.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231026162108.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231027105433.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231027163754.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231027164322.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231027164338.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028121044.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028121407.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028121602.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028122520.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028133012.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028133121.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028133906.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028133928.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028133958.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028134029.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028134100.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028141240.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028142605.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028142623.png">
 <meta property="article:published_time" content="2023-10-17T06:05:53.000Z">
 <meta property="article:modified_time" content="2023-10-28T07:44:44.357Z">
 <meta property="article:author" content="Zheng">
 <meta property="article:tag" content="JVM">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231017143311.png">
+<meta name="twitter:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231017143311.png">
   
   
   
@@ -309,8 +309,8 @@
               <div class="markdown-body">
                 
                 <h2 id="一-JVM"><a href="#一-JVM" class="headerlink" title="一. JVM"></a>一. JVM</h2><h3 id="1-初识JVM"><a href="#1-初识JVM" class="headerlink" title="1. 初识JVM"></a>1. 初识JVM</h3><p><strong>什么是JVM？</strong></p>
-<p><font color="red">JVM</font> 全程 Java Virtual Machine，中文译名<font color="red">Java虚拟机</font><br>JVM本质上是一个运行在计算机上的程序，他的&lt;&#x2F;职责是运行<font color="red">Java字节码文件</font><br><img src="./JVM-基础篇/20231017143311.png" srcset="/img/loading.gif" lazyload style="zoom: 50%;" /></p>
-<br/>
+<p><font color="red">JVM</font> 全程 Java Virtual Machine，中文译名<font color="red">Java虚拟机</font><br>JVM本质上是一个运行在计算机上的程序，他的&lt;&#x2F;职责是运行<font color="red">Java字节码文件</font><br><img src="/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231017143311.png" srcset="/img/loading.gif" lazyload style="zoom: 50%;"></p>
+<br>
 
 <h3 id="2-JVM的功能"><a href="#2-JVM的功能" class="headerlink" title="2. JVM的功能"></a>2. JVM的功能</h3><ul>
 <li>解释和运行<ul>
@@ -327,19 +327,19 @@
 </ul>
 </li>
 </ul>
-<br/>
+<br>
 
 <p><strong>即时编译</strong></p>
 <ul>
 <li><p>Java语言如果不做任何优化，性能不如C、C++等语言</p>
-<img src="./JVM-基础篇/20231017144235.png" srcset="/img/loading.gif" lazyload style="zoom: 50%;" />
+<img src="/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231017144235.png" srcset="/img/loading.gif" lazyload style="zoom: 50%;">
 </li>
 <li><p>Java需要实时解释，主要是为了支持跨平台特性</p>
 </li>
 <li><p>由于JVM需要实时解释虚拟机指令，不做任何优化性能不如直接运行机器码的C、C++等语言</p>
-<img src="./JVM-基础篇/20231017144309.png" srcset="/img/loading.gif" lazyload style="zoom: 50%;" /></li>
+<img src="/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231017144309.png" srcset="/img/loading.gif" lazyload style="zoom: 50%;"></li>
 </ul>
-<br/>
+<br>
 
 <p><strong>常见的JVM</strong></p>
 <table>
@@ -394,14 +394,14 @@
 <td align="center">微服务、云原生架构</td>
 </tr>
 </tbody></table>
-<br/>
+<br>
 
 <p><strong>HotSpot的发展历程</strong></p>
-<img src="./JVM-基础篇/20231017145327.png" srcset="/img/loading.gif" lazyload style="zoom: 67%;" />
+<img src="/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231017145327.png" srcset="/img/loading.gif" lazyload style="zoom: 67%;">
 
 
 
-<br/>
+<br>
 
 <p><strong>总结</strong></p>
 <ol>
@@ -415,48 +415,48 @@
 <p>常见的JVM有HotSpot、GraalVM、OpenJ9等，另外DragonWell龙井JDK也 提供了一款功能增强版的JVM。其中使用最广泛的是HotSpot虚拟机</p>
 </li>
 </ol>
-<br/>
+<br>
 
 <hr>
-<h2 id="二-字节码文件详解"><a href="#二-字节码文件详解" class="headerlink" title="二. 字节码文件详解"></a>二. 字节码文件详解</h2><h3 id="1-Java虚拟机的组成"><a href="#1-Java虚拟机的组成" class="headerlink" title="1.  Java虚拟机的组成"></a>1.  Java虚拟机的组成</h3><p><img src="/./JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231018133846.png" srcset="/img/loading.gif" lazyload></p>
-<br/>
+<h2 id="二-字节码文件详解"><a href="#二-字节码文件详解" class="headerlink" title="二. 字节码文件详解"></a>二. 字节码文件详解</h2><h3 id="1-Java虚拟机的组成"><a href="#1-Java虚拟机的组成" class="headerlink" title="1.  Java虚拟机的组成"></a>1.  Java虚拟机的组成</h3><p><img src="/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231018133846.png" srcset="/img/loading.gif" lazyload></p>
+<br>
 
 
 
 <hr>
 <h3 id="2-字节码文件的组成"><a href="#2-字节码文件的组成" class="headerlink" title="2. 字节码文件的组成"></a>2. 字节码文件的组成</h3><p>字节码文件中保存了源代码编译之后的内容，以二进制的方式存储，无法直接用记事本打开阅读<br>推荐使用 jclasslib工具查看字节码文件,Github地址： <a target="_blank" rel="noopener" href="https://github.com/ingokegel/jclasslib">https://github.com/ingokegel/jclasslib</a></p>
-<img src="./JVM-基础篇/20231026135449.png" srcset="/img/loading.gif" lazyload style="zoom:80%;" />
+<img src="/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231026135449.png" srcset="/img/loading.gif" lazyload style="zoom:80%;">
 
-<br/>
+<br>
 
 <p><strong>字节码文件一般包含5个部分</strong></p>
 <ul>
 <li><p>基础信息</p>
 <p>魔数、字节码文件对应的Java版本号 访问标识(public final等等) 父类和接口</p>
-<p><img src="/./JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231026135908.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231026135908.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 <li><p>常量池</p>
 <p>保存了字符串常量、类或接口名、字段名 主要在字节码指令中使</p>
-<p><img src="/./JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231026135928.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231026135928.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 <li><p>字段</p>
 <p>当前类或接口声明的字段信息</p>
-<p><img src="/./JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231026140014.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231026140014.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 <li><p>方法</p>
 <p>当前类或接口声明的方法信息 字节码指令</p>
-<p><img src="/./JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231026140032.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231026140032.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 <li><p>属性</p>
 <p>类的属性，比如源码的文件名 内部类的列表等</p>
-<p><img src="/./JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231026140135.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231026140135.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 </ul>
-<br/>
+<br>
 
 <hr>
 <h3 id="3-基本信息"><a href="#3-基本信息" class="headerlink" title="3. 基本信息"></a>3. 基本信息</h3><p><strong>Magis魔数</strong></p>
-<p><img src="/./JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231026150614.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231026150614.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
 <li>文件是无法通过文件扩展名来确定文件类型的，文件扩展名可以随意修改，不影响文件的内容</li>
 <li>软件使用文件的头几个字节（文件头）去校验文件的类型，如果软件不支持该种类型就会出错</li>
@@ -501,40 +501,40 @@
 <td align="center">CAFEBABE</td>
 </tr>
 </tbody></table>
-<br/>
+<br>
 
 
 
 <p><strong>主副版本号</strong></p>
 <ul>
-<li><font color ="red">主副版本号指的是编译字节码文件的JDK版本号</font>，主版本号用来标识大版本号，JDK1.0-1.1使用了 45.0-45.3，JDK1.2是46之后每升级一个大版本就加1；副版本号是当主版本号相同时作为区分不同 版本的标识，一般只需要关心主版本号</li>
+<li><font color="red">主副版本号指的是编译字节码文件的JDK版本号</font>，主版本号用来标识大版本号，JDK1.0-1.1使用了 45.0-45.3，JDK1.2是46之后每升级一个大版本就加1；副版本号是当主版本号相同时作为区分不同 版本的标识，一般只需要关心主版本号</li>
 <li>版本号的作用主要是判断当前字节码的版本和运行时的JDK是否兼容</li>
 </ul>
-<img src="./JVM-基础篇/20231026161923.png" srcset="/img/loading.gif" lazyload style="zoom: 67%;" />
+<img src="/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231026161923.png" srcset="/img/loading.gif" lazyload style="zoom: 67%;">
 
 <p>1.2之后大版本号计算方法就是: 主版本号 – 44 比如主版本号52就是JDK1.8</p>
-<br/>
+<br>
 
 <p>主版本号不兼容导致的错误</p>
-<p><img src="/./JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231026162108.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231026162108.png" srcset="/img/loading.gif" lazyload></p>
 <p>解决方案</p>
 <ul>
 <li>升级JDK版本 </li>
 <li>将第三方依赖的版本号降低或者更换依赖，以满足JDK版本的要求</li>
 </ul>
-<br/>
+<br>
 
 
 
 <hr>
-<h3 id="4-常量池"><a href="#4-常量池" class="headerlink" title="4. 常量池"></a>4. 常量池</h3><img src="./JVM-基础篇/20231027105433.png" srcset="/img/loading.gif" lazyload style="zoom:67%;" />
+<h3 id="4-常量池"><a href="#4-常量池" class="headerlink" title="4. 常量池"></a>4. 常量池</h3><img src="/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231027105433.png" srcset="/img/loading.gif" lazyload style="zoom:67%;">
 
 <ul>
 <li>字节码文件中常量池的作用：避免相同的内容重复定义，节省空间</li>
 <li>常量池中的数据都有一个编号，编号从1开始，在字段或字节码指令中可以通过编号快速找到对应的数据</li>
-<li>字节码指令通过编号引用到常量池的过程称为<font color ="red">符号引用</font></li>
+<li>字节码指令通过编号引用到常量池的过程称为<font color="red">符号引用</font></li>
 </ul>
-<br/>
+<br>
 
 
 
@@ -544,7 +544,7 @@
 <li>操作数栈是临时存放数据的地方，局部变量表是存放方法中的局部变量的位置</li>
 </ul>
 <p><strong>解析	int i &#x3D; 0; int j &#x3D; i + 1;</strong></p>
-<img src="./JVM-基础篇/20231027163754.png" srcset="/img/loading.gif" lazyload style="zoom:67%;" />
+<img src="/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231027163754.png" srcset="/img/loading.gif" lazyload style="zoom:67%;">
 
 <ul>
 <li>iconst_0: 把0放入操作上栈</li>
@@ -555,23 +555,23 @@
 <li>istore_2: 将相加后的结果取出放入局部变量表2号位置</li>
 <li>return: 方法结束、返回</li>
 </ul>
-<br/>
+<br>
 
 <p><strong>解析	i &#x3D; 0; i &#x3D; i++;</strong></p>
-<img src="./JVM-基础篇/20231027164322.png" srcset="/img/loading.gif" lazyload style="zoom:67%;" />
+<img src="/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231027164322.png" srcset="/img/loading.gif" lazyload style="zoom:67%;">
 
-<br/>
+<br>
 
 <p><strong>解析	i &#x3D; 0; i &#x3D; ++i;</strong></p>
-<img src="./JVM-基础篇/20231027164338.png" srcset="/img/loading.gif" lazyload style="zoom: 67%;" />
+<img src="/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231027164338.png" srcset="/img/loading.gif" lazyload style="zoom: 67%;">
 
-<br/>
+<br>
 
 
 
 <p><strong>int i &#x3D; 0; i &#x3D; i++;	最终i的值是多少?</strong></p>
 <p>最终i的值是0，通过分析字节码文件发现，i++ 是先把0取出来放入操作数栈中，接下来在局部变量表中对i进行加1，i变成了1，最近再将之前操作数栈中的0取出来放入i，最后i就变成了0</p>
-<br/>
+<br>
 
 
 
@@ -581,7 +581,7 @@
 <li>jclasslib插件</li>
 <li>阿里arthas</li>
 </ul>
-<br/>
+<br>
 
 <p><strong>javao -v命令</strong></p>
 <ul>
@@ -589,17 +589,17 @@
 <li>直接输入javap查看所有参数</li>
 <li>输入javap -v 字节码文件名称 查看具体的字节码信息。（如果jar包需要先使用 jar –xvf 命令解压）</li>
 </ul>
-<br/>
+<br>
 
 <p><strong>jclasslib	idea插件</strong></p>
 <p>jclasslib也有Idea插件版本，建议开发时使用Idea插件版本，可以在代码编译之后实时看到字节码 文件内容</p>
-<p>首先应该下载并安装插件<br><img src="./JVM-基础篇/20231028121044.png" srcset="/img/loading.gif" lazyload style="zoom: 50%;" /></p>
-<br/>
+<p>首先应该下载并安装插件<br><img src="/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028121044.png" srcset="/img/loading.gif" lazyload style="zoom: 50%;"></p>
+<br>
 
-<p>编译完代码后即可打开字节码文件<br><img src="/./JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028121407.png" srcset="/img/loading.gif" lazyload></p>
-<img src="./JVM-基础篇/20231028121602.png" srcset="/img/loading.gif" lazyload style="zoom:67%;" />
+<p>编译完代码后即可打开字节码文件<br><img src="/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028121407.png" srcset="/img/loading.gif" lazyload></p>
+<img src="/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028121602.png" srcset="/img/loading.gif" lazyload style="zoom:67%;">
 
-<br/>
+<br>
 
 <p><strong>阿里arthas</strong></p>
 <ul>
@@ -608,42 +608,42 @@
 <li>dump 类的全限定名：dump已加载类的字节码文件到特定目录</li>
 <li>ad 类的全限定名： 反编译已加载类的源码</li>
 </ul>
-<img src="./JVM-基础篇/20231028122520.png" srcset="/img/loading.gif" lazyload style="zoom:67%;" />
+<img src="/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028122520.png" srcset="/img/loading.gif" lazyload style="zoom:67%;">
 
-<br/>
+<br>
 
 
 
 <hr>
-<h2 id="三-类的生命周期"><a href="#三-类的生命周期" class="headerlink" title="三. 类的生命周期"></a>三. 类的生命周期</h2><img src="./JVM-基础篇/20231028133012.png" srcset="/img/loading.gif" lazyload style="zoom:67%;" />
+<h2 id="三-类的生命周期"><a href="#三-类的生命周期" class="headerlink" title="三. 类的生命周期"></a>三. 类的生命周期</h2><img src="/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028133012.png" srcset="/img/loading.gif" lazyload style="zoom:67%;">
 
-<img src="./JVM-基础篇/20231028133121.png" srcset="/img/loading.gif" lazyload style="zoom: 50%;" />
+<img src="/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028133121.png" srcset="/img/loading.gif" lazyload style="zoom: 50%;">
 
-<br/>
+<br>
 
 <h3 id="1-加载阶段"><a href="#1-加载阶段" class="headerlink" title="1.  加载阶段"></a>1.  加载阶段</h3><ol>
-<li><p>加载(Loading)阶段第一步是<font color="red">类加载器</font>根据类的全限定名通过不同的渠道以二进制流的方式获取字节码信息。 程序员可以使用Java代码拓展的不同的渠道<br><img src="./JVM-基础篇/20231028133906.png" srcset="/img/loading.gif" lazyload style="zoom:67%;" /></p>
+<li><p>加载(Loading)阶段第一步是<font color="red">类加载器</font>根据类的全限定名通过不同的渠道以二进制流的方式获取字节码信息。 程序员可以使用Java代码拓展的不同的渠道<br><img src="/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028133906.png" srcset="/img/loading.gif" lazyload style="zoom:67%;"></p>
 </li>
-<li><p>类加载器在加载完类之后，Java虚拟机会将字节码中的信息保存到方法区中<br><img src="./JVM-基础篇/20231028133928.png" srcset="/img/loading.gif" lazyload style="zoom:67%;" /></p>
+<li><p>类加载器在加载完类之后，Java虚拟机会将字节码中的信息保存到方法区中<br><img src="/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028133928.png" srcset="/img/loading.gif" lazyload style="zoom:67%;"></p>
 </li>
-<li><p>类加载器在加载完类之后，Java虚拟机会将字节码中的信息保存到内存的方法区中。 生成一个InstanceKlass对象，保存类的所有信息，里边还包含实现特定功能比如多态的信息<br><img src="./JVM-基础篇/20231028133958.png" srcset="/img/loading.gif" lazyload style="zoom:67%;" /></p>
+<li><p>类加载器在加载完类之后，Java虚拟机会将字节码中的信息保存到内存的方法区中。 生成一个InstanceKlass对象，保存类的所有信息，里边还包含实现特定功能比如多态的信息<br><img src="/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028133958.png" srcset="/img/loading.gif" lazyload style="zoom:67%;"></p>
 </li>
-<li><p>同时，Java虚拟机还会在堆中生成一份与方法区中数据类似的java.lang.Class对象。 作用是在Java代码中去获取类的信息以及存储静态字段的数据（JDK8及之后)<br><img src="./JVM-基础篇/20231028134029.png" srcset="/img/loading.gif" lazyload style="zoom:67%;" /></p>
+<li><p>同时，Java虚拟机还会在堆中生成一份与方法区中数据类似的java.lang.Class对象。 作用是在Java代码中去获取类的信息以及存储静态字段的数据（JDK8及之后)<br><img src="/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028134029.png" srcset="/img/loading.gif" lazyload style="zoom:67%;"></p>
 </li>
 </ol>
-<br/>
+<br>
 
 <p>对于开发者来说，只需要访问堆中的Class对象而不需要访问方法区中所有信息,<font color="red">这样Java虚拟机就能很好地控制开发者访问数据的范围</font></p>
-<img src="./JVM-基础篇/20231028134100.png" srcset="/img/loading.gif" lazyload style="zoom:67%;" />
+<img src="/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028134100.png" srcset="/img/loading.gif" lazyload style="zoom:67%;">
 
-<br/>
+<br>
 
 
 
 <hr>
-<h3 id="2-连接阶段"><a href="#2-连接阶段" class="headerlink" title="2. 连接阶段"></a>2. 连接阶段</h3><img src="./JVM-基础篇/20231028141240.png" srcset="/img/loading.gif" lazyload style="zoom:67%;" />
+<h3 id="2-连接阶段"><a href="#2-连接阶段" class="headerlink" title="2. 连接阶段"></a>2. 连接阶段</h3><img src="/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028141240.png" srcset="/img/loading.gif" lazyload style="zoom:67%;">
 
-<br/>
+<br>
 
 
 
@@ -655,12 +655,12 @@
 <li>验证程序执行指令的语义，比如方法内的指令执行到一半强行跳转到其他方法中去</li>
 <li>符号引用验证，例如是否访问了其他类中private的方法等</li>
 </ol>
-<br/>
+<br>
 
 
 
 <p><strong>准备</strong></p>
-<p>准备阶段为静态变量（static）分配内存并设置初始值<br><img src="./JVM-基础篇/20231028142605.png" srcset="/img/loading.gif" lazyload style="zoom:67%;" /></p>
+<p>准备阶段为静态变量（static）分配内存并设置初始值<br><img src="/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028142605.png" srcset="/img/loading.gif" lazyload style="zoom:67%;"></p>
 <p>准备阶段只会给静态变量赋初始值，而每一种基本数据类型和引用数据类型都有其初始值</p>
 <table>
 <thead>
@@ -702,10 +702,10 @@
 <td align="center">null</td>
 </tr>
 </tbody></table>
-<br/>
+<br>
 
-<p>final修饰的基本数据类型的静态变量，准备阶段直接会将代码中的值进行赋值<br><img src="./JVM-基础篇/20231028142623.png" srcset="/img/loading.gif" lazyload style="zoom:67%;" /></p>
-<br/>
+<p>final修饰的基本数据类型的静态变量，准备阶段直接会将代码中的值进行赋值<br><img src="/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028142623.png" srcset="/img/loading.gif" lazyload style="zoom:67%;"></p>
+<br>
 
 
 
@@ -714,7 +714,7 @@
 <li>解析阶段主要是将常量池中的符号引用替换为直接引用</li>
 <li>直接引用不在使用编号，而是使用内存中地址进行访问具体的数据</li>
 </ul>
-<br/>
+<br>
 
 
 

@@ -25,15 +25,15 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="我们通过一个案例来演示SpringBoot整合MyBatis和SpringMVC该案例通过前后端分离来完成，前端使用vue2加JavaScript实现 前端部分主要代码12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://lzhengjy.github.io/SpringBoot%E6%95%B4%E5%90%88MyBatis%E5%92%8CSpringMVC/20231109142648.png">
-<meta property="og:image" content="https://lzhengjy.github.io/2023/11/09/SpringBoot%E6%95%B4%E5%90%88MyBatis%E5%92%8CSpringMVC/SpringBoot%E6%95%B4%E5%90%88MyBatis%E5%92%8CSpringMVC/20231109154830.png">
-<meta property="og:image" content="https://lzhengjy.github.io/SpringBoot%E6%95%B4%E5%90%88MyBatis%E5%92%8CSpringMVC/20231109155246.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/11/09/SpringBoot%E6%95%B4%E5%90%88MyBatis%E5%92%8CSpringMVC/20231109142648.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/11/09/SpringBoot%E6%95%B4%E5%90%88MyBatis%E5%92%8CSpringMVC/20231109154830.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/11/09/SpringBoot%E6%95%B4%E5%90%88MyBatis%E5%92%8CSpringMVC/20231109155246.png">
 <meta property="article:published_time" content="2023-11-08T16:37:57.000Z">
 <meta property="article:modified_time" content="2023-11-09T07:54:55.790Z">
 <meta property="article:author" content="Zheng">
 <meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://lzhengjy.github.io/SpringBoot%E6%95%B4%E5%90%88MyBatis%E5%92%8CSpringMVC/20231109142648.png">
+<meta name="twitter:image" content="https://lzhengjy.github.io/2023/11/09/SpringBoot%E6%95%B4%E5%90%88MyBatis%E5%92%8CSpringMVC/20231109142648.png">
   
   
   
@@ -308,24 +308,24 @@
 <li><p>resp.data.data：由于后端统一了返回格式，resp.data只能获取到Result对象，resp.data.data才能获取到Result中的data数据</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Result</span>&lt;T&gt; <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Serializable</span> &#123;<br>    <span class="hljs-keyword">private</span> Integer code; <span class="hljs-comment">//编码：1成功，0和其它数字为失败</span><br>    <span class="hljs-keyword">private</span> String msg; <span class="hljs-comment">//错误信息</span><br>    <span class="hljs-keyword">private</span> T data; <span class="hljs-comment">//数据</span><br>    ......<br></code></pre></td></tr></table></figure></li>
 </ul>
-<br/></li>
+<br></li>
 </ul>
 <h4 id="自定义axios-js"><a href="#自定义axios-js" class="headerlink" title="自定义axios.js"></a>自定义axios.js</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;axios&#x27;</span><br><span class="hljs-keyword">const</span> _axios = axios.<span class="hljs-title function_">create</span>(&#123;<br>    <span class="hljs-comment">// baseURL: &#x27;http://localhost:8080&#x27;,</span><br>    <span class="hljs-attr">withCredentials</span>: <span class="hljs-literal">true</span><br>&#125;);<br>_axios.<span class="hljs-property">interceptors</span>.<span class="hljs-property">request</span>.<span class="hljs-title function_">use</span>(<br>  <span class="hljs-keyword">function</span>(<span class="hljs-params">config</span>) &#123;<br>    <span class="hljs-comment">// 比如在这里添加统一的 headers</span><br>      config.<span class="hljs-property">headers</span> = &#123;<br>          <span class="hljs-title class_">Authorization</span>: <span class="hljs-string">&#x27;aaa.bbb.ccc&#x27;</span><br>      &#125;<br>    <span class="hljs-keyword">return</span> config;<br>  &#125;,<br>  <span class="hljs-keyword">function</span>(<span class="hljs-params">error</span>) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>(error);<br>  &#125;<br>);<br>_axios.<span class="hljs-property">interceptors</span>.<span class="hljs-property">response</span>.<span class="hljs-title function_">use</span>(<br>  <span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>) &#123;<br>    <span class="hljs-keyword">return</span> response;<br>  &#125;,<br>  <span class="hljs-keyword">function</span>(<span class="hljs-params">error</span>) &#123;<br>    <span class="hljs-keyword">if</span> (error.<span class="hljs-property">response</span>.<span class="hljs-property">status</span> === <span class="hljs-number">400</span>) &#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;请求参数不正确&#x27;</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>(<span class="hljs-number">400</span>);<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (error.<span class="hljs-property">response</span>.<span class="hljs-property">status</span> === <span class="hljs-number">401</span>) &#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;跳转至登录页面&#x27;</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>(<span class="hljs-number">401</span>);<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (error.<span class="hljs-property">response</span>.<span class="hljs-property">status</span> === <span class="hljs-number">404</span>) &#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;资源未找到&#x27;</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>(<span class="hljs-number">404</span>);<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>(error);<br>  &#125;<br>);<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> _axios;<br></code></pre></td></tr></table></figure>
 
-<br/>
+<br>
 
 
 
 <h4 id="自定义axios-js-1"><a href="#自定义axios-js-1" class="headerlink" title="自定义axios.js"></a>自定义axios.js</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;axios&#x27;</span><br><span class="hljs-keyword">const</span> _axios = axios.<span class="hljs-title function_">create</span>(&#123;<br>    <span class="hljs-comment">// baseURL: &#x27;http://localhost:8080&#x27;,</span><br>    <span class="hljs-attr">withCredentials</span>: <span class="hljs-literal">true</span><br>&#125;);<br>_axios.<span class="hljs-property">interceptors</span>.<span class="hljs-property">request</span>.<span class="hljs-title function_">use</span>(<br>  <span class="hljs-keyword">function</span>(<span class="hljs-params">config</span>) &#123;<br>    <span class="hljs-comment">// 比如在这里添加统一的 headers</span><br>      config.<span class="hljs-property">headers</span> = &#123;<br>          <span class="hljs-title class_">Authorization</span>: <span class="hljs-string">&#x27;aaa.bbb.ccc&#x27;</span><br>      &#125;<br>    <span class="hljs-keyword">return</span> config;<br>  &#125;,<br>  <span class="hljs-keyword">function</span>(<span class="hljs-params">error</span>) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>(error);<br>  &#125;<br>);<br>_axios.<span class="hljs-property">interceptors</span>.<span class="hljs-property">response</span>.<span class="hljs-title function_">use</span>(<br>  <span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>) &#123;<br>    <span class="hljs-keyword">return</span> response;<br>  &#125;,<br>  <span class="hljs-keyword">function</span>(<span class="hljs-params">error</span>) &#123;<br>    <span class="hljs-keyword">if</span> (error.<span class="hljs-property">response</span>.<span class="hljs-property">status</span> === <span class="hljs-number">400</span>) &#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;请求参数不正确&#x27;</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>(<span class="hljs-number">400</span>);<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (error.<span class="hljs-property">response</span>.<span class="hljs-property">status</span> === <span class="hljs-number">401</span>) &#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;跳转至登录页面&#x27;</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>(<span class="hljs-number">401</span>);<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (error.<span class="hljs-property">response</span>.<span class="hljs-property">status</span> === <span class="hljs-number">404</span>) &#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;资源未找到&#x27;</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>(<span class="hljs-number">404</span>);<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>(error);<br>  &#125;<br>);<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> _axios;<br></code></pre></td></tr></table></figure>
 
-<br/>
+<br>
 
 
 
 <h4 id="配置文件vue-config-js"><a href="#配置文件vue-config-js" class="headerlink" title="配置文件vue.config.js"></a>配置文件vue.config.js</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> &#123; defineConfig &#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;@vue/cli-service&#x27;</span>)<br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = <span class="hljs-title function_">defineConfig</span>(&#123;<br>  <span class="hljs-attr">transpileDependencies</span>: <span class="hljs-literal">true</span>,<br>  <span class="hljs-attr">devServer</span>: &#123;<br>    <span class="hljs-attr">port</span>: <span class="hljs-number">7070</span>,<br>    <span class="hljs-attr">proxy</span>: &#123;<br>      <span class="hljs-string">&#x27;/api&#x27;</span>: &#123;<br>        <span class="hljs-attr">target</span>: <span class="hljs-string">&#x27;http://localhost:8080&#x27;</span>,<br>        <span class="hljs-attr">changeOrigin</span>: <span class="hljs-literal">true</span><br>      &#125;<br>    &#125;<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
 
 <p>在这里配置的端口号和统一的URL前缀映射</p>
-<br/>
+<br>
 
 
 
@@ -337,8 +337,8 @@
 
 
 <h4 id="数据库表"><a href="#数据库表" class="headerlink" title="数据库表"></a>数据库表</h4><p>创建一个简单的表即可，输入一些内容</p>
-<p><img src="/./SpringBoot%E6%95%B4%E5%90%88MyBatis%E5%92%8CSpringMVC/20231109142648.png" srcset="/img/loading.gif" lazyload></p>
-<br/>
+<p><img src="/2023/11/09/SpringBoot%E6%95%B4%E5%90%88MyBatis%E5%92%8CSpringMVC/20231109142648.png" srcset="/img/loading.gif" lazyload></p>
+<br>
 
 
 
@@ -392,13 +392,13 @@
 </tbody></table>
 </li>
 </ul>
-<br/>
+<br>
 
 
 
 <h4 id="控制层"><a href="#控制层" class="headerlink" title="控制层"></a>控制层</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RestController</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">StudentController</span> &#123;<br><br>    <span class="hljs-meta">@Autowired</span><br>    StudentService studentService;<br><br>    <span class="hljs-meta">@GetMapping(&quot;/api/students&quot;)</span><br>    <span class="hljs-keyword">public</span> Result&lt;List&lt;Student&gt;&gt; <span class="hljs-title function_">getAllStudent</span><span class="hljs-params">()</span> &#123;<br>        List&lt;Student&gt; students = studentService.getAll();<br>        <span class="hljs-keyword">return</span> Result.success(students);<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
 
-<br/>
+<br>
 
 
 
@@ -417,7 +417,7 @@
 </li>
 <li>由于该案例只是简单的实现一下SpringBoot整合MyBatis和SpringMVC，并未在业务层做一些逻辑处理，只是简单获取数据并返回</li>
 </ul>
-<br/>
+<br>
 
 
 
@@ -428,7 +428,7 @@
 <li>@Mapper是属于mybatis的注解。在程序中，mybatis需要找到对应的mapper，在编译时候动态生成代理类，实现数据库查询功能</li>
 <li>但是如果只是单独的使用@Mapper注解的话，在idea中进行自动装配的时候，会出现警告，提示找不到这个bean。但是这个不影响程序运行，可以直接忽略也可以添加@Repository注解。这样spring会扫描@Repository并识别这个bean，就不会出现这个警告。</li>
 </ul>
-<br/>
+<br>
 
 
 
@@ -442,7 +442,7 @@
 </li>
 <li>这里用的是泛型类，即在声明类时使用泛型</li>
 </ul>
-<br/>
+<br>
 
 
 
@@ -452,7 +452,7 @@
 <ul>
 <li>这里配置了数据源</li>
 </ul>
-<br/>
+<br>
 
 <p>application.properties</p>
 <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-comment">#端口号</span><br><span class="hljs-attr">server.port</span>=<span class="hljs-string">8080</span><br><span class="hljs-comment">#druid数据库连接池</span><br><span class="hljs-comment">#type=com.alibaba.druid.pool.DruidDataSource</span><br><span class="hljs-comment">#清除缓存</span><br><span class="hljs-attr">spring.thymeleaf.cache</span>=<span class="hljs-string">false</span><br><span class="hljs-comment">#配置mapper</span><br><span class="hljs-attr">mybatis.mapper-locations</span>=<span class="hljs-string">classpath:mapper/*.xml</span><br></code></pre></td></tr></table></figure>
@@ -466,22 +466,22 @@
 </ul>
 </li>
 </ul>
-<br/>
+<br>
 
 
 
 <h3 id="启动项目"><a href="#启动项目" class="headerlink" title="启动项目"></a>启动项目</h3><p>启动前端项目<br>在vue项目下用命令行运行启动指令</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">npm <span class="hljs-built_in">run</span> serve<br></code></pre></td></tr></table></figure>
 
-<img src="./SpringBoot整合MyBatis和SpringMVC/20231109154830.png" srcset="/img/loading.gif" lazyload style="zoom: 67%;" />
+<img src="/2023/11/09/SpringBoot%E6%95%B4%E5%90%88MyBatis%E5%92%8CSpringMVC/20231109154830.png" srcset="/img/loading.gif" lazyload style="zoom: 67%;">
 
-<br/>
+<br>
 
 
 
 <p>后端正常在启动类启动就行了</p>
 <p>最终正常前端从后端获取到了数据并展示在页面中</p>
-<p><img src="/./SpringBoot%E6%95%B4%E5%90%88MyBatis%E5%92%8CSpringMVC/20231109155246.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2023/11/09/SpringBoot%E6%95%B4%E5%90%88MyBatis%E5%92%8CSpringMVC/20231109155246.png" srcset="/img/loading.gif" lazyload></p>
 
                 
               </div>
