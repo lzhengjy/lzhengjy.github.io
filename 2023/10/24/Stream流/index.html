@@ -278,7 +278,7 @@
                 <p>该笔记基于b站视频完成<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1te411w722?vd_source=db8e7458ec195ac74979ce5478cbc624">Java-Stream流从入门到精通</a></p>
 <p><strong>什么是Stream流</strong></p>
 <p>Java 8 API添加了一个新的抽象称为流Stream，可以让你以一种声明的方式处理数据<br>Stream 使用一种类似用 SQL 语句从数据库查询数据的直观方式来提供一种对 Java 集合运算和表达的高阶抽象<br>Stream API可以极大提高Java程序员的生产力，让程序员写出高效率、干净、简洁的代码<br>这种风格将要处理的元素集合看作一种流， 流在管道中传输， 并且可以在管道的节点上进行处理， 比如筛选， 排序，聚合等<br>元素流在管道中经过中间操作（intermediate operation）的处理，最后由最终操作(terminal operation)得到前面处理的结果<br></p>
-<br>
+<br/>
 
 <p><strong>Stream流的作用</strong>：结合了Lambda表达式，简化了集合、数组的操作</p>
 <p><strong>Stream流的使用步骤</strong></p>
@@ -290,7 +290,7 @@
 </ul>
 </li>
 </ol>
-<br>
+<br/>
 
 <p><strong>把数据放到Stream流上去</strong></p>
 <table>
@@ -303,7 +303,7 @@
 </thead>
 <tbody><tr>
 <td align="center">单例集合</td>
-<td align="center">default Stream<E> stream()</E></td>
+<td align="center">default Stream<E> stream()</td>
 <td align="left">Collection中的默认方法</td>
 </tr>
 <tr>
@@ -313,38 +313,38 @@
 </tr>
 <tr>
 <td align="center">数组</td>
-<td align="center">public static<T> Stream<T> stream (T… values)</T></T></td>
+<td align="center">public static<T> Stream<T> stream (T… values)</td>
 <td align="left">Arrays工具类中的静态方法</td>
 </tr>
 <tr>
 <td align="center">一堆零散的数据</td>
-<td align="center">public static<T> Stream<T> of (T… values)</T></T></td>
+<td align="center">public static<T> Stream<T> of (T… values)</td>
 <td align="left">Stream接口中你的静态方法</td>
 </tr>
 </tbody></table>
-<br>
+<br/>
 
 <p>单例集合获取Stream流</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 用Stream流遍历集合中的元素</span><br>ArrayList&lt;String&gt; list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>Collections.addAll(list, <span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;d&quot;</span>);<br><br>list.stream().forEach(s -&gt; System.out.println(s));<br></code></pre></td></tr></table></figure>
 
-<br>
+<br/>
 
 <p>双列集合获取Stream流</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 创建双列集合</span><br>HashMap&lt;String, Integer&gt; hm = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br><span class="hljs-comment">// 添加数据</span><br>hm.put(<span class="hljs-string">&quot;a&quot;</span>,<span class="hljs-number">1</span>);<br>hm.put(<span class="hljs-string">&quot;b&quot;</span>,<span class="hljs-number">2</span>);<br>hm.put(<span class="hljs-string">&quot;c&quot;</span>,<span class="hljs-number">3</span>);<br>hm.put(<span class="hljs-string">&quot;d&quot;</span>,<span class="hljs-number">4</span>);<br><br><span class="hljs-comment">// 第一中获取Stream流方法</span><br>hm.keySet().stream().forEach(s -&gt; System.out.println(s));<br>hm.values().stream().forEach(x -&gt; System.out.println(x));<br><br><span class="hljs-comment">// 第二种</span><br>hm.entrySet().stream().forEach(y -&gt; System.out.println(y));<br></code></pre></td></tr></table></figure>
 
-<br>
+<br/>
 
 <p>数组获取Stream流</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">int</span>[] arr = &#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>&#125;;<br>Arrays.stream(arr).forEach(s -&gt; System.out.println(s));<br></code></pre></td></tr></table></figure>
 
-<br>
+<br/>
 
 <p>一堆零散数据获取Stream流</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 前提是这些数据的数据类型相同</span><br>Stream(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>)..forEach(s -&gt; System.out.println(s));<br>Stream(<span class="hljs-string">&quot;a&quot;</span>,<span class="hljs-string">&quot;b&quot;</span>,<span class="hljs-string">&quot;c&quot;</span>)..forEach(s -&gt; System.out.println(s));<br></code></pre></td></tr></table></figure>
 
 
 
-<br>
+<br/>
 
 
 
@@ -357,27 +357,27 @@
 </tr>
 </thead>
 <tbody><tr>
-<td align="left">Stream<T>  <font color="red">filter</font>(Predicate&lt;? super T&gt; predicate)</T></td>
+<td align="left">Stream<T>  <font color = "red">filter</font>(Predicate&lt;? super T&gt; predicate)</td>
 <td align="left">过滤</td>
 </tr>
 <tr>
-<td align="left">Stream<T>  <font color="red">limit</font>(long maxSize)</T></td>
+<td align="left">Stream<T>  <font color = "red">limit</font>(long maxSize)</td>
 <td align="left">获取前面几个元素</td>
 </tr>
 <tr>
-<td align="left">Stream<T>  <font color="red">skip</font>(long n)</T></td>
+<td align="left">Stream<T>  <font color = "red">skip</font>(long n)</td>
 <td align="left">跳过前面几个元素</td>
 </tr>
 <tr>
-<td align="left">Stream<T>  <font color="red">distinct</font>()</T></td>
+<td align="left">Stream<T>  <font color = "red">distinct</font>()</td>
 <td align="left">元素去重，依赖于hashCode和equals方法</td>
 </tr>
 <tr>
-<td align="left">static <T> Stream<T> <font color="red">concat</font>(Stream a, Stream b)</T></T></td>
+<td align="left">static <T> Stream<T> <font color = "red">concat</font>(Stream a, Stream b)</td>
 <td align="left">合并a和b两个流为一个流</td>
 </tr>
 <tr>
-<td align="left">Stream<R>  <font color="red">map</font>(Function&lt;T, R&gt; mapper)</R></td>
+<td align="left">Stream<R>  <font color = "red">map</font>(Function&lt;T, R&gt; mapper)</td>
 <td align="left">转换流中的数据类型</td>
 </tr>
 </tbody></table>
@@ -386,22 +386,22 @@
 <li>中间方法，返回新的Stream流，原来的Stream流只能使用一次，建议使用链式编程</li>
 <li>修改Stream流中的数据，不会影响原来集合或者数据中的数据</li>
 </ul>
-<br>
+<br/>
 
 <p>filter、limit、skip</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java">ArrayList&lt;String&gt; list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>Collections.addAll(list, <span class="hljs-string">&quot;张无忌&quot;</span>, <span class="hljs-string">&quot;周芷若&quot;</span>, <span class="hljs-string">&quot;赵敏&quot;</span>, <span class="hljs-string">&quot;张强&quot;</span>, <span class="hljs-string">&quot;张三丰&quot;</span>, <span class="hljs-string">&quot;张翠山&quot;</span>, <span class="hljs-string">&quot;张良&quot;</span>, <span class="hljs-string">&quot;王二麻子&quot;</span>, <span class="hljs-string">&quot;谢广坤&quot;</span>);<br><br><span class="hljs-comment">// filter 过滤  把张开头的留下，其余的数据过滤</span><br>list.stream().filter(s -&gt; s.startsWith(<span class="hljs-string">&quot;张&quot;</span>)).forEach(s -&gt; System.out.println(s));<br><br><span class="hljs-comment">// limit: 获取前面几个元素	skip: 跳过前面几个元素</span><br><span class="hljs-comment">// 获取	&quot;张强&quot;, &quot;张三丰&quot;, &quot;张翠山&quot;</span><br><span class="hljs-comment">// 实现方法一：先获取前面6个元素，再跳过前面3个元素</span><br>list.stream().limit(<span class="hljs-number">6</span>).skip(<span class="hljs-number">3</span>).forEach(s -&gt; System.out.println(s));<br><span class="hljs-comment">// 实现方法二：先跳过前面3个，在获取前面3个</span><br>list.stream().skip(<span class="hljs-number">3</span>).limit(<span class="hljs-number">3</span>).forEach(s -&gt; System.out.println(s));<br></code></pre></td></tr></table></figure>
 
-<br>
+<br/>
 
 <p>distinct、concat</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// distinct : 元素去重	concat : 合并两个流</span><br>ArrayList&lt;String&gt; list1 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>Collections.addAll(list1, <span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;c&quot;</span>, <span class="hljs-string">&quot;d&quot;</span>, <span class="hljs-string">&quot;e&quot;</span>, <span class="hljs-string">&quot;f&quot;</span>);<br><br><span class="hljs-comment">// 去重输出</span><br>list1.stream().distinct().forEach(s -&gt; System.out.println(s));<br><br><span class="hljs-comment">// 合并两个流</span><br>ArrayList&lt;String&gt; list1 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>Collections.addAll(list1, <span class="hljs-string">&quot;g&quot;</span>, <span class="hljs-string">&quot;h&quot;</span>);<br>Stream.concat(list1.stream(), list2.stream());<br></code></pre></td></tr></table></figure>
 
-<br>
+<br/>
 
 <p>map</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// map 转换流中的数据类型</span><br>ArrayList&lt;String&gt; list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>Collections.addAll(list, <span class="hljs-string">&quot;张无忌-15&quot;</span>, <span class="hljs-string">&quot;周芷若-18&quot;</span>, <span class="hljs-string">&quot;赵敏-17&quot;</span>, <span class="hljs-string">&quot;张强-31&quot;</span>, <span class="hljs-string">&quot;张三丰-23&quot;</span>, <span class="hljs-string">&quot;张翠山-15&quot;</span>, <span class="hljs-string">&quot;张良-20&quot;</span>, <span class="hljs-string">&quot;王二麻子-25&quot;</span>, <span class="hljs-string">&quot;谢广坤-40&quot;</span>);<br><span class="hljs-comment">// 需求：只获取里面的年龄并进行打印</span><br>list.stream()<br>    .map(s -&gt; Integer.parseInt(s.split(<span class="hljs-string">&quot;-&quot;</span>)[<span class="hljs-number">1</span>]))<br>    .forEach(s -&gt; System.out.println(s));<br></code></pre></td></tr></table></figure>
 
-<br>
+<br/>
 
 
 
@@ -430,15 +430,15 @@
 <td align="center">收集流中的数据，放到集合中</td>
 </tr>
 </tbody></table>
-<br>
+<br/>
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java">ArrayList&lt;String&gt; list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>Collections.addAll(list, <span class="hljs-string">&quot;张无忌&quot;</span>, <span class="hljs-string">&quot;周芷若&quot;</span>, <span class="hljs-string">&quot;赵敏&quot;</span>, <span class="hljs-string">&quot;张强&quot;</span>, <span class="hljs-string">&quot;张三丰&quot;</span>, <span class="hljs-string">&quot;张翠山&quot;</span>, <span class="hljs-string">&quot;张良&quot;</span>, <span class="hljs-string">&quot;王二麻子&quot;</span>, <span class="hljs-string">&quot;谢广坤&quot;</span>);<br><br><span class="hljs-comment">// 使用forEach遍历集合</span><br>list.stream().forEach(a -&gt; System.out.println(s));<br><br><span class="hljs-comment">// 使用count统计个数</span><br><span class="hljs-type">long</span> <span class="hljs-variable">count</span> <span class="hljs-operator">=</span> list.stream().filter(s -&gt; s.startsWith(<span class="hljs-string">&quot;张&quot;</span>)).count();<br>System.out.println(count);<br><br><span class="hljs-comment">// 收集流流中的数据，放到数组中 toArray</span><br>Object[] arr1 = list.stream().toArray();<br><span class="hljs-comment">// 指定数组数据类型</span><br>String[] arr2 = list.stream().toArray(value -&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>[value]);<br></code></pre></td></tr></table></figure>
 
-<br>
+<br/>
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs java">ArrayList&lt;String&gt; list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>Collections.addAll(list, <span class="hljs-string">&quot;张无忌-男-15&quot;</span>, <span class="hljs-string">&quot;周芷若-女-18&quot;</span>, <span class="hljs-string">&quot;赵敏-女--17&quot;</span>, <span class="hljs-string">&quot;张强-男-31&quot;</span>, <span class="hljs-string">&quot;张三丰-男-23&quot;</span>, <span class="hljs-string">&quot;张翠山-女-15&quot;</span>, <span class="hljs-string">&quot;张良-男-20&quot;</span>, <span class="hljs-string">&quot;王二麻子-男-25&quot;</span>, <span class="hljs-string">&quot;谢广坤-男-40&quot;</span>);<br><br><span class="hljs-comment">// 把所有的男性收集起来,收集到List集合中</span><br>List&lt;String&gt; newList = list.stream()<br>    .filter(s -&gt; <span class="hljs-string">&quot;男&quot;</span>.equals(s.split(<span class="hljs-string">&quot;-&quot;</span>)[<span class="hljs-number">1</span>]))<br>    .collect(Collectors.toList());<br><br><span class="hljs-comment">// 把所有的男性收集起来,收集到Set集合中</span><br>List&lt;String&gt; newSet = list.stream()<br>    .filter(s -&gt; <span class="hljs-string">&quot;男&quot;</span>.equals(s.split(<span class="hljs-string">&quot;-&quot;</span>)[<span class="hljs-number">1</span>]))<br>    .collect(Collectors.toSet());<br><br><span class="hljs-comment">// 区别：Set集合会去重</span><br><br><span class="hljs-comment">// 把所有的男性收集起来,收集到Map集合中,键：姓名，值：年龄</span><br>Map&lt;String, Integer&gt; newMap = list.stream()<br>    .filter(s -&gt; <span class="hljs-string">&quot;男&quot;</span>.equals(s.split(<span class="hljs-string">&quot;-&quot;</span>)[<span class="hljs-number">1</span>]))<br>    .collect(Collectors.toMap(<br>    	s -&gt; s.split(<span class="hljs-string">&quot;-&quot;</span>)[<span class="hljs-number">0</span>],<br>        s -&gt; Integer.parseInt(s.split(<span class="hljs-string">&quot;-&quot;</span>)[<span class="hljs-number">3</span>])<br>	));<br><span class="hljs-comment">// toMap()中，第一个参数是键，第二个参数是值</span><br><br></code></pre></td></tr></table></figure>
 
-<br>
+<br/>
 
 <p><strong>总结</strong></p>
 <ol>
@@ -467,7 +467,7 @@
 </ul>
 </li>
 </ol>
-<br>
+<br/>
 
 
 
@@ -475,14 +475,14 @@
 <p>定义一个集合，并添加一些整数1,2,3,4,5,6,7,8,9,10<br>过滤奇数，只留下偶数<br>并将结果存下来</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java">ArrayList&lt;Integer&gt; list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>Collections.addAll(list,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>,<span class="hljs-number">9</span>,<span class="hljs-number">10</span>);<br>List&lt;Integer&gt; collect = list.stream()<br>        .filter(s -&gt; s % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>)<br>        .collect(Collectors.toList());<br>System.out.println(collect);<br></code></pre></td></tr></table></figure>
 
-<br>
+<br/>
 
 
 
 <p>创建一个ArrayList集合，并添加一下字符串，字符串中前面是姓名，后面是年龄<br>“张三，23”<br>“李四，24”<br>“王五，25”<br>保留年龄大于等于24岁的人，并将结果收集到Map集合中，姓名为键，年龄为值</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java">ArrayList&lt;String&gt; list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>Collections.addAll(list,<span class="hljs-string">&quot;张三，23&quot;</span>,<span class="hljs-string">&quot;李四，24&quot;</span>,<span class="hljs-string">&quot;王五，25&quot;</span>);<br>Map&lt;String, Integer&gt; map = list.stream()<br>        .filter(s -&gt; Integer.parseInt((s.split(<span class="hljs-string">&quot;，&quot;</span>)[<span class="hljs-number">1</span>])) &gt;= <span class="hljs-number">24</span>)<br>        .collect(Collectors.toMap(<br>                        s -&gt; (s.split(<span class="hljs-string">&quot;，&quot;</span>)[<span class="hljs-number">0</span>]),<br>                        s -&gt; Integer.parseInt(s.split(<span class="hljs-string">&quot;，&quot;</span>)[<span class="hljs-number">1</span>])));<br>System.out.println(map);<br></code></pre></td></tr></table></figure>
 
-<br>
+<br/>
 
 
 

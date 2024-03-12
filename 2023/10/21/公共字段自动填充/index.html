@@ -25,14 +25,14 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="在做项目的时候，很多数据库表会有相同字段，例如很多表都会记下数据的创造时间、修改时间、创造者、修改者，便于后期维护。如果每次对数据的增加和修改操作都需要手动添加后修改这些字段，则会有大量的相同代码，也影响了代码的可读性。为此，我们可以利用反射机制和AOP（面向切面编程），对这些公共字段进行统一处理          序号 含义 数据类型 操作    1 创建时间 datetime insert">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2023/10/21/%E5%85%AC%E5%85%B1%E5%AD%97%E6%AE%B5%E8%87%AA%E5%8A%A8%E5%A1%AB%E5%85%85/20231021231450.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2023/10/21/%E5%85%AC%E5%85%B1%E5%AD%97%E6%AE%B5%E8%87%AA%E5%8A%A8%E5%A1%AB%E5%85%85/20231021231417.png">
+<meta property="og:image" content="https://lzhengjy.gitee.io/2023/10/21/%E5%85%AC%E5%85%B1%E5%AD%97%E6%AE%B5%E8%87%AA%E5%8A%A8%E5%A1%AB%E5%85%85/%E5%85%AC%E5%85%B1%E5%AD%97%E6%AE%B5%E8%87%AA%E5%8A%A8%E5%A1%AB%E5%85%85/20231021231450.png">
+<meta property="og:image" content="https://lzhengjy.gitee.io/2023/10/21/%E5%85%AC%E5%85%B1%E5%AD%97%E6%AE%B5%E8%87%AA%E5%8A%A8%E5%A1%AB%E5%85%85/%E5%85%AC%E5%85%B1%E5%AD%97%E6%AE%B5%E8%87%AA%E5%8A%A8%E5%A1%AB%E5%85%85/20231021231417.png">
 <meta property="article:published_time" content="2023-10-21T15:08:26.000Z">
 <meta property="article:modified_time" content="2023-10-22T04:05:05.525Z">
 <meta property="article:author" content="Zheng">
 <meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://lzhengjy.gitee.io/2023/10/21/%E5%85%AC%E5%85%B1%E5%AD%97%E6%AE%B5%E8%87%AA%E5%8A%A8%E5%A1%AB%E5%85%85/20231021231450.png">
+<meta name="twitter:image" content="https://lzhengjy.gitee.io/2023/10/21/%E5%85%AC%E5%85%B1%E5%AD%97%E6%AE%B5%E8%87%AA%E5%8A%A8%E5%A1%AB%E5%85%85/%E5%85%AC%E5%85%B1%E5%AD%97%E6%AE%B5%E8%87%AA%E5%8A%A8%E5%A1%AB%E5%85%85/20231021231450.png">
   
   
   
@@ -279,11 +279,11 @@
               <div class="markdown-body">
                 
                 <p>在做项目的时候，很多数据库表会有<font color="red">相同字段</font>，例如很多表都会记下数据的<font color="red">创造时间、修改时间、创造者、修改者</font>，便于后期维护。如果每次对数据的增加和修改操作都需要手动添加后修改这些字段，则会有大量的相同代码，也影响了代码的可读性。为此，我们可以利用<font color="red">反射机制和AOP（面向切面编程）</font>，对这些公共字段进行<font color="red">统一处理</font></p>
-<br>
+<br/>
 
-<img src="/2023/10/21/%E5%85%AC%E5%85%B1%E5%AD%97%E6%AE%B5%E8%87%AA%E5%8A%A8%E5%A1%AB%E5%85%85/20231021231450.png" srcset="/img/loading.gif" lazyload style="zoom:67%;">
+<img src="./公共字段自动填充/20231021231450.png" srcset="/img/loading.gif" lazyload style="zoom:67%;" />
 
-<img src="/2023/10/21/%E5%85%AC%E5%85%B1%E5%AD%97%E6%AE%B5%E8%87%AA%E5%8A%A8%E5%A1%AB%E5%85%85/20231021231417.png" srcset="/img/loading.gif" lazyload style="zoom: 67%;">
+<img src="./公共字段自动填充/20231021231417.png" srcset="/img/loading.gif" lazyload style="zoom: 67%;" />
 
 <table>
 <thead>
@@ -326,7 +326,7 @@
 <li>在Mapper的方法上加入AutoFill注解</li>
 </ul>
 <p>技术点： 枚举、注解、AOP、反射</p>
-<br>
+<br/>
 
 
 
@@ -354,7 +354,7 @@
 <li>RetentionPolicy.CLASS  : 注解被保留到class文件，但jvm加载class文件时候被遗弃，这是默认的生命周期</li>
 <li>RetentionPolicy.RUNTIME  : 注解不仅被保存到class文件中，jvm加载class文件之后，仍然存在</li>
 </ul>
-<br>
+<br/>
 
 
 
@@ -362,7 +362,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><code class="hljs java">**<br> * <span class="hljs-meta">@description</span>: 自定义切面<br> */<br><span class="hljs-meta">@Aspect</span><br><span class="hljs-meta">@Component</span><br><span class="hljs-meta">@Slf4j</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">AutoFillAspect</span> &#123;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@description</span>: 切入点</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@Pointcut(&quot;@annotation(com.sky.annotation.AutoFill)&quot;)</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">autoFillPointCut</span><span class="hljs-params">()</span>&#123;&#125;<br><br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@description</span>: 前置通知</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@Before(&quot;autoFillPointCut()&quot;)</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">autoFill</span><span class="hljs-params">(JoinPoint joinPoint)</span> &#123;<br>        log.info(<span class="hljs-string">&quot;开始进行公共字段自动填充---&quot;</span>);<br><br>        <span class="hljs-comment">// 获取到当前被拦截的方法上的数据库操作类型</span><br>        <span class="hljs-type">MethodSignature</span> <span class="hljs-variable">signature</span> <span class="hljs-operator">=</span> (MethodSignature) joinPoint.getSignature(); <span class="hljs-comment">// 方法签名对象</span><br>        <span class="hljs-type">AutoFill</span> <span class="hljs-variable">autoFill</span> <span class="hljs-operator">=</span> signature.getMethod().getAnnotation(AutoFill.class); <span class="hljs-comment">// 获得方法上的注解对象</span><br>        <span class="hljs-type">OperationType</span> <span class="hljs-variable">operationType</span> <span class="hljs-operator">=</span> autoFill.value(); <span class="hljs-comment">// 获得数据库操作类型</span><br><br>        <span class="hljs-comment">// 获取到当前被拦截的方法的参数--实体对象</span><br>        Object[] args = joinPoint.getArgs();<br>        <span class="hljs-keyword">if</span> (args == <span class="hljs-literal">null</span> || args.length == <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br>        <span class="hljs-type">Object</span> <span class="hljs-variable">entity</span> <span class="hljs-operator">=</span> args[<span class="hljs-number">0</span>]; <span class="hljs-comment">// 在写新增和修改方法时，把实体放在第一个参数</span><br><br>        <span class="hljs-comment">// 准备赋值的数据</span><br>        <span class="hljs-type">LocalDateTime</span> <span class="hljs-variable">now</span> <span class="hljs-operator">=</span> LocalDateTime.now();<br>        <span class="hljs-type">Long</span> <span class="hljs-variable">currentId</span> <span class="hljs-operator">=</span> BaseContext.getCurrentId();<br><br>        <span class="hljs-comment">// 根据当前不同的操作类型，为对应的属性通过反射来赋值</span><br>        <span class="hljs-keyword">if</span> (operationType == OperationType.INSERT) &#123;<br>            <span class="hljs-comment">// 为4个字段赋值</span><br>            <span class="hljs-keyword">try</span> &#123;<br>                <span class="hljs-type">Method</span> <span class="hljs-variable">setCreateTime</span> <span class="hljs-operator">=</span> entity.getClass().getDeclaredMethod(AutoFillConstant.SET_CREATE_TIME, LocalDateTime.class);<br>                <span class="hljs-type">Method</span> <span class="hljs-variable">setUpdateTime</span> <span class="hljs-operator">=</span> entity.getClass().getDeclaredMethod(AutoFillConstant.SET_UPDATE_TIME, LocalDateTime.class);<br>                <span class="hljs-type">Method</span> <span class="hljs-variable">setUpdateUser</span> <span class="hljs-operator">=</span> entity.getClass().getDeclaredMethod(AutoFillConstant.SET_UPDATE_USER, Long.class);<br>                <span class="hljs-type">Method</span> <span class="hljs-variable">setCreateUser</span> <span class="hljs-operator">=</span> entity.getClass().getDeclaredMethod(AutoFillConstant.SET_CREATE_USER, Long.class);<br><br>                <span class="hljs-comment">// 通过反射为对象属性赋值</span><br>                setCreateTime.invoke(entity,now);<br>                setCreateUser.invoke(entity,currentId);<br>                setUpdateTime.invoke(entity,now);<br>                setUpdateUser.invoke(entity,currentId);<br>            &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>                e.printStackTrace();<br>            &#125;<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (operationType == OperationType.UPDATE) &#123;<br>            <span class="hljs-comment">// 为2个字段赋值</span><br>            <span class="hljs-keyword">try</span> &#123;<br>                <span class="hljs-type">Method</span> <span class="hljs-variable">setUpdateTime</span> <span class="hljs-operator">=</span> entity.getClass().getDeclaredMethod(AutoFillConstant.SET_UPDATE_TIME, LocalDateTime.class);<br>                <span class="hljs-type">Method</span> <span class="hljs-variable">setUpdateUser</span> <span class="hljs-operator">=</span> entity.getClass().getDeclaredMethod(AutoFillConstant.SET_UPDATE_USER, Long.class);<br><br>                <span class="hljs-comment">// 通过反射为对象属性赋值</span><br>                setUpdateTime.invoke(entity,now);<br>                setUpdateUser.invoke(entity,currentId);<br>            &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>                e.printStackTrace();<br>            &#125;<br>        &#125;<br><br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>在执行update和save方法前就需要对公共字段赋值，所以这里使用的是前置通知<br>@Pointcut(“@annotation(com.sky.annotation.AutoFill)”)，com.sky.annotation.AutoFill 是自定义注解AutoFill类的位置<br>update方法只需要为2个公共字段赋值，save方法需要为4个公共字段赋值</p>
-<br>
+<br/>
 
 
 

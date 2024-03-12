@@ -283,7 +283,7 @@
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">User</span> &#123;<br>	<span class="hljs-keyword">private</span> Long id;<br>    <span class="hljs-keyword">private</span> String username;<br>    <span class="hljs-keyword">private</span> String password;<br>    <span class="hljs-keyword">private</span> String phone;<br>    <span class="hljs-keyword">private</span> String info;<br>    <span class="hljs-keyword">private</span> Integer status;<br>    <span class="hljs-keyword">private</span> Integer balance;<br>    <span class="hljs-keyword">private</span> LocalDateTime createTime;<br>    <span class="hljs-keyword">private</span> LocalDateTime updateTime;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<br>
+<br/>
 
 
 
@@ -294,7 +294,7 @@
 <li>变量名驼峰下换线作为表的字段名</li>
 </ul>
 <p>mp通过反射获取到数据库表信息后就可以帮我们生成SQL语句</p>
-<br>
+<br/>
 
 
 
@@ -321,13 +321,13 @@
 </ul>
 </li>
 </ul>
-<br>
+<br/>
 
 
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@TableName(&quot;tb_user&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">User</span> &#123;<br>	<span class="hljs-meta">@TableId(Value=&quot;u_id&quot;, type=&quot;IdType.AUTO&quot;)</span><br>    <span class="hljs-keyword">private</span> Long id;<br>    <span class="hljs-meta">@TableFileId(&quot;username&quot;)</span><br>    <span class="hljs-keyword">private</span> String Name;<br>    <span class="hljs-meta">@TableFileId(&quot;is_married&quot;)</span><br>    <span class="hljs-keyword">private</span> Boolean isMarried;<br>    <span class="hljs-meta">@TableFiledId(&quot;`order`&quot;)</span><br>    <span class="hljs-keyword">private</span> Integer order;<br>    <span class="hljs-meta">@TableFIledId(exist = false)</span><br>    <span class="hljs-keyword">private</span> String address;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<br>
+<br/>
 
 
 
@@ -337,7 +337,7 @@
 <h3 id="2-常见配置"><a href="#2-常见配置" class="headerlink" title="2. 常见配置"></a>2. 常见配置</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">mybatis-plus:</span><br>  <span class="hljs-attr">mapper-locations:</span> <span class="hljs-string">classpath:mapping/*.xml</span> <span class="hljs-comment"># Mapper.xml文件地址（这里是默认值）</span><br>  <span class="hljs-attr">type-aliases-package:</span> <span class="hljs-string">com.rainng.coursesystem.model</span> <span class="hljs-comment"># 别名扫描包</span><br>  <span class="hljs-attr">configuration:</span><br>    <span class="hljs-attr">map-underscore-to-camel-case:</span> <span class="hljs-literal">true</span> <span class="hljs-comment"># 是否开启下划线和驼峰的映射</span><br>    <span class="hljs-attr">cache-enabled:</span> <span class="hljs-literal">false</span> <span class="hljs-comment"># 是否开启二级缓存</span><br>  <span class="hljs-attr">global-config:</span><br>    <span class="hljs-attr">db-config:</span><br>      <span class="hljs-attr">id-type:</span> <span class="hljs-string">assign_id</span> <span class="hljs-comment"># id为雪花算法自动生成</span><br>      <span class="hljs-attr">update-strategy:</span> <span class="hljs-string">not_null</span> <span class="hljs-comment"># 更新策略：只更新非空的字段</span><br></code></pre></td></tr></table></figure>
 
 <p>这里除了type-aliases-package，其它的都不需要配置，默认值即可（上面的值就是默认值），除非有需要</p>
-<br>
+<br/>
 
 
 
@@ -364,7 +364,7 @@
 <td align="center">实体对象</td>
 </tr>
 <tr>
-<td align="center">Collection<T></T></td>
+<td align="center">Collection<T></td>
 <td align="center">entityList</td>
 <td align="center">实体对象集合</td>
 </tr>
@@ -374,7 +374,7 @@
 <td align="center">插入批次数量</td>
 </tr>
 </tbody></table>
-<br>
+<br/>
 
 
 
@@ -396,12 +396,12 @@
 <td align="center">实体对象</td>
 </tr>
 <tr>
-<td align="center">Wrapper<T></T></td>
+<td align="center">Wrapper<T></td>
 <td align="center">updateWrapper</td>
 <td align="center">实体对象封装操作类 UpdateWrapper</td>
 </tr>
 <tr>
-<td align="center">Collection<T></T></td>
+<td align="center">Collection<T></td>
 <td align="center">entityList</td>
 <td align="center">实体对象集合</td>
 </tr>
@@ -411,7 +411,7 @@
 <td align="center">插入批次数量</td>
 </tr>
 </tbody></table>
-<br>
+<br/>
 
 
 
@@ -428,7 +428,7 @@
 </tr>
 </thead>
 <tbody><tr>
-<td align="center">Wrapper<T></T></td>
+<td align="center">Wrapper<T></td>
 <td align="center">queryWrapper</td>
 <td align="center">实体包装类 QueryWrapper</td>
 </tr>
@@ -448,7 +448,7 @@
 <td align="center">主键 ID 列表</td>
 </tr>
 </tbody></table>
-<br>
+<br/>
 
 
 
@@ -465,7 +465,7 @@
 </tr>
 </thead>
 <tbody><tr>
-<td align="center">Wrapper<T></T></td>
+<td align="center">Wrapper<T></td>
 <td align="center">updateWrapper</td>
 <td align="center">实体对象封装操作类 UpdateWrapper</td>
 </tr>
@@ -475,7 +475,7 @@
 <td align="center">实体对象</td>
 </tr>
 <tr>
-<td align="center">Collection<T></T></td>
+<td align="center">Collection<T></td>
 <td align="center">entityList</td>
 <td align="center">实体对象集合</td>
 </tr>
@@ -485,7 +485,7 @@
 <td align="center">更新批次数量</td>
 </tr>
 </tbody></table>
-<br>
+<br/>
 
 
 
@@ -507,7 +507,7 @@
 <td align="center">主键 ID</td>
 </tr>
 <tr>
-<td align="center">Wrapper<T></T></td>
+<td align="center">Wrapper<T></td>
 <td align="center">queryWrapper</td>
 <td align="center">实体对象封装操作类 QueryWrapper</td>
 </tr>
@@ -527,7 +527,7 @@
 <td align="center">转换函数</td>
 </tr>
 </tbody></table>
-<br>
+<br/>
 
 
 
@@ -544,7 +544,7 @@
 </tr>
 </thead>
 <tbody><tr>
-<td align="center">Wrapper<T></T></td>
+<td align="center">Wrapper<T></td>
 <td align="center">queryWrapper</td>
 <td align="center">实体对象封装操作类 QueryWrapper</td>
 </tr>
@@ -564,7 +564,7 @@
 <td align="center">转换函数</td>
 </tr>
 </tbody></table>
-<br>
+<br/>
 
 
 
@@ -581,17 +581,17 @@
 </tr>
 </thead>
 <tbody><tr>
-<td align="center">IPage<T></T></td>
+<td align="center">IPage<T></td>
 <td align="center">page</td>
 <td align="center">翻页对象</td>
 </tr>
 <tr>
-<td align="center">Wrapper<T></T></td>
+<td align="center">Wrapper<T></td>
 <td align="center">queryWrapper</td>
 <td align="center">实体对象封装操作类 QueryWrapper</td>
 </tr>
 </tbody></table>
-<br>
+<br/>
 
 
 
@@ -608,26 +608,26 @@
 </tr>
 </thead>
 <tbody><tr>
-<td align="center">Wrapper<T></T></td>
+<td align="center">Wrapper<T></td>
 <td align="center">queryWrapper</td>
 <td align="center">实体对象封装操作类 QueryWrapper</td>
 </tr>
 </tbody></table>
-<br>
+<br/>
 
 
 
 <p>query</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 链式查询 普通</span><br>QueryChainWrapper&lt;T&gt; <span class="hljs-title function_">query</span><span class="hljs-params">()</span>;<br><span class="hljs-comment">// 链式查询 lambda 式。注意：不支持 Kotlin</span><br>LambdaQueryChainWrapper&lt;T&gt; <span class="hljs-title function_">lambdaQuery</span><span class="hljs-params">()</span>;<br><br><span class="hljs-comment">// 示例：</span><br>query().eq(<span class="hljs-string">&quot;column&quot;</span>, value).one();<br>lambdaQuery().eq(Entity::getId, value).list();<br></code></pre></td></tr></table></figure>
 
-<br>
+<br/>
 
 
 
 <p>update</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 链式更改 普通</span><br>UpdateChainWrapper&lt;T&gt; <span class="hljs-title function_">update</span><span class="hljs-params">()</span>;<br><span class="hljs-comment">// 链式更改 lambda 式。注意：不支持 Kotlin</span><br>LambdaUpdateChainWrapper&lt;T&gt; <span class="hljs-title function_">lambdaUpdate</span><span class="hljs-params">()</span>;<br><br><span class="hljs-comment">// 示例：</span><br>update().eq(<span class="hljs-string">&quot;column&quot;</span>, value).remove();<br>lambdaUpdate().eq(Entity::getId, value).update(entity);<br></code></pre></td></tr></table></figure>
 
-<br>
+<br/>
 
 
 
@@ -652,7 +652,7 @@
 <td align="center">实体对象</td>
 </tr>
 </tbody></table>
-<br>
+<br/>
 
 
 
@@ -669,7 +669,7 @@
 </tr>
 </thead>
 <tbody><tr>
-<td align="center">Wrapper<T></T></td>
+<td align="center">Wrapper<T></td>
 <td align="center">wrapper</td>
 <td align="center">实体对象封装操作类（可以为 null）</td>
 </tr>
@@ -689,7 +689,7 @@
 <td align="center">表字段 map 对象</td>
 </tr>
 </tbody></table>
-<br>
+<br/>
 
 
 
@@ -715,12 +715,12 @@
 <td align="center">实体对象 (set 条件值,可为 null)</td>
 </tr>
 <tr>
-<td align="center">Wrapper<T></T></td>
+<td align="center">Wrapper<T></td>
 <td align="center">updateWrapper</td>
 <td align="center">实体对象封装操作类（可以为 null,里面的 entity 用于生成 where 语句）</td>
 </tr>
 </tbody></table>
-<br>
+<br/>
 
 
 
@@ -742,7 +742,7 @@
 <td align="center">主键 ID</td>
 </tr>
 <tr>
-<td align="center">Wrapper<T></T></td>
+<td align="center">Wrapper<T></td>
 <td align="center">queryWrapper</td>
 <td align="center">实体对象封装操作类（可以为 null）</td>
 </tr>
@@ -757,12 +757,12 @@
 <td align="center">表字段 map 对象</td>
 </tr>
 <tr>
-<td align="center">IPage<T></T></td>
+<td align="center">IPage<T></td>
 <td align="center">page</td>
 <td align="center">分页查询条件（可以为 RowBounds.DEFAULT）</td>
 </tr>
 </tbody></table>
-<br>
+<br/>
 
 
 
@@ -778,7 +778,7 @@
 <p>例：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">allEq(&#123;id:<span class="hljs-number">1</span>,name:<span class="hljs-string">&quot;老王&quot;</span>,age:<span class="hljs-literal">null</span>&#125;)  ---&gt;  id = <span class="hljs-number">1</span> <span class="hljs-type">and</span> <span class="hljs-variable">name</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;老王&#x27;</span> and age is <span class="hljs-literal">null</span><br><span class="hljs-title function_">allEq</span><span class="hljs-params">(&#123;id:<span class="hljs-number">1</span>,name:<span class="hljs-string">&quot;老王&quot;</span>,age:<span class="hljs-literal">null</span>&#125;, <span class="hljs-literal">false</span>)</span>  ---&gt;  id = <span class="hljs-number">1</span> <span class="hljs-type">and</span> <span class="hljs-variable">name</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;老王&#x27;</span><br></code></pre></td></tr></table></figure>
 
-<br>
+<br/>
 
 
 
@@ -787,7 +787,7 @@
 <p>例如：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">eq(<span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-string">&quot;老王&quot;</span>)---&gt;name = <span class="hljs-string">&#x27;老王&#x27;</span><br></code></pre></td></tr></table></figure>
 
-<br>
+<br/>
 
 
 
@@ -798,7 +798,7 @@
 <p>例如：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">ne(<span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-string">&quot;老王&quot;</span>)---&gt;name &lt;&gt; <span class="hljs-string">&#x27;老王&#x27;</span><br></code></pre></td></tr></table></figure>
 
-<br>
+<br/>
 
 
 
@@ -807,7 +807,7 @@
 <p>例如：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">gt(<span class="hljs-string">&quot;age&quot;</span>, <span class="hljs-number">18</span>)---&gt;age &gt; <span class="hljs-number">18</span><br></code></pre></td></tr></table></figure>
 
-<br>
+<br/>
 
 
 
@@ -816,7 +816,7 @@
 <p>例如：&#96;&#96;&#96; java</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus"><span class="hljs-function"><span class="hljs-title">ge</span><span class="hljs-params">(<span class="hljs-string">&quot;age&quot;</span>, <span class="hljs-number">18</span>)</span></span>`---&gt;`age &gt;= <span class="hljs-number">18</span><br></code></pre></td></tr></table></figure>
 
-<br>
+<br/>
 
 
 
@@ -825,7 +825,7 @@
 <p>例如：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">lt(<span class="hljs-string">&quot;age&quot;</span>, <span class="hljs-number">18</span>)---&gt;age &lt; <span class="hljs-number">18</span><br></code></pre></td></tr></table></figure>
 
-<br>
+<br/>
 
 
 
@@ -834,7 +834,7 @@
 <p>例如：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">le(<span class="hljs-string">&quot;age&quot;</span>, <span class="hljs-number">18</span>)---&gt;age &lt;= <span class="hljs-number">18</span><br></code></pre></td></tr></table></figure>
 
-<br>
+<br/>
 
 
 
@@ -843,7 +843,7 @@
 <p>例如</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">between(<span class="hljs-string">&quot;age&quot;</span>, <span class="hljs-number">18</span>, <span class="hljs-number">30</span>)---&gt;age between <span class="hljs-number">18</span> and <span class="hljs-number">30</span><br></code></pre></td></tr></table></figure>
 
-<br>
+<br/>
 
 
 
@@ -852,7 +852,7 @@
 <p>例如：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">notBetween(<span class="hljs-string">&quot;age&quot;</span>, <span class="hljs-number">18</span>, <span class="hljs-number">30</span>)---&gt;age not between <span class="hljs-number">18</span> and <span class="hljs-number">30</span><br></code></pre></td></tr></table></figure>
 
-<br>
+<br/>
 
 
 
@@ -861,7 +861,7 @@
 <p>例如：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">like(<span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-string">&quot;王&quot;</span>)---&gt;name like <span class="hljs-string">&#x27;%王%&#x27;</span><br></code></pre></td></tr></table></figure>
 
-<br>
+<br/>
 
 
 
@@ -869,7 +869,7 @@
 <p>例如：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">notLike(<span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-string">&quot;王&quot;</span>)---&gt;name not like <span class="hljs-string">&#x27;%王%&#x27;</span><br></code></pre></td></tr></table></figure>
 
-<br>
+<br/>
 
 
 
@@ -877,7 +877,7 @@
 <p>例如：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">likeLeft(<span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-string">&quot;王&quot;</span>)---&gt;name like <span class="hljs-string">&#x27;%王&#x27;</span><br></code></pre></td></tr></table></figure>
 
-<br>
+<br/>
 
 
 
@@ -885,7 +885,7 @@
 <p>例如：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">likeRight(<span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-string">&quot;王&quot;</span>)---&gt;name like <span class="hljs-string">&#x27;王%&#x27;</span><br></code></pre></td></tr></table></figure>
 
-<br>
+<br/>
 
 
 
@@ -893,7 +893,7 @@
 <p>例如：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">notLikeLeft(<span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-string">&quot;王&quot;</span>)---&gt;name not like <span class="hljs-string">&#x27;%王&#x27;</span><br></code></pre></td></tr></table></figure>
 
-<br>
+<br/>
 
 
 
