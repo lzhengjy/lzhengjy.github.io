@@ -21,27 +21,27 @@
     <meta name="description" content="该笔记是根据B站视频学习编写 1. 什么是DockerDocker 是一个用于构建、部署和管理容器化应用的开源平台。这些容器是标准化的可执行组件，结合了应用源代码以及在任何环境中运行该代码所需的操作系统 (OS) 库和依赖项。 Docker的作用：  轻量级的虚拟化：Docker 容器提供了一种轻量级的虚拟化方式，相较于传统的虚拟机，Docker 容器启动速度更快，占用资源更少 环境一致性：Doc">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Docker">
-<meta property="og:url" content="https://lzhengjy.gitee.io/2023/12/13/Docker/index.html">
+<meta property="og:url" content="https://lzhengjy.github.io/2023/12/13/Docker/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="该笔记是根据B站视频学习编写 1. 什么是DockerDocker 是一个用于构建、部署和管理容器化应用的开源平台。这些容器是标准化的可执行组件，结合了应用源代码以及在任何环境中运行该代码所需的操作系统 (OS) 库和依赖项。 Docker的作用：  轻量级的虚拟化：Docker 容器提供了一种轻量级的虚拟化方式，相较于传统的虚拟机，Docker 容器启动速度更快，占用资源更少 环境一致性：Doc">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2023/12/13/Docker/Docker/image-20231217205124016.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/Docker/image-20231217205218810.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2023/12/13/Docker/Docker/image-20231217204228958.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2023/12/13/Docker/Docker/image-20231218163616881.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2023/12/13/Docker/Docker/image-20231220161446653.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/Docker/image-20231220164110981.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2023/12/13/Docker/Docker/image-20231223170500748.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2023/12/13/Docker/Docker/image-20231223202118445.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2023/12/13/Docker/Docker/image-20231223203413708.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2023/12/13/Docker/Docker/image-20231223204110631.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2023/12/13/Docker/Docker/image-20231223205249964.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/12/13/Docker/Docker/image-20231217205124016.png">
+<meta property="og:image" content="https://lzhengjy.github.io/Docker/image-20231217205218810.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/12/13/Docker/Docker/image-20231217204228958.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/12/13/Docker/Docker/image-20231218163616881.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/12/13/Docker/Docker/image-20231220161446653.png">
+<meta property="og:image" content="https://lzhengjy.github.io/Docker/image-20231220164110981.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/12/13/Docker/Docker/image-20231223170500748.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/12/13/Docker/Docker/image-20231223202118445.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/12/13/Docker/Docker/image-20231223203413708.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/12/13/Docker/Docker/image-20231223204110631.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/12/13/Docker/Docker/image-20231223205249964.png">
 <meta property="article:published_time" content="2023-12-13T14:45:59.000Z">
 <meta property="article:modified_time" content="2023-12-23T15:08:08.440Z">
 <meta property="article:author" content="Zheng">
 <meta property="article:tag" content="Docker">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://lzhengjy.gitee.io/2023/12/13/Docker/Docker/image-20231217205124016.png">
+<meta name="twitter:image" content="https://lzhengjy.github.io/2023/12/13/Docker/Docker/image-20231217205124016.png">
   
   
   
@@ -83,7 +83,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"lzhengjy.gitee.io","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"lzhengjy.github.io","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -682,7 +682,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>Docker</div>
-      <div>https://lzhengjy.gitee.io/2023/12/13/Docker/</div>
+      <div>https://lzhengjy.github.io/2023/12/13/Docker/</div>
     </div>
     <div class="license-meta">
       

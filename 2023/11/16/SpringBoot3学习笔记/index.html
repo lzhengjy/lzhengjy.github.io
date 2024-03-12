@@ -21,27 +21,27 @@
     <meta name="description" content="该笔记基于b站视频SpringBoot零基础教程学习完成 1. 快速入门1.1 简介环境要求    环境&amp;工具 版本（or later）    SpringBoot 3.0.5+   IDEA 2021.2.1+   Java 17+   Maven 3.5+   Tomcat 10.0+   Servlet 5.0+   GraalVM Community 22.3+   Native">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SpringBoot3学习笔记">
-<meta property="og:url" content="https://lzhengjy.gitee.io/2023/11/16/SpringBoot3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:url" content="https://lzhengjy.github.io/2023/11/16/SpringBoot3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="该笔记基于b站视频SpringBoot零基础教程学习完成 1. 快速入门1.1 简介环境要求    环境&amp;工具 版本（or later）    SpringBoot 3.0.5+   IDEA 2021.2.1+   Java 17+   Maven 3.5+   Tomcat 10.0+   Servlet 5.0+   GraalVM Community 22.3+   Native">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://lzhengjy.gitee.io/SpringBoot3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20231116151721264.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/SpringBoot3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20231116203134694.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2023/11/16/SpringBoot3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/SpringBoot3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20231116202359617.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2023/11/16/SpringBoot3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/SpringBoot3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20231116202838044.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/SpringBoot3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20231116203920906.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/SpringBoot3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20231117155159086.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/SpringBoot3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20231117155514578.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/SpringBoot3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20231117155731222.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2023/11/16/SpringBoot3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/SpringBoot3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20231117160611543.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2023/11/16/SpringBoot3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/SpringBoot3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20231117205638097.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2023/11/16/SpringBoot3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/SpringBoot3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20231121145636418.png">
+<meta property="og:image" content="https://lzhengjy.github.io/SpringBoot3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20231116151721264.png">
+<meta property="og:image" content="https://lzhengjy.github.io/SpringBoot3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20231116203134694.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/11/16/SpringBoot3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/SpringBoot3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20231116202359617.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/11/16/SpringBoot3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/SpringBoot3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20231116202838044.png">
+<meta property="og:image" content="https://lzhengjy.github.io/SpringBoot3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20231116203920906.png">
+<meta property="og:image" content="https://lzhengjy.github.io/SpringBoot3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20231117155159086.png">
+<meta property="og:image" content="https://lzhengjy.github.io/SpringBoot3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20231117155514578.png">
+<meta property="og:image" content="https://lzhengjy.github.io/SpringBoot3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20231117155731222.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/11/16/SpringBoot3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/SpringBoot3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20231117160611543.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/11/16/SpringBoot3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/SpringBoot3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20231117205638097.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/11/16/SpringBoot3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/SpringBoot3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20231121145636418.png">
 <meta property="article:published_time" content="2023-11-16T05:18:27.000Z">
 <meta property="article:modified_time" content="2023-11-25T13:39:53.289Z">
 <meta property="article:author" content="Zheng">
 <meta property="article:tag" content="SpringBoot3">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://lzhengjy.gitee.io/SpringBoot3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20231116151721264.png">
+<meta name="twitter:image" content="https://lzhengjy.github.io/SpringBoot3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20231116151721264.png">
   
   
   
@@ -83,7 +83,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"lzhengjy.gitee.io","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"lzhengjy.github.io","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -1225,7 +1225,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>SpringBoot3学习笔记</div>
-      <div>https://lzhengjy.gitee.io/2023/11/16/SpringBoot3学习笔记/</div>
+      <div>https://lzhengjy.github.io/2023/11/16/SpringBoot3学习笔记/</div>
     </div>
     <div class="license-meta">
       

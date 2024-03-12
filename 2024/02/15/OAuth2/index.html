@@ -21,36 +21,37 @@
     <meta name="description" content="该笔记学习b站视频制作而成:OAuth2 1. 简介 OAuth2是一种开放授权协议。，使应用程序能够访问其它公司提供的资源，允许用户在第三方应用访问存储在其他服务器上的私密资源，而在整个过程不需要提供用户名和密码给到第三方应用，可以通过提供一个令牌(token)实现该功能     OAuth2协议包含以下角色：  资源所有者（Resource Owner）：即用户，资源的拥有人，想要通过客户应用">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OAuth2">
-<meta property="og:url" content="https://lzhengjy.gitee.io/2024/02/15/OAuth2/index.html">
+<meta property="og:url" content="https://lzhengjy.github.io/2024/02/15/OAuth2/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="该笔记学习b站视频制作而成:OAuth2 1. 简介 OAuth2是一种开放授权协议。，使应用程序能够访问其它公司提供的资源，允许用户在第三方应用访问存储在其他服务器上的私密资源，而在整个过程不需要提供用户名和密码给到第三方应用，可以通过提供一个令牌(token)实现该功能     OAuth2协议包含以下角色：  资源所有者（Resource Owner）：即用户，资源的拥有人，想要通过客户应用">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://lzhengjy.gitee.io/OAuth2/image-20240311143544782.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/OAuth2/image-20240312113012599.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/OAuth2/image-20240312113053760.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/OAuth2/image-20240312113139214.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/OAuth2/image-20240312113159332.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/OAuth2/image-20240312114148859.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/OAuth2/image-20240312114245519.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/OAuth2/image-20240312114321770.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/OAuth2/image-20240312114350948.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2024/02/15/OAuth2/OAuth2/image-20240312115537013.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/OAuth2/image-20240312122845556.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/OAuth2/image-20240312122917326.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/OAuth2/image-20240312123004642.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2024/02/15/OAuth2/OAuth2/image-20240312123051807.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2024/02/15/OAuth2/OAuth2/image-20240312124808269.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2024/02/15/OAuth2/OAuth2/image-20240312124923984.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2024/02/15/OAuth2/OAuth2/image-20240312125003753.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2024/02/15/OAuth2/OAuth2/image-20240312125157054.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2024/02/15/OAuth2/OAuth2/image-20240312125929641.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2024/02/15/OAuth2/OAuth2/image-20240312125944791.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2024/02/15/OAuth2/OAuth2/image-20240312130135072.png">
+<meta property="og:image" content="https://lzhengjy.github.io/OAuth2/image-20240311143544782.png">
+<meta property="og:image" content="https://lzhengjy.github.io/OAuth2/image-20240312113012599.png">
+<meta property="og:image" content="https://lzhengjy.github.io/OAuth2/image-20240312113053760.png">
+<meta property="og:image" content="https://lzhengjy.github.io/OAuth2/image-20240312113139214.png">
+<meta property="og:image" content="https://lzhengjy.github.io/OAuth2/image-20240312113159332.png">
+<meta property="og:image" content="https://lzhengjy.github.io/OAuth2/image-20240312114148859.png">
+<meta property="og:image" content="https://lzhengjy.github.io/OAuth2/image-20240312114245519.png">
+<meta property="og:image" content="https://lzhengjy.github.io/OAuth2/image-20240312114321770.png">
+<meta property="og:image" content="https://lzhengjy.github.io/OAuth2/image-20240312114350948.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2024/02/15/OAuth2/OAuth2/image-20240312115537013.png">
+<meta property="og:image" content="https://lzhengjy.github.io/OAuth2/image-20240312122845556.png">
+<meta property="og:image" content="https://lzhengjy.github.io/OAuth2/image-20240312122917326.png">
+<meta property="og:image" content="https://lzhengjy.github.io/OAuth2/image-20240312123004642.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2024/02/15/OAuth2/OAuth2/image-20240312123051807.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2024/02/15/OAuth2/OAuth2/image-20240312124808269.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2024/02/15/OAuth2/OAuth2/image-20240312124923984.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2024/02/15/OAuth2/OAuth2/image-20240312125003753.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2024/02/15/OAuth2/OAuth2/image-20240312125157054.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2024/02/15/OAuth2/OAuth2/image-20240312125929641.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2024/02/15/OAuth2/OAuth2/image-20240312125944791.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2024/02/15/OAuth2/OAuth2/image-20240312130135072.png">
 <meta property="article:published_time" content="2024-02-15T06:22:48.000Z">
-<meta property="article:modified_time" content="2024-03-12T05:08:15.299Z">
+<meta property="article:modified_time" content="2024-03-12T05:39:05.770Z">
 <meta property="article:author" content="Zheng">
+<meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://lzhengjy.gitee.io/OAuth2/image-20240311143544782.png">
+<meta name="twitter:image" content="https://lzhengjy.github.io/OAuth2/image-20240311143544782.png">
   
   
   
@@ -92,7 +93,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"lzhengjy.gitee.io","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"lzhengjy.github.io","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -577,6 +578,13 @@
               <div class="post-metas my-3">
   
   
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Java/" class="print-no-link">#Java</a>
+      
+    </div>
+  
 </div>
 
 
@@ -586,7 +594,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>OAuth2</div>
-      <div>https://lzhengjy.gitee.io/2024/02/15/OAuth2/</div>
+      <div>https://lzhengjy.github.io/2024/02/15/OAuth2/</div>
     </div>
     <div class="license-meta">
       
@@ -629,12 +637,6 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
-                    
-                      <a href="/2024/03/11/hexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%90%AD%E5%BB%BA/" title="Hexo搭建个人博客">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Hexo搭建个人博客</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
                     
                   </article>
                   <article class="post-next col-6">

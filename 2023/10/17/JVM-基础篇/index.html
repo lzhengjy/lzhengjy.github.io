@@ -21,48 +21,48 @@
     <meta name="description" content="一. JVM1. 初识JVM什么是JVM？ JVM 全程 Java Virtual Machine，中文译名Java虚拟机JVM本质上是一个运行在计算机上的程序，他的&lt;&#x2F;职责是运行Java字节码文件   2. JVM的功能 解释和运行 对字节码文件中的指令，实时的解释成机器码，让计算机执行   内存管理 自动为对象、方法等分配内存 自动的垃圾回收机制，回收不再利用的对象   即时编">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JVM-基础篇">
-<meta property="og:url" content="https://lzhengjy.gitee.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/index.html">
+<meta property="og:url" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="一. JVM1. 初识JVM什么是JVM？ JVM 全程 Java Virtual Machine，中文译名Java虚拟机JVM本质上是一个运行在计算机上的程序，他的&lt;&#x2F;职责是运行Java字节码文件   2. JVM的功能 解释和运行 对字节码文件中的指令，实时的解释成机器码，让计算机执行   内存管理 自动为对象、方法等分配内存 自动的垃圾回收机制，回收不再利用的对象   即时编">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231017143311.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231017144235.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231017144309.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231017145327.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231018133846.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231026135449.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231026135908.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231026135928.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231026140014.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231026140032.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231026140135.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231026150614.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231026161923.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231026162108.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231027105433.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231027163754.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231027164322.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231027164338.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028121044.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028121407.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028121602.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028122520.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028133012.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028133121.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028133906.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028133928.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028133958.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028134029.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028134100.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028141240.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028142605.png">
-<meta property="og:image" content="https://lzhengjy.gitee.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028142623.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231017143311.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231017144235.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231017144309.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231017145327.png">
+<meta property="og:image" content="https://lzhengjy.github.io/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231018133846.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231026135449.png">
+<meta property="og:image" content="https://lzhengjy.github.io/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231026135908.png">
+<meta property="og:image" content="https://lzhengjy.github.io/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231026135928.png">
+<meta property="og:image" content="https://lzhengjy.github.io/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231026140014.png">
+<meta property="og:image" content="https://lzhengjy.github.io/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231026140032.png">
+<meta property="og:image" content="https://lzhengjy.github.io/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231026140135.png">
+<meta property="og:image" content="https://lzhengjy.github.io/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231026150614.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231026161923.png">
+<meta property="og:image" content="https://lzhengjy.github.io/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231026162108.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231027105433.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231027163754.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231027164322.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231027164338.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028121044.png">
+<meta property="og:image" content="https://lzhengjy.github.io/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028121407.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028121602.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028122520.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028133012.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028133121.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028133906.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028133928.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028133958.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028134029.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028134100.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028141240.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028142605.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231028142623.png">
 <meta property="article:published_time" content="2023-10-17T06:05:53.000Z">
 <meta property="article:modified_time" content="2023-10-28T07:44:44.357Z">
 <meta property="article:author" content="Zheng">
 <meta property="article:tag" content="JVM">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://lzhengjy.gitee.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231017143311.png">
+<meta name="twitter:image" content="https://lzhengjy.github.io/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/20231017143311.png">
   
   
   
@@ -104,7 +104,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"lzhengjy.gitee.io","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"lzhengjy.github.io","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -765,7 +765,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>JVM-基础篇</div>
-      <div>https://lzhengjy.gitee.io/2023/10/17/JVM-基础篇/</div>
+      <div>https://lzhengjy.github.io/2023/10/17/JVM-基础篇/</div>
     </div>
     <div class="license-meta">
       
