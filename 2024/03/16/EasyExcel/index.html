@@ -66,8 +66,16 @@
 <meta property="og:image" content="https://lzhengjy.github.io/2024/03/16/EasyExcel/image-20240325125608289.png">
 <meta property="og:image" content="https://lzhengjy.github.io/2024/03/16/EasyExcel/image-20240325130207466.png">
 <meta property="og:image" content="https://lzhengjy.github.io/2024/03/16/EasyExcel/image-20240325130308037.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2024/03/16/EasyExcel/image-20240326145431238.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2024/03/16/EasyExcel/image-20240326145649180.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2024/03/16/EasyExcel/image-20240326145747938.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2024/03/16/EasyExcel/image-20240326150520360.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2024/03/16/EasyExcel/image-20240326150719647.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2024/03/16/EasyExcel/image-20240326150817272.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2024/03/16/EasyExcel/image-20240326150854696.png">
+<meta property="og:image" content="https://lzhengjy.github.io/2024/03/16/EasyExcel/image-20240326150953313.png">
 <meta property="article:published_time" content="2024-03-16T05:11:51.000Z">
-<meta property="article:modified_time" content="2024-03-25T11:47:30.673Z">
+<meta property="article:modified_time" content="2024-03-26T07:33:42.309Z">
 <meta property="article:author" content="Zheng">
 <meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary_large_image">
@@ -264,7 +272,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          33k 字
+          34k 字
         
       </span>
     
@@ -275,7 +283,7 @@
         
         
         
-          276 分钟
+          283 分钟
         
       </span>
     
@@ -933,7 +941,86 @@
 
 
 <hr>
-<h4 id="4-Web操作"><a href="#4-Web操作" class="headerlink" title="4.Web操作"></a>4.Web操作</h4><h5 id="4-1-文件下载"><a href="#4-1-文件下载" class="headerlink" title="4.1 文件下载"></a>4.1 文件下载</h5><p>(未完成…待续)</p>
+<h4 id="4-Web操作"><a href="#4-Web操作" class="headerlink" title="4.Web操作"></a>4.Web操作</h4><h5 id="4-1-文件下载"><a href="#4-1-文件下载" class="headerlink" title="4.1 文件下载"></a>4.1 文件下载</h5><p>这里是我在完善个人学习项目功能时写的，这里只截取了一部分前端代码，通过前端处理来导出excel</p>
+<br>
+
+
+
+
+
+<p><strong>导入xlsx插件</strong></p>
+<p>在package.json中导入依赖</p>
+<p>拉取依赖，npm insatll 或者 npm install xlsx –save</p>
+<p><img src="/2024/03/16/EasyExcel/image-20240326145431238.png" srcset="/img/loading.gif" lazyload alt="image-20240326145431238"></p>
+<br>
+
+
+
+
+
+<p><strong>写导出按钮</strong></p>
+<img src="/2024/03/16/EasyExcel/image-20240326145649180.png" srcset="/img/loading.gif" lazyload alt="image-20240326145649180" style="zoom:67%;">
+
+<br>
+
+
+
+
+
+<p><strong>写函数</strong></p>
+<p>先在script中引入xlsx</p>
+<img src="/2024/03/16/EasyExcel/image-20240326145747938.png" srcset="/img/loading.gif" lazyload alt="image-20240326145747938" style="zoom:67%;">
+
+<br>
+
+
+
+
+
+<p>submit函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs vue">submit() &#123;<br>  if (this.tableData.length &lt;= 0) &#123;<br>    this.$message(&#123;<br>      message: &quot;没有成绩，无法导出&quot;,<br>      type: &quot;warning&quot;,<br>      showClose: true<br>    &#125;);<br>    return;<br>  &#125;<br>  let arr = this.tableData.map(item =&gt; &#123;<br>    return &#123;<br>      课程名: item.courseName,<br>      教师: item.teacherName,<br>      学分: item.credit,<br>      日常成绩: item.dailyScore,<br>      考试成绩: item.examScore,<br>      总成绩: item.score<br>    &#125;;<br>  &#125;);<br>  let sheet = xlsx.utils.json_to_sheet(arr),<br>    book = xlsx.utils.book_new();<br>  xlsx.utils.book_append_sheet(book, sheet, &quot;成绩表&quot;);<br>  xlsx.writeFile(book, `成绩表$&#123;new Date().getTime()&#125;.xls`);<br>  this.disabled = false;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<br>
+
+
+
+
+
+<p>数据</p>
+<p>我这里只有成绩数据，并且不需要经过筛选，所以直接全部导出查询到的成绩数据，也就是tableData</p>
+<p><img src="/2024/03/16/EasyExcel/image-20240326150520360.png" srcset="/img/loading.gif" lazyload alt="image-20240326150520360"></p>
+<br>
+
+
+
+
+
+<p><strong>测试</strong></p>
+<p>前端效果</p>
+<img src="/2024/03/16/EasyExcel/image-20240326150719647.png" srcset="/img/loading.gif" lazyload alt="image-20240326150719647" style="zoom:67%;">
+
+<br>
+
+
+
+
+
+<p>导出成绩</p>
+<img src="/2024/03/16/EasyExcel/image-20240326150817272.png" srcset="/img/loading.gif" lazyload alt="image-20240326150817272" style="zoom:50%;">
+
+<img src="/2024/03/16/EasyExcel/image-20240326150854696.png" srcset="/img/loading.gif" lazyload alt="image-20240326150854696" style="zoom:67%;">
+
+<br>
+
+
+
+<p>如果不存在成绩</p>
+<img src="/2024/03/16/EasyExcel/image-20240326150953313.png" srcset="/img/loading.gif" lazyload alt="image-20240326150953313" style="zoom:50%;">
+
+<br>
+
+
+
 
                 
               </div>
