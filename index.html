@@ -226,15 +226,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2024/04/13/%E9%9D%A2%E8%AF%95/" target="_self">
-          学习记录
+        <a href="/2024/04/23/%E6%B3%A8%E5%86%8C%E7%94%A8%E6%88%B7%E5%A6%82%E4%BD%95%E9%98%B2%E6%AD%A2%E7%BC%93%E5%AD%98%E7%A9%BF/" target="_self">
+          注册用户如何防止缓存穿
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/04/13/%E9%9D%A2%E8%AF%95/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/04/23/%E6%B3%A8%E5%86%8C%E7%94%A8%E6%88%B7%E5%A6%82%E4%BD%95%E9%98%B2%E6%AD%A2%E7%BC%93%E5%AD%98%E7%A9%BF/" target="_self">
         <div>
-          题目1234567891011121314create table  t_requirement  (        i_require_id      BIGINT primary key auto_increment not null comment &#x27;需求标识&#x27;,        s_title           VARCHAR(256) comment &#x27;需求
+          1. 缓存穿透缓存穿透是指在使用缓存系统时，恶意或频繁地请求一个不存在于缓存中的数据，导致每次请求都需要查询数据库或其他数据存储系统，从而绕过了缓存的效果，严重影响系统性能。 这种情况通常发生在恶意攻击、大量请求缓存中不存在的数据或缓存数据过期后的高并发访问。 缓存穿透会导致以下问题：  频繁的查询数据库或其他数据存储系统，增加了数据库负载，降低了系统的吞吐量。 大量的缓存不存在的数据请求可能会导
         </div>
       </a>
 
@@ -242,12 +242,101 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2024-04-13 12:18" pubdate>
-              2024-04-13
+            <time datetime="2024-04-23 22:06" pubdate>
+              2024-04-23
             </time>
           </div>
         
         
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%8A%80%E6%9C%AF%E7%BB%8F%E9%AA%8C/" class="category-chain-item">技术经验</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/redis/">#redis</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/04/15/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F/" target="_self">
+          责任链模式
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/04/15/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F/" target="_self">
+        <div>
+          1. 什么是责任链模式避免请求发送者与接收者耦合在一起，让多个对象都有可能接收请求，将这些对象连接成一条链，并且沿着这条链传递请求，直到有对象处理它为止 举个例子，SpringMvc 中可以定义拦截器，并且可以定义多个。当一个用户发起请求时，顺利的话请求会经过所有拦截器，最终到达业务代码逻辑，SpringMvc 拦截器设计就是使用了责任链模式 在责任链模式中，多个处理器（参照上述拦截器）依次处理同
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-04-15 19:53" pubdate>
+              2024-04-15
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%8A%80%E6%9C%AF%E7%BB%8F%E9%AA%8C/" class="category-chain-item">技术经验</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">#设计模式</a>
+            
+          </div>
         
       </div>
     </article>
@@ -281,11 +370,32 @@
           </div>
         
         
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%8A%80%E6%9C%AF%E7%BB%8F%E9%AA%8C/" class="category-chain-item">技术经验</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E6%8A%80%E6%9C%AF%E7%BB%8F%E9%AA%8C/">#技术经验</a>
+              <a href="/tags/Java/">#Java</a>
             
           </div>
         
@@ -320,6 +430,27 @@
             </time>
           </div>
         
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%A1%86%E6%9E%B6%E5%92%8C%E4%B8%AD%E9%97%B4%E4%BB%B6/" class="category-chain-item">框架和中间件</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
         
         
           <div class="post-meta">
@@ -361,11 +492,32 @@
           </div>
         
         
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%A1%86%E6%9E%B6%E5%92%8C%E4%B8%AD%E9%97%B4%E4%BB%B6/" class="category-chain-item">框架和中间件</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Java/">#Java</a>
+              <a href="/tags/excel/">#excel</a>
             
           </div>
         
@@ -441,11 +593,32 @@
           </div>
         
         
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%A1%86%E6%9E%B6%E5%92%8C%E4%B8%AD%E9%97%B4%E4%BB%B6/" class="category-chain-item">框架和中间件</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Java/">#Java</a>
+              <a href="/tags/%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/">#权限管理</a>
             
           </div>
         
@@ -480,6 +653,27 @@
             </time>
           </div>
         
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%A1%86%E6%9E%B6%E5%92%8C%E4%B8%AD%E9%97%B4%E4%BB%B6/" class="category-chain-item">框架和中间件</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
         
         
           <div class="post-meta">
@@ -521,6 +715,27 @@
           </div>
         
         
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%A1%86%E6%9E%B6%E5%92%8C%E4%B8%AD%E9%97%B4%E4%BB%B6/" class="category-chain-item">框架和中间件</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
@@ -561,46 +776,6 @@
           </div>
         
         
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Java/">#Java</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2023/12/23/Java%E5%8F%8D%E5%B0%84/" target="_self">
-          Java反射
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/12/23/Java%E5%8F%8D%E5%B0%84/" target="_self">
-        <div>
-          该笔记基于B站视频编写     1. 动态代理的思想分析程序为什么需要代理？ 代理在程序设计中有很重要的作用，它可以帮助我们更好地管理和扩展代码，同时也能提高代码的安全性和隐私性 使用代理的好处：  降低程序复杂度 易于业务扩展 代码高内聚低耦合 增强功能 增强安全性和隐私性      代理就像中介公司一样，它通过接口来自动要代理那些方法代理和被代理的类要实现同一个接口       代码实现 定义
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-12-23 21:17" pubdate>
-              2023-12-23
-            </time>
-          </div>
-        
-        
           <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
@@ -611,7 +786,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Java/" class="category-chain-item">Java</a>
+  <a href="/categories/%E6%A1%86%E6%9E%B6%E5%92%8C%E4%B8%AD%E9%97%B4%E4%BB%B6/" class="category-chain-item">框架和中间件</a>
   
   
 
