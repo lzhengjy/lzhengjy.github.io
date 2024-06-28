@@ -18,32 +18,22 @@
   <meta name="author" content="Zheng">
   <meta name="keywords" content="">
   
-    <meta name="description" content="业务背景 为了满足用户对一趟列车不同站点不同座位类型的余量查询需求，我们采取了一种优化方案。我们将这些余量信息存储在缓存中，以便用户可以快速查询。 然而，在用户创建订单并完成支付时，我们需要同时从数据库和缓存中扣减相应的列车站点余票。这种设计不仅提高了查询效率，也保证了数据的一致性，确保订单操作的准确性。       1. 先写缓存再写数据库两个用户购买了车站余票，假设余票有 17 张，两个用户扣">
+    <meta name="description" content="@RequestParam用来加载URL中?之后的参数。 比如：这个请求&#x2F;user?name&#x3D;zheng 就可以如下面这样，使用@RequestParam来加载URL中的name参数 12345@GetMapping(&quot;&#x2F;user&quot;)@ResponseBody()public User findUserByName(@RequestParam(&quot;name&quot;)">
 <meta property="og:type" content="article">
-<meta property="og:title" content="缓存和数据库一致性">
-<meta property="og:url" content="https://lzhengjy.github.io/2024/05/02/%E7%BC%93%E5%AD%98%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%80%E8%87%B4%E6%80%A7/index.html">
+<meta property="og:title" content="Spring Boot中的六种API请求参数读取方式">
+<meta property="og:url" content="https://lzhengjy.github.io/2024/05/15/Spring-Boot%E4%B8%AD%E7%9A%84%E5%85%AD%E7%A7%8DAPI%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0%E8%AF%BB%E5%8F%96%E6%96%B9%E5%BC%8F/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="业务背景 为了满足用户对一趟列车不同站点不同座位类型的余量查询需求，我们采取了一种优化方案。我们将这些余量信息存储在缓存中，以便用户可以快速查询。 然而，在用户创建订单并完成支付时，我们需要同时从数据库和缓存中扣减相应的列车站点余票。这种设计不仅提高了查询效率，也保证了数据的一致性，确保订单操作的准确性。       1. 先写缓存再写数据库两个用户购买了车站余票，假设余票有 17 张，两个用户扣">
+<meta property="og:description" content="@RequestParam用来加载URL中?之后的参数。 比如：这个请求&#x2F;user?name&#x3D;zheng 就可以如下面这样，使用@RequestParam来加载URL中的name参数 12345@GetMapping(&quot;&#x2F;user&quot;)@ResponseBody()public User findUserByName(@RequestParam(&quot;name&quot;)">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://lzhengjy.github.io/2024/05/02/%E7%BC%93%E5%AD%98%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%80%E8%87%B4%E6%80%A7/image-20240627210707285.png">
-<meta property="og:image" content="https://lzhengjy.github.io/2024/05/02/%E7%BC%93%E5%AD%98%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%80%E8%87%B4%E6%80%A7/image-20240627210831497.png">
-<meta property="og:image" content="https://lzhengjy.github.io/2024/05/02/%E7%BC%93%E5%AD%98%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%80%E8%87%B4%E6%80%A7/image-20240627210941671.png">
-<meta property="og:image" content="https://lzhengjy.github.io/2024/05/02/%E7%BC%93%E5%AD%98%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%80%E8%87%B4%E6%80%A7/image-20240627211752200.png">
-<meta property="og:image" content="https://lzhengjy.github.io/2024/05/02/%E7%BC%93%E5%AD%98%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%80%E8%87%B4%E6%80%A7/image-20240627211944064.png">
-<meta property="og:image" content="https://lzhengjy.github.io/2024/05/02/%E7%BC%93%E5%AD%98%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%80%E8%87%B4%E6%80%A7/image-20240627212236081.png">
-<meta property="og:image" content="https://lzhengjy.github.io/2024/05/02/%E7%BC%93%E5%AD%98%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%80%E8%87%B4%E6%80%A7/image-20240627212410373.png">
-<meta property="og:image" content="https://lzhengjy.github.io/2024/05/02/%E7%BC%93%E5%AD%98%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%80%E8%87%B4%E6%80%A7/image-20240627212605344.png">
-<meta property="og:image" content="https://lzhengjy.github.io/2024/05/02/%E7%BC%93%E5%AD%98%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%80%E8%87%B4%E6%80%A7/image-20240627212725678.png">
-<meta property="article:published_time" content="2024-05-02T13:04:21.000Z">
-<meta property="article:modified_time" content="2024-06-27T13:36:39.009Z">
+<meta property="article:published_time" content="2024-05-15T09:07:54.000Z">
+<meta property="article:modified_time" content="2024-06-28T09:20:43.983Z">
 <meta property="article:author" content="Zheng">
-<meta property="article:tag" content="redis">
+<meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://lzhengjy.github.io/2024/05/02/%E7%BC%93%E5%AD%98%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%80%E8%87%B4%E6%80%A7/image-20240627210707285.png">
   
   
   
-  <title>缓存和数据库一致性 - Hexo</title>
+  <title>Spring Boot中的六种API请求参数读取方式 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -209,7 +199,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="缓存和数据库一致性"></span>
+            <span id="subtitle" data-typed-text="Spring Boot中的六种API请求参数读取方式"></span>
           
         </div>
 
@@ -220,8 +210,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-05-02 21:04" pubdate>
-          2024年5月2日 晚上
+        <time datetime="2024-05-15 17:07" pubdate>
+          2024年5月15日 下午
         </time>
       </span>
     
@@ -232,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.1k 字
+          1.9k 字
         
       </span>
     
@@ -243,7 +233,7 @@
         
         
         
-          18 分钟
+          17 分钟
         
       </span>
     
@@ -280,24 +270,14 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">缓存和数据库一致性</h1>
+            <h1 id="seo-header">Spring Boot中的六种API请求参数读取方式</h1>
             
             
               <div class="markdown-body">
                 
-                <p><strong>业务背景</strong></p>
-<p>为了满足用户对一趟列车不同站点不同座位类型的余量查询需求，我们采取了一种优化方案。我们将这些余量信息存储在缓存中，以便用户可以快速查询。</p>
-<p>然而，在用户创建订单并完成支付时，我们需要同时从数据库和缓存中扣减相应的列车站点余票。这种设计不仅提高了查询效率，也保证了数据的一致性，确保订单操作的准确性。</p>
-<img src="/2024/05/02/%E7%BC%93%E5%AD%98%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%80%E8%87%B4%E6%80%A7/image-20240627210707285.png" srcset="/img/loading.gif" lazyload alt="image-20240627210707285" style="zoom: 50%;">
-
-<br>
-
-
-
-<h4 id="1-先写缓存再写数据库"><a href="#1-先写缓存再写数据库" class="headerlink" title="1. 先写缓存再写数据库"></a>1. 先写缓存再写数据库</h4><p>两个用户购买了车站余票，假设余票有 17 张，两个用户扣减完还剩 15 张票</p>
-<p>如图所示，多个请求并发写入缓存和数据库，写请求 A 先更新 Redis 余票为 16。此时，写请求 B 将余票缓存更新 Redis 为 15，紧接着执行数据库更新为 15。这个时候，写请求 A 继续执行更新数据库操作，余票数据更新为 16</p>
-<p>这样就导致了多请求并发场景下，执行结果和咱们预期的结果不相符</p>
-<img src="/2024/05/02/%E7%BC%93%E5%AD%98%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%80%E8%87%B4%E6%80%A7/image-20240627210831497.png" srcset="/img/loading.gif" lazyload alt="image-20240627210831497" style="zoom: 80%;">
+                <h4 id="RequestParam"><a href="#RequestParam" class="headerlink" title="@RequestParam"></a>@RequestParam</h4><p>用来加载URL中<code>?</code>之后的参数。</p>
+<p>比如：这个请求<code>/user?name=zheng</code> 就可以如下面这样，使用<code>@RequestParam</code>来加载URL中的name参数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@GetMapping(&quot;/user&quot;)</span><br><span class="hljs-meta">@ResponseBody()</span><br><span class="hljs-keyword">public</span> User <span class="hljs-title function_">findUserByName</span><span class="hljs-params">(<span class="hljs-meta">@RequestParam(&quot;name&quot;)</span> String name)</span>&#123; <br>    <span class="hljs-keyword">return</span> userRepo.findByName(name);<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <br>
 
@@ -305,65 +285,9 @@
 
 
 
-<h4 id="2-先写数据库再写缓存"><a href="#2-先写数据库再写缓存" class="headerlink" title="2. 先写数据库再写缓存"></a>2. 先写数据库再写缓存</h4><p>同上所诉，参考对应的业务场景和多请求并发场景，不同的是前者先更新缓存，后者先更新的是数据库，相同的是都存在并发问题，导致结果与预期并不相符</p>
-<img src="/2024/05/02/%E7%BC%93%E5%AD%98%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%80%E8%87%B4%E6%80%A7/image-20240627210941671.png" srcset="/img/loading.gif" lazyload alt="image-20240627210941671" style="zoom: 80%;">
-
-<br>
-
-
-
-
-
-<h4 id="3-先删除缓存再写数据库"><a href="#3-先删除缓存再写数据库" class="headerlink" title="3. 先删除缓存再写数据库"></a>3. 先删除缓存再写数据库</h4><p>假设有两个并发的读写操作，一个是写操作，另一个是读操作</p>
-<ol>
-<li>并发读写的情况下，写操作首先删除缓存，接下来需要执行更新数据库操作</li>
-<li>读操作发生，由于缓存已经被删除，读操作不得不从数据库中读取数据。然而，由于写操作尚未完成，数据库中的数据仍然是过时的</li>
-<li>写操作这时需要更新数据库中的值，更新后 MySQL 数据库是最新的值</li>
-<li>读操作将从数据库中查询到的过时数据再回写到缓存</li>
-</ol>
-<p>在这种情况下，读操作获取到的是过时的数据，尽管写操作已经完成。因为缓存被删除，读操作不得不从数据库中读取旧值，而不是最新的值</p>
-<img src="/2024/05/02/%E7%BC%93%E5%AD%98%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%80%E8%87%B4%E6%80%A7/image-20240627211752200.png" srcset="/img/loading.gif" lazyload alt="image-20240627211752200" style="zoom:80%;">
-
-<br>
-
-
-
-
-
-<h4 id="4-先删除缓存再写数据库，再删除缓存-延迟双删"><a href="#4-先删除缓存再写数据库，再删除缓存-延迟双删" class="headerlink" title="4. 先删除缓存再写数据库，再删除缓存(延迟双删)"></a>4. 先删除缓存再写数据库，再删除缓存(延迟双删)</h4><p>写请求先删除缓存里面的信息，后再删除数据库里面的信息，然后延迟一段时间再删除缓存里面的信息</p>
-<img src="/2024/05/02/%E7%BC%93%E5%AD%98%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%80%E8%87%B4%E6%80%A7/image-20240627211944064.png" srcset="/img/loading.gif" lazyload alt="image-20240627211944064" style="zoom:80%;">
-
-<br>
-
-
-
-<p>如果说上图的读请求回写缓存在写请求第二次删除缓存之前，那这种技术方案是比较好的，而且也不用引入过多复杂的中间件。</p>
-<p>问题就在于，第二次删除缓存，不一定在读请求回写缓存之后。所以我们需要保证第二次删除要在请求回写缓存之后。</p>
-<p>假设读请求回写缓存大概需要 300ms，那我们是否可以在写请求第二次删除缓存前进行一个延迟操作，比如睡眠 500ms 后再删除？这样就可以规避读请求回写缓存在第二次删除之后了。</p>
-<p>这种方案理论上是可以的，不过把这个睡眠操作使用延迟队列或者引入三方消息队列去做。</p>
-<p>最新技术架构流程如下所示：</p>
-<img src="/2024/05/02/%E7%BC%93%E5%AD%98%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%80%E8%87%B4%E6%80%A7/image-20240627212236081.png" srcset="/img/loading.gif" lazyload alt="image-20240627212236081" style="zoom:80%;">
-
-<p>如果消息队列更新缓存失败了呢？其实这一点还好，凭借消息队列客户端消费的重试规则，如果更新失败次数都达到客户端重试阈值还是不行，那一定是数据或者缓存中间件有问题。</p>
-<p>当然，如果重试次数多了，也必然会面临缓存与数据库不一致的时间变长了，这个是需要清楚的。</p>
-<p>通过该技术方案，可以很好达到缓存与数据库最终一致性。</p>
-<br>
-
-
-
-
-
-<h4 id="5-先写数据库再删除缓存"><a href="#5-先写数据库再删除缓存" class="headerlink" title="5. 先写数据库再删除缓存"></a>5. 先写数据库再删除缓存</h4><p>读请求第一次查询时，会查询到一个错误的数据，因为写请求还没有更新到缓存，写请求写入 MySQL 成功后会删除缓存中的历史数据。后续读请求查询缓存没有值就会再请求数据库 MySQL 进行重新加载，并将正确的值放到缓存中。</p>
-<p>也就是说这种模型会存在一个很小周期的缓存与数据库不一致的情况，不过对于绝大多数的情况来说，是可以容忍的。除去一些电商库存、列车余票等对数据比较敏感的情况，比较适合绝大多数业务场景</p>
-<img src="/2024/05/02/%E7%BC%93%E5%AD%98%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%80%E8%87%B4%E6%80%A7/image-20240627212410373.png" srcset="/img/loading.gif" lazyload alt="image-20240627212410373" style="zoom:80%;">
-
-<br>
-
-
-
-<p>如果要删除的缓存失效了的话就会出现这种情况</p>
-<p>当缓存过期（可能是缓存正常过期也可能是 Redis 内存满了触发清理策略）条件满足，同时读请求的回写缓存 Redis 的执行周期在数据库删除之前，那么就有可能触发缓存数据库不一致问题</p>
-<img src="/2024/05/02/%E7%BC%93%E5%AD%98%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%80%E8%87%B4%E6%80%A7/image-20240627212605344.png" srcset="/img/loading.gif" lazyload alt="image-20240627212605344" style="zoom:80%;">
+<h4 id="PathVariable"><a href="#PathVariable" class="headerlink" title="@PathVariable"></a>@PathVariable</h4><p>这是RESTful风格API中常用的注解，用来加载URL路径中的参数</p>
+<p>比如：这个请求<code>/user/1</code> 就可以如下面这样，使用<code>@PathVariable</code>来加载URL中的id参数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@GetMapping(&quot;/user/&#123;id&#125;&quot;)</span><br><span class="hljs-meta">@ResponseBody()</span><br><span class="hljs-keyword">public</span> User <span class="hljs-title function_">findUserById</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable(&quot;id&quot;)</span> String id)</span>&#123; <br>    <span class="hljs-keyword">return</span> userRepo.findById(id);<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <br>
 
@@ -373,37 +297,48 @@
 
 
 
-<h4 id="6-先写数据库，通过BinLog异步更新缓存"><a href="#6-先写数据库，通过BinLog异步更新缓存" class="headerlink" title="6. 先写数据库，通过BinLog异步更新缓存"></a>6. 先写数据库，通过BinLog异步更新缓存</h4><img src="/2024/05/02/%E7%BC%93%E5%AD%98%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%80%E8%87%B4%E6%80%A7/image-20240627212725678.png" srcset="/img/loading.gif" lazyload alt="image-20240627212725678" style="zoom:80%;">
+<h4 id="MatrixVariable"><a href="#MatrixVariable" class="headerlink" title="@MatrixVariable"></a>@MatrixVariable</h4><p>一些国外系统有提供这类API参数，这种API的参数通过<code>;</code>分割。</p>
+<p>比如：这个请求<code>/books/reviews;isbn=1234;topN=5;</code> 就可以如下面这样，使用<code>@MatrixVariable</code>来加载URL中用<code>;</code>分割的参数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@GetMapping(&quot;/books/reviews&quot;)</span><br><span class="hljs-meta">@ResponseBody()</span><br><span class="hljs-keyword">public</span> List&lt;BookReview&gt; <span class="hljs-title function_">getBookReviews</span><span class="hljs-params">( </span><br><span class="hljs-params">  <span class="hljs-meta">@MatrixVariable</span> String isbn,  <span class="hljs-meta">@MatrixVariable</span> Integer topN)</span> &#123;<br>  <span class="hljs-keyword">return</span> bookReviewsLogic.getTopNReviewsByIsbn(isbn, topN);<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>如果是扣减库存的方案，比如说你将列车余票扣减为 16，但是同时又有一个请求将列车余票扣减为 15，这个时候，扣减为 15 的这个请求先到消息队列执行，将缓存更新为余票 15，但是随之而来的是第一个请求余票为 16，会将缓存余票为 15 给覆盖掉。</p>
-<p>类似于这种逻辑，会存在一些数据一致性的问题，需要我们通过其它技术手段完善，比如数据库添加版本号，或者根据最后修改时间等技术规避这些问题。</p>
-<p>另外，如果在写入数据库余票 16 前，同时有个查询请求，也会存在数据库不一致问题。比如在写入数据库余票 16 前，将数据库余票 17 获取到，然后等消息队列更新到缓存余票 16 后，再将数据库余票 17 更新到缓存。</p>
-<p>这种出问题的概率比较小，因为跨的周期太长了。也是类似于存在一个很小周期的数据不一致性。</p>
 <br>
 
 
 
 
 
-<h4 id="7-总结"><a href="#7-总结" class="headerlink" title="7. 总结"></a>7. 总结</h4><p>可以根据业务场景选择下述缓存一致性方案：</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://www.yuque.com/magestack/12306/glv5e0785b2d7oag#NZlgQ">缓存双删</a>：如果公司现有消息队列中间件，可以考虑使用该方案，反之则不需要考虑。</li>
-<li><a target="_blank" rel="noopener" href="https://www.yuque.com/magestack/12306/glv5e0785b2d7oag#w4hgF">先写数据库再删缓存</a>：这种方案从实时性以及技术实现复杂度来说都比较不错，推荐大家使用这种方案。</li>
-<li><a target="_blank" rel="noopener" href="https://www.yuque.com/magestack/12306/glv5e0785b2d7oag#shlMA">Binlog 异步更新缓存</a>：如果希望实现最终一致性以及数据多中心模式，该方案无疑是最合适的。</li>
-</ul>
+
+
+<h4 id="RequestBody"><a href="#RequestBody" class="headerlink" title="@RequestBody"></a>@RequestBody</h4><p>这也是最常用的一个注解，用来加载POST&#x2F;PUT请求的复杂请求体（也叫：payload）。比如，客户端需要提交一个复杂数据的时候，就要将这些数据放到请求体中，然后服务端用@RequestBody来加载请求体中的数据</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@PostMapping(&quot;/add&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">addAccounts</span><span class="hljs-params">(<span class="hljs-meta">@RequestBody</span> List&lt;Account&gt; accounts)</span> <span class="hljs-keyword">throws</span> SQLException &#123;<br>     accounts.stream().forEach(a -&gt; &#123;<br>         a.setCreatedOn(Timestamp.from(Instant.now()));<br>         a.setLastLogin(Timestamp.from(Instant.now()));<br>     &#125;);<br>     <span class="hljs-keyword">return</span> notificationLogic.addAccounts(accounts);<br>&#125;<br></code></pre></td></tr></table></figure>
+
 <br>
 
 
 
 
+
+
+
+<h4 id="RequestHeader"><a href="#RequestHeader" class="headerlink" title="@RequestHeader"></a>@RequestHeader</h4><p>@RequestHeader注解用来加载请求头中的数据，一般在业务系统中不太使用，但在基础设施的建设中会比较常用，比如传递分布式系统的TraceID等。用法也很简单，比如，假设我们将鉴权数据存在http请求头中，那么就可以像下面这样用@RequestHeader来加载请求头中的Authorization参数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@GetMapping(&quot;/user&quot;)</span><br><span class="hljs-meta">@ResponseBody()</span><br><span class="hljs-keyword">public</span> List&lt;User&gt; <span class="hljs-title function_">getUserList</span><span class="hljs-params">(<span class="hljs-meta">@RequestHeader(&quot;Authorization&quot;)</span> String authToken)</span> &#123;<br>     <span class="hljs-keyword">return</span> userRepo.findAll();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<br>
+
+
+
+
+
+
+<h4 id="CookieValue"><a href="#CookieValue" class="headerlink" title="@CookieValue"></a>@CookieValue</h4><p>当我们需要与客户端保持有状态的交互时，就需要用到Cookie。此时，服务端读取Cookie数据的时候，就可以像下面这样用@CookieValue来读取Cookie中的SessionId数据</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@GetMapping(&quot;/user&quot;)</span><br><span class="hljs-meta">@ResponseBody()</span><br><span class="hljs-keyword">public</span> List&lt;User&gt; <span class="hljs-title function_">getUserList</span><span class="hljs-params">(<span class="hljs-meta">@CookieValue(name = &quot;SessionId&quot;)</span> String sessionId)</span> &#123;<br>     <span class="hljs-keyword">return</span> userRepo.findAll();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<br>
 
 
 
 <hr>
-<p>查看文章</p>
-<p><a target="_blank" rel="noopener" href="http://t.csdnimg.cn/Bs2es">http://t.csdnimg.cn/Bs2es</a></p>
-<p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2376751?shareByChannel=link">https://cloud.tencent.com/developer/article/2376751?shareByChannel=link</a></p>
-<p><a target="_blank" rel="noopener" href="http://t.csdnimg.cn/vIzwO">http://t.csdnimg.cn/vIzwO</a></p>
+<p>文章转载来源：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/didispace/p/18207788">程序猿DD-博客园</a></p>
 
                 
               </div>
@@ -422,7 +357,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E6%8A%80%E6%9C%AF%E7%BB%8F%E9%AA%8C/" class="category-chain-item">技术经验</a>
+  <a href="/categories/%E6%A1%86%E6%9E%B6%E5%92%8C%E4%B8%AD%E9%97%B4%E4%BB%B6/" class="category-chain-item">框架和中间件</a>
   
   
 
@@ -437,7 +372,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/redis/" class="print-no-link">#redis</a>
+        <a href="/tags/Java/" class="print-no-link">#Java</a>
       
     </div>
   
@@ -449,8 +384,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>缓存和数据库一致性</div>
-      <div>https://lzhengjy.github.io/2024/05/02/缓存和数据库一致性/</div>
+      <div>Spring Boot中的六种API请求参数读取方式</div>
+      <div>https://lzhengjy.github.io/2024/05/15/Spring-Boot中的六种API请求参数读取方式/</div>
     </div>
     <div class="license-meta">
       
@@ -462,7 +397,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年5月2日</div>
+          <div>2024年5月15日</div>
         </div>
       
       
@@ -494,9 +429,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/05/15/Spring-Boot%E4%B8%AD%E7%9A%84%E5%85%AD%E7%A7%8DAPI%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0%E8%AF%BB%E5%8F%96%E6%96%B9%E5%BC%8F/" title="Spring Boot中的六种API请求参数读取方式">
+                      <a href="/2024/05/23/Java%E4%B8%AD%E7%9A%84%E5%85%B3%E9%94%AE%E5%AD%97/" title="Java中的关键字">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Spring Boot中的六种API请求参数读取方式</span>
+                        <span class="hidden-mobile">Java中的关键字</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -504,8 +439,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/04/23/%E6%B3%A8%E5%86%8C%E7%94%A8%E6%88%B7%E5%A6%82%E4%BD%95%E9%98%B2%E6%AD%A2%E7%BC%93%E5%AD%98%E7%A9%BF/" title="注册用户如何防止缓存穿">
-                        <span class="hidden-mobile">注册用户如何防止缓存穿</span>
+                      <a href="/2024/05/02/%E7%BC%93%E5%AD%98%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%80%E8%87%B4%E6%80%A7/" title="缓存和数据库一致性">
+                        <span class="hidden-mobile">缓存和数据库一致性</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

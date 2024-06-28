@@ -4,6 +4,69 @@
   
   
   <entry>
+    <title>Java中的各种锁</title>
+    <link href="/2024/06/28/Java%E4%B8%AD%E7%9A%84%E5%90%84%E7%A7%8D%E9%94%81/"/>
+    <url>/2024/06/28/Java%E4%B8%AD%E7%9A%84%E5%90%84%E7%A7%8D%E9%94%81/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Java中的关键字</title>
+    <link href="/2024/05/23/Java%E4%B8%AD%E7%9A%84%E5%85%B3%E9%94%AE%E5%AD%97/"/>
+    <url>/2024/05/23/Java%E4%B8%AD%E7%9A%84%E5%85%B3%E9%94%AE%E5%AD%97/</url>
+    
+    <content type="html"><![CDATA[<p><strong>关键字</strong>：Java语言自己用到的一些词，有特殊作用，<strong>不能将其作为类名和变量名</strong>，关键字的概念也包含<strong>特殊直接量</strong>，<strong>保留字</strong></p><p><code>Java目前一共有53个关键字：48个关键字+3个特殊直接量+2个保留字</code></p><p>48个关键字：abstract、assert、boolean、break、byte、case、catch、char、class、continue、default、do、double、else、enum、extends、final、finally、float、for、if、implements、import、int、interface、instanceof、long、native、new、package、private、protected、public、return、short、static、strictfp、super、switch、synchronized、this、throw、throws、transient、try、void、volatile、while</p><p>3个特殊直接量：true、false、null</p><p>2个保留字：goto、const</p><br><h4 id="访问修饰符的关键字"><a href="#访问修饰符的关键字" class="headerlink" title="访问修饰符的关键字"></a>访问修饰符的关键字</h4><table><thead><tr><th>关键字</th><th>意思</th><th>备注，常用</th></tr></thead><tbody><tr><td>public</td><td>公有的</td><td>可跨包，（默认选择）</td></tr><tr><td>protected</td><td>受保护的</td><td>当前包内可用</td></tr><tr><td>private</td><td>私有的</td><td>当前类可用</td></tr></tbody></table><br><h4 id="定义类、接口、抽象类和实现接口、继承类的关键字、实例化对象"><a href="#定义类、接口、抽象类和实现接口、继承类的关键字、实例化对象" class="headerlink" title="定义类、接口、抽象类和实现接口、继承类的关键字、实例化对象"></a>定义类、接口、抽象类和实现接口、继承类的关键字、实例化对象</h4><table><thead><tr><th>关键字</th><th>意思</th><th>备注，常用</th></tr></thead><tbody><tr><td>class</td><td>类</td><td>public class A(){} 花括号里有已实现方法体，类名需要与文件名相同</td></tr><tr><td>interface</td><td>接口</td><td>public interface B(){} 花括号里有方法体，但没有实现，方法体句子后面是英文分号“:”结尾</td></tr><tr><td>abstract</td><td>声明抽象</td><td>public abstract class C(){} 介于类与接口中间，可以有也可以没有已经实现的方法体</td></tr><tr><td>implements</td><td>实现</td><td>用于类或接口实现接口public class A interface B(){}</td></tr><tr><td>extends</td><td>继承</td><td>用于类继承类 public class A extends D(){}</td></tr><tr><td>new</td><td>创建新对象</td><td>A a&#x3D;new A(); A表示一个类</td></tr></tbody></table><br><h4 id="数据类型的关键字"><a href="#数据类型的关键字" class="headerlink" title="数据类型的关键字"></a>数据类型的关键字</h4><table><thead><tr><th>关键字</th><th align="left">意思</th><th align="left">备注，常用</th></tr></thead><tbody><tr><td>byte</td><td align="left">字节型</td><td align="left">8bit</td></tr><tr><td>char</td><td align="left">字符型</td><td align="left">16bit</td></tr><tr><td>boolean</td><td align="left">布尔型</td><td align="left">--</td></tr><tr><td>short</td><td align="left">短整型</td><td align="left">16bit</td></tr><tr><td>int</td><td align="left">整型</td><td align="left">32bit</td></tr><tr><td>float</td><td align="left">浮点型</td><td align="left">32bit</td></tr><tr><td>long</td><td align="left">长整型</td><td align="left">64bit</td></tr><tr><td>double</td><td align="left">双精度</td><td align="left">64bit</td></tr><tr><td>void</td><td align="left">无返回</td><td align="left">public void A(){}  其他需要返回的经常与return连用</td></tr><tr><td>null</td><td align="left">空值</td><td align="left">--</td></tr><tr><td>true</td><td align="left">真</td><td align="left">--</td></tr><tr><td>false</td><td align="left">假</td><td align="left">--</td></tr></tbody></table><br><h4 id="条件循环"><a href="#条件循环" class="headerlink" title="条件循环"></a>条件循环</h4><table><thead><tr><th>关键字</th><th>意思</th><th>备注，常用</th></tr></thead><tbody><tr><td>if</td><td>如果</td><td>if(){} 如果小括号里面怎么怎么样 花括号就怎么怎么样</td></tr><tr><td>else</td><td>否则，或者</td><td>常与if连用，用法相同</td></tr><tr><td>while</td><td>当什么的时候</td><td>while 怎么样就do什么  while(){}</td></tr><tr><td>for</td><td>满足三个条件时</td><td>for ( ; ; ){}</td></tr><tr><td>switch</td><td>开关</td><td>--</td></tr><tr><td>case</td><td>返回开关里的结果</td><td>--</td></tr><tr><td>default</td><td>默认</td><td></td></tr><tr><td>do</td><td>运行</td><td>长与while连用</td></tr><tr><td>break</td><td>跳出循环</td><td>--</td></tr><tr><td>continue</td><td>继续</td><td>中断本次循环，并并开始下一次</td></tr><tr><td>return</td><td>返回</td><td>return 一个返回值类型</td></tr><tr><td>instanceof</td><td>实例</td><td>一个二元操作符，和&#x3D;&#x3D;，&gt;，&lt;是同一类的。测试它左边的对象是否是它右边的类的实例，返回boolean类型的数据</td></tr></tbody></table><br><h4 id="修饰方法、类、属性和变量"><a href="#修饰方法、类、属性和变量" class="headerlink" title="修饰方法、类、属性和变量"></a>修饰方法、类、属性和变量</h4><table><thead><tr><th>关键字</th><th>意思</th><th>备注，常用</th></tr></thead><tbody><tr><td>static</td><td>静态的</td><td>属性和方法都可以用static修饰，直接使用类名.属性和方法名。 只有内部类可以使用static关键字修饰，调用直接使用类名.内部类类名进行调用。  static可以独立存在。静态块</td></tr><tr><td>final</td><td>最终的不可被改变的</td><td>方法和类都可以用final来修饰  final修饰的类是不能被继承的  final修饰的方法是不能被子类重写。常量的定义：final修饰的属性就是常量。</td></tr><tr><td>super</td><td>调用父类的方法</td><td>常见<strong>public</strong> <strong>void</strong> paint(Graphics g){<strong>super</strong>.paint(g); ··· }</td></tr><tr><td>this</td><td>当前类的父类的对象</td><td>调用当前类中的方法（表示调用这个方法的对象）this.addActionListener(al):等等</td></tr><tr><td>native</td><td>本地</td><td>--</td></tr><tr><td>strictfp</td><td>严格,精准</td><td>--</td></tr><tr><td>synchronized</td><td>线程,同步</td><td>--</td></tr><tr><td>transient</td><td>短暂</td><td>--</td></tr><tr><td>volatile</td><td>易失</td><td>--</td></tr></tbody></table><br><h4 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h4><table><thead><tr><th>关键字</th><th>意思</th><th>备注，常用</th></tr></thead><tbody><tr><td>catch</td><td>处理异常</td><td>1.try+catch程序的流程是：运行到try块中，如果有异常抛出，则转到catch块去处理。然后执行catch块后面的语句<br>2.try+catch+finally程序的流程是：运行到try块中，如果有异常抛出，则转到catch块,catch块执行完毕后，执行finally块的代码，再执行finally块后面的代码。如果没有异常抛出，执行完try块，也要去执行finally块的代码。然后执行finally块后面的语句<br>3.try+finally程序的流程是：运行到try块中,如果有异常抛出的话，程序转向执行finally块的代码。那末finally块后面的代码还会被执行吗？不会！因为你没有处理异常，所以遇到异常后，执行完finally后，方法就已抛出异常的方式退出了。这种方式中要注意的是，由于你没有捕获异常，所以要在方法后面声明抛出异常</td></tr><tr><td>try</td><td>捕获异常</td><td>--</td></tr><tr><td>finally</td><td>有没有异常都执行</td><td>--</td></tr><tr><td>throw</td><td>抛出一个异常对象</td><td>--</td></tr><tr><td>throws</td><td>声明一个异常可能被抛出</td><td>--</td></tr></tbody></table><br><h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><table><thead><tr><th>关键字</th><th>意思</th><th>备注，常用</th></tr></thead><tbody><tr><td>enum</td><td>枚举，列举型别</td><td></td></tr><tr><td>assert</td><td>断言</td><td></td></tr></tbody></table>]]></content>
+    
+    
+    <categories>
+      
+      <category>Java</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Java</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Spring Boot中的六种API请求参数读取方式</title>
+    <link href="/2024/05/15/Spring-Boot%E4%B8%AD%E7%9A%84%E5%85%AD%E7%A7%8DAPI%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0%E8%AF%BB%E5%8F%96%E6%96%B9%E5%BC%8F/"/>
+    <url>/2024/05/15/Spring-Boot%E4%B8%AD%E7%9A%84%E5%85%AD%E7%A7%8DAPI%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0%E8%AF%BB%E5%8F%96%E6%96%B9%E5%BC%8F/</url>
+    
+    <content type="html"><![CDATA[<h4 id="RequestParam"><a href="#RequestParam" class="headerlink" title="@RequestParam"></a>@RequestParam</h4><p>用来加载URL中<code>?</code>之后的参数。</p><p>比如：这个请求<code>/user?name=zheng</code> 就可以如下面这样，使用<code>@RequestParam</code>来加载URL中的name参数</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@GetMapping(&quot;/user&quot;)</span><br><span class="hljs-meta">@ResponseBody()</span><br><span class="hljs-keyword">public</span> User <span class="hljs-title function_">findUserByName</span><span class="hljs-params">(<span class="hljs-meta">@RequestParam(&quot;name&quot;)</span> String name)</span>&#123; <br>    <span class="hljs-keyword">return</span> userRepo.findByName(name);<br>&#125;<br></code></pre></td></tr></table></figure><br><h4 id="PathVariable"><a href="#PathVariable" class="headerlink" title="@PathVariable"></a>@PathVariable</h4><p>这是RESTful风格API中常用的注解，用来加载URL路径中的参数</p><p>比如：这个请求<code>/user/1</code> 就可以如下面这样，使用<code>@PathVariable</code>来加载URL中的id参数</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@GetMapping(&quot;/user/&#123;id&#125;&quot;)</span><br><span class="hljs-meta">@ResponseBody()</span><br><span class="hljs-keyword">public</span> User <span class="hljs-title function_">findUserById</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable(&quot;id&quot;)</span> String id)</span>&#123; <br>    <span class="hljs-keyword">return</span> userRepo.findById(id);<br>&#125;<br></code></pre></td></tr></table></figure><br><h4 id="MatrixVariable"><a href="#MatrixVariable" class="headerlink" title="@MatrixVariable"></a>@MatrixVariable</h4><p>一些国外系统有提供这类API参数，这种API的参数通过<code>;</code>分割。</p><p>比如：这个请求<code>/books/reviews;isbn=1234;topN=5;</code> 就可以如下面这样，使用<code>@MatrixVariable</code>来加载URL中用<code>;</code>分割的参数</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@GetMapping(&quot;/books/reviews&quot;)</span><br><span class="hljs-meta">@ResponseBody()</span><br><span class="hljs-keyword">public</span> List&lt;BookReview&gt; <span class="hljs-title function_">getBookReviews</span><span class="hljs-params">( </span><br><span class="hljs-params">  <span class="hljs-meta">@MatrixVariable</span> String isbn,  <span class="hljs-meta">@MatrixVariable</span> Integer topN)</span> &#123;<br>  <span class="hljs-keyword">return</span> bookReviewsLogic.getTopNReviewsByIsbn(isbn, topN);<br>&#125;<br></code></pre></td></tr></table></figure><br><h4 id="RequestBody"><a href="#RequestBody" class="headerlink" title="@RequestBody"></a>@RequestBody</h4><p>这也是最常用的一个注解，用来加载POST&#x2F;PUT请求的复杂请求体（也叫：payload）。比如，客户端需要提交一个复杂数据的时候，就要将这些数据放到请求体中，然后服务端用@RequestBody来加载请求体中的数据</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@PostMapping(&quot;/add&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">addAccounts</span><span class="hljs-params">(<span class="hljs-meta">@RequestBody</span> List&lt;Account&gt; accounts)</span> <span class="hljs-keyword">throws</span> SQLException &#123;<br>     accounts.stream().forEach(a -&gt; &#123;<br>         a.setCreatedOn(Timestamp.from(Instant.now()));<br>         a.setLastLogin(Timestamp.from(Instant.now()));<br>     &#125;);<br>     <span class="hljs-keyword">return</span> notificationLogic.addAccounts(accounts);<br>&#125;<br></code></pre></td></tr></table></figure><br><h4 id="RequestHeader"><a href="#RequestHeader" class="headerlink" title="@RequestHeader"></a>@RequestHeader</h4><p>@RequestHeader注解用来加载请求头中的数据，一般在业务系统中不太使用，但在基础设施的建设中会比较常用，比如传递分布式系统的TraceID等。用法也很简单，比如，假设我们将鉴权数据存在http请求头中，那么就可以像下面这样用@RequestHeader来加载请求头中的Authorization参数</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@GetMapping(&quot;/user&quot;)</span><br><span class="hljs-meta">@ResponseBody()</span><br><span class="hljs-keyword">public</span> List&lt;User&gt; <span class="hljs-title function_">getUserList</span><span class="hljs-params">(<span class="hljs-meta">@RequestHeader(&quot;Authorization&quot;)</span> String authToken)</span> &#123;<br>     <span class="hljs-keyword">return</span> userRepo.findAll();<br>&#125;<br></code></pre></td></tr></table></figure><br><h4 id="CookieValue"><a href="#CookieValue" class="headerlink" title="@CookieValue"></a>@CookieValue</h4><p>当我们需要与客户端保持有状态的交互时，就需要用到Cookie。此时，服务端读取Cookie数据的时候，就可以像下面这样用@CookieValue来读取Cookie中的SessionId数据</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@GetMapping(&quot;/user&quot;)</span><br><span class="hljs-meta">@ResponseBody()</span><br><span class="hljs-keyword">public</span> List&lt;User&gt; <span class="hljs-title function_">getUserList</span><span class="hljs-params">(<span class="hljs-meta">@CookieValue(name = &quot;SessionId&quot;)</span> String sessionId)</span> &#123;<br>     <span class="hljs-keyword">return</span> userRepo.findAll();<br>&#125;<br></code></pre></td></tr></table></figure><br><hr><p>文章转载来源：<a href="https://www.cnblogs.com/didispace/p/18207788">程序猿DD-博客园</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>框架和中间件</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Java</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>缓存和数据库一致性</title>
     <link href="/2024/05/02/%E7%BC%93%E5%AD%98%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%80%E8%87%B4%E6%80%A7/"/>
     <url>/2024/05/02/%E7%BC%93%E5%AD%98%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%80%E8%87%B4%E6%80%A7/</url>
