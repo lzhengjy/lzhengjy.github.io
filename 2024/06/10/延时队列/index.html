@@ -18,22 +18,21 @@
   <meta name="author" content="Zheng">
   <meta name="keywords" content="">
   
-    <meta name="description" content="关键字：Java语言自己用到的一些词，有特殊作用，不能将其作为类名和变量名，关键字的概念也包含特殊直接量，保留字 Java目前一共有53个关键字：48个关键字+3个特殊直接量+2个保留字 48个关键字：abstract、assert、boolean、break、byte、case、catch、char、class、continue、default、do、double、else、enum、exten">
+    <meta name="description" content="使用场景延时队列是一种特殊类型的队列，允许元素在特定时间间隔后才能被处理。这种队列在处理具有延迟需求的任务时非常有用，例如定时任务、事件驱动系统等。     有以下使用场景  订单在30分钟之内未支付则自动取消 重试机制实现,把调用失败的接口放入一个固定延时的队列,到期后再重试 新创建的店铺，如果在十天内都没有上传过商品，则自动发送消息提醒 用户发起退款，如果三天内没有得到处理则通知相关运营人员">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java中的关键字">
-<meta property="og:url" content="https://lzhengjy.github.io/2024/05/23/Java%E4%B8%AD%E7%9A%84%E5%85%B3%E9%94%AE%E5%AD%97/index.html">
+<meta property="og:title" content="延时队列">
+<meta property="og:url" content="https://lzhengjy.github.io/2024/06/10/%E5%BB%B6%E6%97%B6%E9%98%9F%E5%88%97/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="关键字：Java语言自己用到的一些词，有特殊作用，不能将其作为类名和变量名，关键字的概念也包含特殊直接量，保留字 Java目前一共有53个关键字：48个关键字+3个特殊直接量+2个保留字 48个关键字：abstract、assert、boolean、break、byte、case、catch、char、class、continue、default、do、double、else、enum、exten">
+<meta property="og:description" content="使用场景延时队列是一种特殊类型的队列，允许元素在特定时间间隔后才能被处理。这种队列在处理具有延迟需求的任务时非常有用，例如定时任务、事件驱动系统等。     有以下使用场景  订单在30分钟之内未支付则自动取消 重试机制实现,把调用失败的接口放入一个固定延时的队列,到期后再重试 新创建的店铺，如果在十天内都没有上传过商品，则自动发送消息提醒 用户发起退款，如果三天内没有得到处理则通知相关运营人员">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-05-23T09:29:20.000Z">
-<meta property="article:modified_time" content="2024-06-28T09:55:45.807Z">
+<meta property="article:published_time" content="2024-06-10T03:15:49.000Z">
+<meta property="article:modified_time" content="2024-06-29T13:44:13.306Z">
 <meta property="article:author" content="Zheng">
-<meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>Java中的关键字 - Hexo</title>
+  <title>延时队列 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -199,7 +198,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Java中的关键字"></span>
+            <span id="subtitle" data-typed-text="延时队列"></span>
           
         </div>
 
@@ -210,8 +209,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-05-23 17:29" pubdate>
-          2024年5月23日 下午
+        <time datetime="2024-06-10 11:15" pubdate>
+          2024年6月10日 上午
         </time>
       </span>
     
@@ -222,7 +221,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.2k 字
+          4.2k 字
         
       </span>
     
@@ -233,7 +232,7 @@
         
         
         
-          19 分钟
+          36 分钟
         
       </span>
     
@@ -270,372 +269,145 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Java中的关键字</h1>
+            <h1 id="seo-header">延时队列</h1>
             
             
               <div class="markdown-body">
                 
-                <p><strong>关键字</strong>：Java语言自己用到的一些词，有特殊作用，<strong>不能将其作为类名和变量名</strong>，关键字的概念也包含<strong>特殊直接量</strong>，<strong>保留字</strong></p>
-<p><code>Java目前一共有53个关键字：48个关键字+3个特殊直接量+2个保留字</code></p>
-<p>48个关键字：abstract、assert、boolean、break、byte、case、catch、char、class、continue、default、do、double、else、enum、extends、final、finally、float、for、if、implements、import、int、interface、instanceof、long、native、new、package、private、protected、public、return、short、static、strictfp、super、switch、synchronized、this、throw、throws、transient、try、void、volatile、while</p>
-<p>3个特殊直接量：true、false、null</p>
-<p>2个保留字：goto、const</p>
+                <h4 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h4><p>延时队列是一种特殊类型的队列，允许元素在特定时间间隔后才能被处理。这种队列在处理具有延迟需求的任务时非常有用，例如定时任务、事件驱动系统等。</p>
 <br>
 
 
 
-<h4 id="访问修饰符的关键字"><a href="#访问修饰符的关键字" class="headerlink" title="访问修饰符的关键字"></a>访问修饰符的关键字</h4><table>
-<thead>
-<tr>
-<th>关键字</th>
-<th>意思</th>
-<th>备注，常用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>public</td>
-<td>公有的</td>
-<td>可跨包，（默认选择）</td>
-</tr>
-<tr>
-<td>protected</td>
-<td>受保护的</td>
-<td>当前包内可用</td>
-</tr>
-<tr>
-<td>private</td>
-<td>私有的</td>
-<td>当前类可用</td>
-</tr>
-</tbody></table>
+<p><strong>有以下使用场景</strong></p>
+<ul>
+<li>订单在30分钟之内未支付则自动取消</li>
+<li>重试机制实现,把调用失败的接口放入一个固定延时的队列,到期后再重试</li>
+<li>新创建的店铺，如果在十天内都没有上传过商品，则自动发送消息提醒</li>
+<li>用户发起退款，如果三天内没有得到处理则通知相关运营人员</li>
+<li>预定会议后，需要在预定的时间点前十分钟通知各个与会人员参加会议</li>
+<li>关闭空闲连接，服务器中，有很多客户端的连接，空闲一段时间之后需要关闭之</li>
+<li>清理过期数据业务。比如缓存中的对象，超过了空闲时间，需要从缓存中移出</li>
+</ul>
 <br>
 
 
 
 
 
-<h4 id="定义类、接口、抽象类和实现接口、继承类的关键字、实例化对象"><a href="#定义类、接口、抽象类和实现接口、继承类的关键字、实例化对象" class="headerlink" title="定义类、接口、抽象类和实现接口、继承类的关键字、实例化对象"></a>定义类、接口、抽象类和实现接口、继承类的关键字、实例化对象</h4><table>
-<thead>
-<tr>
-<th>关键字</th>
-<th>意思</th>
-<th>备注，常用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>class</td>
-<td>类</td>
-<td>public class A(){} 花括号里有已实现方法体，类名需要与文件名相同</td>
-</tr>
-<tr>
-<td>interface</td>
-<td>接口</td>
-<td>public interface B(){} 花括号里有方法体，但没有实现，方法体句子后面是英文分号“:”结尾</td>
-</tr>
-<tr>
-<td>abstract</td>
-<td>声明抽象</td>
-<td>public abstract class C(){} 介于类与接口中间，可以有也可以没有已经实现的方法体</td>
-</tr>
-<tr>
-<td>implements</td>
-<td>实现</td>
-<td>用于类或接口实现接口public class A interface B(){}</td>
-</tr>
-<tr>
-<td>extends</td>
-<td>继承</td>
-<td>用于类继承类 public class A extends D(){}</td>
-</tr>
-<tr>
-<td>new</td>
-<td>创建新对象</td>
-<td>A a&#x3D;new A(); A表示一个类</td>
-</tr>
-</tbody></table>
+<p><strong>解决方案</strong></p>
+<ul>
+<li>定时任务</li>
+<li>RabbitMQ</li>
+<li>RocketMQ</li>
+<li>Redis过期监听</li>
+<li>Redis的zset</li>
+<li>Redisson</li>
+<li>JDK自带的延迟队列DelayQueue</li>
+<li>Netty的时间轮</li>
+<li>Kafka的时间轮</li>
+</ul>
+<p>下面通过订单生成业务来进行技术演示</p>
 <br>
 
 
 
 
 
-
-
-<h4 id="数据类型的关键字"><a href="#数据类型的关键字" class="headerlink" title="数据类型的关键字"></a>数据类型的关键字</h4><table>
-<thead>
-<tr>
-<th>关键字</th>
-<th align="left">意思</th>
-<th align="left">备注，常用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>byte</td>
-<td align="left">字节型</td>
-<td align="left">8bit</td>
-</tr>
-<tr>
-<td>char</td>
-<td align="left">字符型</td>
-<td align="left">16bit</td>
-</tr>
-<tr>
-<td>boolean</td>
-<td align="left">布尔型</td>
-<td align="left">--</td>
-</tr>
-<tr>
-<td>short</td>
-<td align="left">短整型</td>
-<td align="left">16bit</td>
-</tr>
-<tr>
-<td>int</td>
-<td align="left">整型</td>
-<td align="left">32bit</td>
-</tr>
-<tr>
-<td>float</td>
-<td align="left">浮点型</td>
-<td align="left">32bit</td>
-</tr>
-<tr>
-<td>long</td>
-<td align="left">长整型</td>
-<td align="left">64bit</td>
-</tr>
-<tr>
-<td>double</td>
-<td align="left">双精度</td>
-<td align="left">64bit</td>
-</tr>
-<tr>
-<td>void</td>
-<td align="left">无返回</td>
-<td align="left">public void A(){}  其他需要返回的经常与return连用</td>
-</tr>
-<tr>
-<td>null</td>
-<td align="left">空值</td>
-<td align="left">--</td>
-</tr>
-<tr>
-<td>true</td>
-<td align="left">真</td>
-<td align="left">--</td>
-</tr>
-<tr>
-<td>false</td>
-<td align="left">假</td>
-<td align="left">--</td>
-</tr>
-</tbody></table>
+<h4 id="定时任务"><a href="#定时任务" class="headerlink" title="定时任务"></a>定时任务</h4><p>通过定时任务是一种常见的订单延迟关闭解决方案</p>
+<p>可以通过调度平台来实现定时任务的执行，具体任务是根据订单创建时间扫描所有到期的订单，并执行关闭订单的操作</p>
+<p>常用的定时任务调度平台有以下这些：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/xuxueli/xxl-job">https://github.com/xuxueli/xxl-job</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/PowerJob/PowerJob">https://github.com/PowerJob/PowerJob</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/apache/shardingsphere-elasticjob">https://github.com/apache/shardingsphere-elasticjob</a></li>
+</ul>
+<p>这种方案的优点在于简单易实现，但是，该方案也存在一些问题：</p>
+<ol>
+<li>延迟时间不精确：使用定时任务执行订单关闭逻辑，无法保证订单在十分钟后准确地关闭。如果任务执行器在关闭订单的具体时间点出现问题，可能导致订单关闭的时间延后</li>
+<li>不适合高并发场景：定时任务执行的频率通常是固定的，无法根据实际订单的情况来灵活调整。在高并发场景下，可能导致大量的定时任务同时执行，造成系统负载过大</li>
+<li>分库分表问题：拿 12306 来说，订单表按照用户标识和订单号进行了分库分表，那这样的话，和上面说的根据订单创建时间去扫描一批订单进行关闭，自然就行不通。因为根据创建时间查询没有携带分片键，存在读扩散问题</li>
+</ol>
+<p>通常最不推荐的方式是使用定时任务来实现订单关闭</p>
 <br>
 
 
 
 
 
-
-
-<h4 id="条件循环"><a href="#条件循环" class="headerlink" title="条件循环"></a>条件循环</h4><table>
-<thead>
-<tr>
-<th>关键字</th>
-<th>意思</th>
-<th>备注，常用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>if</td>
-<td>如果</td>
-<td>if(){} 如果小括号里面怎么怎么样 花括号就怎么怎么样</td>
-</tr>
-<tr>
-<td>else</td>
-<td>否则，或者</td>
-<td>常与if连用，用法相同</td>
-</tr>
-<tr>
-<td>while</td>
-<td>当什么的时候</td>
-<td>while 怎么样就do什么  while(){}</td>
-</tr>
-<tr>
-<td>for</td>
-<td>满足三个条件时</td>
-<td>for ( ; ; ){}</td>
-</tr>
-<tr>
-<td>switch</td>
-<td>开关</td>
-<td>--</td>
-</tr>
-<tr>
-<td>case</td>
-<td>返回开关里的结果</td>
-<td>--</td>
-</tr>
-<tr>
-<td>default</td>
-<td>默认</td>
-<td></td>
-</tr>
-<tr>
-<td>do</td>
-<td>运行</td>
-<td>长与while连用</td>
-</tr>
-<tr>
-<td>break</td>
-<td>跳出循环</td>
-<td>--</td>
-</tr>
-<tr>
-<td>continue</td>
-<td>继续</td>
-<td>中断本次循环，并并开始下一次</td>
-</tr>
-<tr>
-<td>return</td>
-<td>返回</td>
-<td>return 一个返回值类型</td>
-</tr>
-<tr>
-<td>instanceof</td>
-<td>实例</td>
-<td>一个二元操作符，和&#x3D;&#x3D;，&gt;，&lt;是同一类的。测试它左边的对象是否是它右边的类的实例，返回boolean类型的数据</td>
-</tr>
-</tbody></table>
+<h4 id="RabbitMQ"><a href="#RabbitMQ" class="headerlink" title="RabbitMQ"></a>RabbitMQ</h4><p>项目地址：<a target="_blank" rel="noopener" href="https://github.com/rabbitmq/rabbitmq-server">https://github.com/rabbitmq/rabbitmq-server</a></p>
+<p>RabbitMQ 是一个功能强大的消息中间件，通过使用 RabbitMQ 的延时消息特性，我们可以轻松实现订单十分钟延时关闭功能。首先，我们需要在 RabbitMQ 服务器上启用延时特性，通常通过安装 <code>rabbitmq_delayed_message_exchange</code> 插件来支持延时消息功能，<font color="red">该插件从RabbitMQ的3.6.12开始支持</font>。</p>
+<p>基于死信队列的方式，是消息先会投递到一个正常队列，在TTL过期后进入死信队列。但是基于<code>rabbitmq_delayed_message_exchange</code>插件的这种方式，消息并不会立即进入队列，而是先把他们保存在一个基于Erlang开发的Mnesia数据库中，然后通过一个定时器去查询需要被投递的消息，再把他们投递到x-delayed-message队列中</p>
+<p>接下来，我们创建两个队列：订单队列和死信队列。订单队列用于存储需要延时关闭的订单消息，而死信队列则用于存储延时时间到达后的订单消息。在创建订单队列时，我们要为队列配置延时特性，指定订单消息的延时时间，比如十分钟。这样，当有新的订单需要延时关闭时，我们只需要将订单消息发送到订单队列，并设置消息的延时时间。</p>
+<p>在订单队列中设置死信交换机和死信队列，当订单消息的延时时间到达后，消息会自动转发到死信队列，从而触发关闭订单的操作。在死信队列中，我们可以监听消息，并执行关闭订单的逻辑。为了确保消息的可靠性，可以在关闭订单操作前添加适当的幂等性措施，这样即使消息重复处理，也不会对系统产生影响。</p>
+<p>通过以上步骤，我们就成功实现了订单的十分钟延时关闭功能。当有新的订单需要延时关闭时，将订单消息发送到订单队列，并设置延时时间。在延时时间到达后，订单消息会自动进入死信队列，从而触发关闭订单的操作。这种方式既简单又可靠，保证了系统的稳定性和可用性。</p>
+<p>从整体来说 RabbitMQ 实现延时关闭订单功能是比较合适的，但也存在几个问题：</p>
+<ol>
+<li>延时精度：RabbitMQ 的延时消息特性是基于消息的 TTL（Time-To-Live）来实现的，因此消息的延时时间并不是完全准确的，可能会有一定的误差。在处理订单十分钟延时关闭时，可能会有一些订单的关闭时间略晚于预期时间</li>
+<li>高并发问题：如果系统中有大量的订单需要延时关闭，而订单关闭操作非常复杂耗时，可能会导致消息队列中的消息堆积。这样就可能导致延时关闭操作无法及时处理，影响订单的实际关闭时间</li>
+<li>重复消息问题：由于网络原因或其他不可预知的因素，可能会导致消息重复发送到订单队列。如果没有处理好消息的幂等性，可能会导致订单重复关闭的问题，从而造成数据不一致或其他异常情况</li>
+<li>可靠性问题：RabbitMQ 是一个消息中间件，它是一个独立的系统。如果 RabbitMQ 本身出现故障或宕机，可能会导致订单延时关闭功能失效。因此，在使用 RabbitMQ 实现延时关闭功能时，需要考虑如何保证 RabbitMQ 的高可用性和稳定性</li>
+</ol>
+<p>延时精度和高并发属于一类问题，取决于客户端的消费能力。重复消费问题是所有消息中间件都需要解决，需要通过消息表等幂等解决方案解决。比较难搞定的是可用性问题，RabbitMQ 在可用性方面较弱，部分场景下会存在单点故障问题。</p>
 <br>
 
 
 
 
 
-
-
-<h4 id="修饰方法、类、属性和变量"><a href="#修饰方法、类、属性和变量" class="headerlink" title="修饰方法、类、属性和变量"></a>修饰方法、类、属性和变量</h4><table>
-<thead>
-<tr>
-<th>关键字</th>
-<th>意思</th>
-<th>备注，常用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>static</td>
-<td>静态的</td>
-<td>属性和方法都可以用static修饰，直接使用类名.属性和方法名。 只有内部类可以使用static关键字修饰，调用直接使用类名.内部类类名进行调用。  static可以独立存在。静态块</td>
-</tr>
-<tr>
-<td>final</td>
-<td>最终的不可被改变的</td>
-<td>方法和类都可以用final来修饰  final修饰的类是不能被继承的  final修饰的方法是不能被子类重写。常量的定义：final修饰的属性就是常量。</td>
-</tr>
-<tr>
-<td>super</td>
-<td>调用父类的方法</td>
-<td>常见<strong>public</strong> <strong>void</strong> paint(Graphics g){<strong>super</strong>.paint(g); ··· }</td>
-</tr>
-<tr>
-<td>this</td>
-<td>当前类的父类的对象</td>
-<td>调用当前类中的方法（表示调用这个方法的对象）this.addActionListener(al):等等</td>
-</tr>
-<tr>
-<td>native</td>
-<td>本地</td>
-<td>--</td>
-</tr>
-<tr>
-<td>strictfp</td>
-<td>严格,精准</td>
-<td>--</td>
-</tr>
-<tr>
-<td>synchronized</td>
-<td>线程,同步</td>
-<td>--</td>
-</tr>
-<tr>
-<td>transient</td>
-<td>短暂</td>
-<td>--</td>
-</tr>
-<tr>
-<td>volatile</td>
-<td>易失</td>
-<td>--</td>
-</tr>
-</tbody></table>
+<h4 id="Redis过期监听"><a href="#Redis过期监听" class="headerlink" title="Redis过期监听"></a>Redis过期监听</h4><p>项目地址：<a target="_blank" rel="noopener" href="https://github.com/redis/redis">https://github.com/redis/redis</a></p>
+<p>可以借助 Redis 的过期消息监听机制实现延时关闭功能。</p>
+<p>首先，在订单创建时，将订单信息存储到 Redis，并设置过期时间为十分钟。同时，在 Redis 中存储一个过期消息监听的键值对，键为订单号，值为待处理订单的标识。</p>
+<p>其次，编写一个消息监听器，持续监听 Redis 的过期事件。监听器使用 Redis 的 <code>PSUBSCRIBE</code> 命令订阅过期事件，并在监听到过期事件时触发相应的处理逻辑。</p>
+<p>当订单过期时间到达时，Redis 会自动触发过期事件，消息监听器捕获到该事件，并获取到过期的订单号。接着，监听器执行订单关闭的逻辑，如更新订单状态为关闭状态，释放相关资源等，实现订单的十分钟延时关闭功能。</p>
+<p>需要注意的是，消息监听器应该是一个长期运行的任务，确保持续监听 Redis 的过期事件。为了保证系统的稳定性和可靠性，可以在实现订单关闭逻辑时添加容错机制，以应对 Redis 可能发生故障或重启的情况。</p>
+<p>Redis 过期消息也存在几个问题：</p>
+<ol>
+<li>不够精确：Redis 的过期时间是通过定时器实现的，可能存在一定的误差，导致订单的关闭时间不是精确的十分钟。这对于某些对时间要求较高的场景可能不适用</li>
+<li>Redis 宕机：如果 Redis 宕机或重启，那些已经设置了过期时间但还未过期的订单信息将会丢失，导致这部分订单无法正确关闭。需要考虑如何处理这种异常情况</li>
+<li>可靠性：依赖 Redis 的过期时间来实现订单关闭功能，需要确保 Redis 的高可用性和稳定性。如果 Redis 发生故障或网络问题，可能导致订单关闭功能失效</li>
+<li>版本问题：Redis 5.0 之前是不保证延迟消息持久化的，如果客户端消费过程中宕机或者重启，这个消息不会重复投递。5.0 之后推出了 Stream 功能，有了持久化等比较完善的延迟消息功能</li>
+</ol>
 <br>
 
 
 
 
 
-
-
-<h4 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h4><table>
-<thead>
-<tr>
-<th>关键字</th>
-<th>意思</th>
-<th>备注，常用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>catch</td>
-<td>处理异常</td>
-<td>1.try+catch程序的流程是：运行到try块中，如果有异常抛出，则转到catch块去处理。然后执行catch块后面的语句<br>2.try+catch+finally程序的流程是：运行到try块中，如果有异常抛出，则转到catch块,catch块执行完毕后，执行finally块的代码，再执行finally块后面的代码。如果没有异常抛出，执行完try块，也要去执行finally块的代码。然后执行finally块后面的语句<br>3.try+finally程序的流程是：运行到try块中,如果有异常抛出的话，程序转向执行finally块的代码。那末finally块后面的代码还会被执行吗？不会！因为你没有处理异常，所以遇到异常后，执行完finally后，方法就已抛出异常的方式退出了。这种方式中要注意的是，由于你没有捕获异常，所以要在方法后面声明抛出异常</td>
-</tr>
-<tr>
-<td>try</td>
-<td>捕获异常</td>
-<td>--</td>
-</tr>
-<tr>
-<td>finally</td>
-<td>有没有异常都执行</td>
-<td>--</td>
-</tr>
-<tr>
-<td>throw</td>
-<td>抛出一个异常对象</td>
-<td>--</td>
-</tr>
-<tr>
-<td>throws</td>
-<td>声明一个异常可能被抛出</td>
-<td>--</td>
-</tr>
-</tbody></table>
+<h4 id="Redisson"><a href="#Redisson" class="headerlink" title="Redisson"></a>Redisson</h4><p>项目地址：<a target="_blank" rel="noopener" href="https://github.com/redisson/redisson">https://github.com/redisson/redisson</a></p>
+<p>通过 Redisson 的 RDelayedQueue 功能可以实现订单十分钟延时关闭的功能。</p>
+<p>首先，我们需要创建一个 RDelayedQueue 对象，用于存放需要延时关闭的订单信息。当用户创建订单时，我们将订单信息添加到 RDelayedQueue 中，并设置订单的延时时间为十分钟。</p>
+<p>Redisson 提供了监听功能，可以实现对 RDelayedQueue 中订单信息的监听。一旦订单到达设定的延时时间，Redisson 会触发监听事件。在监听到订单的延时事件后，我们可以编写相应的处理逻辑，即关闭对应的订单。</p>
+<p>在处理订单关闭时，我们可以根据订单号或订单创建时间等信息，来找到对应的订单进行关闭操作。</p>
+<p>不过这种方式也不推荐使用，基本上 Redis 过期监听消息存在的问题，RDelayedQueue 也都会有，因为 RDelayedQueue 本质上也是依赖 Redis 实现。</p>
 <br>
 
 
 
 
 
-<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><table>
-<thead>
-<tr>
-<th>关键字</th>
-<th>意思</th>
-<th>备注，常用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>enum</td>
-<td>枚举，列举型别</td>
-<td></td>
-</tr>
-<tr>
-<td>assert</td>
-<td>断言</td>
-<td></td>
-</tr>
-</tbody></table>
+<h4 id="RocketMQ"><a href="#RocketMQ" class="headerlink" title="RocketMQ"></a>RocketMQ</h4><p>项目地址：<a target="_blank" rel="noopener" href="https://github.com/apache/rocketmq">https://github.com/apache/rocketmq</a></p>
+<p>在订单生成时，我们将订单关闭消息发送到 RocketMQ，并设置消息的延迟时间为十分钟。RocketMQ 支持设置消息的延迟时间，可以通过设置消息的 delayLevel 来指定延迟级别，每个级别对应一种延迟时间。这样，订单关闭消息将在十分钟后自动被消费者接收到。</p>
+<p>需要注意，RocketMQ 5.0 之后已经支持了自定义时间的延迟，而不仅是延迟级别范围内的时间。</p>
+<p>为了处理订单关闭消息，我们需要在消费者端创建一个消息监听器。当消息监听器接收到订单关闭消息时，触发订单关闭操作，将订单状态设置为关闭状态。</p>
+<p>需要注意的是，RocketMQ 的消息传递机制保证了消息的可靠性传递，因此消息可能会进行多次重试。为了确保订单关闭操作的幂等性，即多次执行不会产生副作用，我们需要在订单关闭逻辑中进行幂等性的处理。</p>
+<br>
+
+
+
+
+
+<h4 id="Redis的zset"><a href="#Redis的zset" class="headerlink" title="Redis的zset"></a>Redis的zset</h4><p>zset是一个有序集合，每一个元素(member)都关联了一个 score，可以通过 score 排序来取集合中的值。</p>
+<p>我们将订单超时时间的时间戳（下单时间+超时时长）与订单号分别设置为 score 和 member。这样redis会对zset按照score延时时间进行排序。然后我们再开启redis扫描任务，获取”当前时间 &gt; score”的延时任务，扫描到之后取出订单号，然后查询到订单进行关单操作即可。</p>
+<p>使用redis zset来实现订单关闭的功能的优点是可以借助redis的持久化、高可用机制。避免数据丢失。但是这个方案也有缺点，那就是在高并发场景中，有可能有多个消费者同时获取到同一个订单号，一般采用加分布式锁解决，但是这样做也会降低吞吐型。&#96;&#96;</p>
+<br>
+
+
+
+<hr>
+<p>参考文章：</p>
+<p><a target="_blank" rel="noopener" href="http://t.csdnimg.cn/lycQT">http://t.csdnimg.cn/lycQT</a></p>
+<p><a target="_blank" rel="noopener" href="https://developer.aliyun.com/article/1393395">https://developer.aliyun.com/article/1393395</a></p>
 
                 
               </div>
@@ -654,7 +426,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Java/" class="category-chain-item">Java</a>
+  <a href="/categories/%E6%8A%80%E6%9C%AF%E7%BB%8F%E9%AA%8C/" class="category-chain-item">技术经验</a>
   
   
 
@@ -666,13 +438,6 @@
     </div>
   
   
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/Java/" class="print-no-link">#Java</a>
-      
-    </div>
-  
 </div>
 
 
@@ -681,8 +446,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Java中的关键字</div>
-      <div>https://lzhengjy.github.io/2024/05/23/Java中的关键字/</div>
+      <div>延时队列</div>
+      <div>https://lzhengjy.github.io/2024/06/10/延时队列/</div>
     </div>
     <div class="license-meta">
       
@@ -694,7 +459,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年5月23日</div>
+          <div>2024年6月10日</div>
         </div>
       
       
@@ -726,9 +491,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/06/02/Java%E4%B8%AD%E7%9A%84%E5%90%84%E7%A7%8D%E9%94%81/" title="Java中的各种锁">
+                      <a href="/2024/06/14/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" title="分布式事务的解决方案">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Java中的各种锁</span>
+                        <span class="hidden-mobile">分布式事务的解决方案</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -736,8 +501,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/05/15/Spring-Boot%E4%B8%AD%E7%9A%84%E5%85%AD%E7%A7%8DAPI%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0%E8%AF%BB%E5%8F%96%E6%96%B9%E5%BC%8F/" title="Spring Boot中的六种API请求参数读取方式">
-                        <span class="hidden-mobile">Spring Boot中的六种API请求参数读取方式</span>
+                      <a href="/2024/06/02/Java%E4%B8%AD%E7%9A%84%E5%90%84%E7%A7%8D%E9%94%81/" title="Java中的各种锁">
+                        <span class="hidden-mobile">Java中的各种锁</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
