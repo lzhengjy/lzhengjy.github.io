@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
 
-    <!--[if lt IE 9]>
-        <style>body {display: none; background: none !important} </style>
-        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
-    <![endif]-->
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="format-detection" content="telephone=no" />
-<meta name="author" content="Zheng" />
-
+<link rel="stylesheet" href="/css/main.css">
 
 
-<meta name="description" content="消息中间件面试题该笔记基于b站黑马程序员Java面试题视频制作      一. RabbitMQ1. RabbitMQ如何保证消息不丢失 异步发送（验证码、短信、邮件…） MYSQL和Redis , ES之间的数据同步 分布式事务 削峰填谷 …        生产者确认机制 RabbitMQ提供了publisher confirm机制来避免消息发送到MQ过程中丢失。消息发送到MQ以后，会返回一个结">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lzhengjy.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="消息中间件面试题该笔记基于b站黑马程序员Java面试题视频制作      一. RabbitMQ1. RabbitMQ如何保证消息不丢失 异步发送（验证码、短信、邮件…） MYSQL和Redis , ES之间的数据同步 分布式事务 削峰填谷 …        生产者确认机制 RabbitMQ提供了publisher confirm机制来避免消息发送到MQ过程中丢失。消息发送到MQ以后，会返回一个结">
 <meta property="og:type" content="article">
 <meta property="og:title" content="消息中间件">
 <meta property="og:url" content="https://lzhengjy.github.io/2023/10/08/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%E9%9D%A2%E8%AF%95%E9%A2%98/index.html">
@@ -61,283 +65,186 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://lzhengjy.github.io/2023/10/08/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%E9%9D%A2%E8%AF%95%E9%A2%98/20231008142613.png">
 
-<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
-
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-
-
-
-    <link rel="shortcut icon" href="/favicon.png">
+<link rel="canonical" href="https://lzhengjy.github.io/2023/10/08/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%E9%9D%A2%E8%AF%95%E9%A2%98/">
 
 
 
-    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://lzhengjy.github.io/2023/10/08/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%E9%9D%A2%E8%AF%95%E9%A2%98/","path":"2023/10/08/消息中间件面试题/","title":"消息中间件"}</script>
 
-
-
-    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
-
-
-
-    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
-    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
-
-
-
-<link rel="stylesheet" href="/css/style.css">
-
-
-
-
-<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
-
-
+<script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>消息中间件 | Hexo</title>
-
-<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
-<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
-
-<script>
-    var yiliaConfig = {
-        fancybox: true,
-        animate: true,
-        isHome: false,
-        isPost: true,
-        isArchive: false,
-        isTag: false,
-        isCategory: false,
-        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
-        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
-        search: 
-    }
-</script>
-
-
-    <script> yiliaConfig.jquery_ui = [false]; </script>
-
-
-
-    <script> yiliaConfig.rootUrl = "\/";</script>
+  
 
 
 
 
 
 
-<meta name="generator" content="Hexo 6.3.0"></head>
-<body>
-  <div id="container">
-    <div class="left-col">
-    <div class="overlay"></div>
-<div class="intrude-less">
-    <header id="header" class="inner">
-        <a href="/" class="profilepic">
-            <img src="/img/avatar.png" class="animated zoomIn">
-        </a>
-        <hgroup>
-          <h1 class="header-author"><a href="/"></a></h1>
-        </hgroup>
-
-        
-
-        
 
 
-        
-            <div id="switch-btn" class="switch-btn">
-                <div class="icon">
-                    <div class="icon-ctn">
-                        <div class="icon-wrap icon-house" data-idx="0">
-                            <div class="birdhouse"></div>
-                            <div class="birdhouse_holes"></div>
-                        </div>
-                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
-                            <div class="ribbon"></div>
-                        </div>
-                        
-                        <div class="icon-wrap icon-link hide" data-idx="2">
-                            <div class="loopback_l"></div>
-                            <div class="loopback_r"></div>
-                        </div>
-                        
-                        
-                        <div class="icon-wrap icon-me hide" data-idx="3">
-                            <div class="user"></div>
-                            <div class="shoulder"></div>
-                        </div>
-                        
-                    </div>
-                    
-                </div>
-                <div class="tips-box hide">
-                    <div class="tips-arrow"></div>
-                    <ul class="tips-inner">
-                        <li>菜单</li>
-                        <li>标签</li>
-                        
-                        <li>友情链接</li>
-                        
-                        
-                        <li>关于我</li>
-                        
-                    </ul>
-                </div>
-            </div>
-        
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
 
-        <div id="switch-area" class="switch-area">
-            <div class="switch-wrap">
-                <section class="switch-part switch-part1">
-                    <nav class="header-menu">
-                        <ul>
-                        
-                            <li><a href="/">主页</a></li>
-                        
-                            <li><a href="/archives/">所有文章</a></li>
-                        
-                            <li><a href="/tags/">标签云</a></li>
-                        
-                            <li><a href="/about/">关于我</a></li>
-                        
-                        </ul>
-                    </nav>
-                    <nav class="header-nav">
-                        <ul class="social">
-                            
-                                <a class="fa Email" href="mailto:123@123.com" title="Email"></a>
-                            
-                                <a class="fa GitHub" href="#" title="GitHub"></a>
-                            
-                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
-                            
-                        </ul>
-                    </nav>
-                </section>
-                
-                
-                <section class="switch-part switch-part2">
-                    <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/" rel="tag">JVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kafka/" rel="tag">Kafka</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lambda/" rel="tag">Lambda</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mybatis/" rel="tag">Mybatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MybatisPlus/" rel="tag">MybatisPlus</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RabbitMQ/" rel="tag">RabbitMQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot3/" rel="tag">SpringBoot3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringCloud/" rel="tag">SpringCloud</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/excel/" rel="tag">excel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/" rel="tag">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" rel="tag">多线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/" rel="tag">权限管理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9B%86%E5%90%88/" rel="tag">集合</a></li></ul>
-                    </div>
-                </section>
-                
-                
-                
-                <section class="switch-part switch-part3">
-                    <div id="js-friends">
-                    
-                      <a class="main-nav-link switch-friends-link" target="_blank" rel="noopener" href="https://hexo.io">Hexo</a>
-                    
-                      <a class="main-nav-link switch-friends-link" target="_blank" rel="noopener" href="https://pages.github.com/">GitHub</a>
-                    
-                      <a class="main-nav-link switch-friends-link" target="_blank" rel="noopener" href="http://moxfive.xyz/">MOxFIVE</a>
-                    
-                    </div>
-                </section>
-                
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
-                
-                
-                <section class="switch-part switch-part4">
-                
-                    <div id="js-aboutme">专注于前端</div>
-                </section>
-                
-            </div>
-        </div>
-    </header>                
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
 </div>
-    </div>
-    <div class="mid-col">
-      <nav id="mobile-nav">
-      <div class="overlay">
-          <div class="slider-trigger"></div>
-          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页"></a></h1>
-      </div>
-    <div class="intrude-less">
-        <header id="header" class="inner">
-            <a href="/" class="profilepic">
-                <img src="/img/avatar.png" class="animated zoomIn">
-            </a>
-            <hgroup>
-              <h1 class="header-author"><a href="/" title="回到主页"></a></h1>
-            </hgroup>
-            
-            <nav class="header-menu">
-                <ul>
-                
-                    <li><a href="/">主页</a></li>
-                
-                    <li><a href="/archives/">所有文章</a></li>
-                
-                    <li><a href="/tags/">标签云</a></li>
-                
-                    <li><a href="/about/">关于我</a></li>
-                
-                <div class="clearfix"></div>
-                </ul>
-            </nav>
-            <nav class="header-nav">
-                        <ul class="social">
-                            
-                                <a class="fa Email" target="_blank" href="mailto:123@123.com" title="Email"></a>
-                            
-                                <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
-                            
-                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
-                            
-                        </ul>
-            </nav>
-        </header>                
-    </div>
-    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
-</nav>
-      <div class="body-wrap"><article id="post-消息中间件面试题" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2023/10/08/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%E9%9D%A2%E8%AF%95%E9%A2%98/" class="article-date">
-      <time datetime="2023-10-08T06:16:59.000Z" itemprop="datePublished">2023-10-08</time>
-</a>
 
 
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+
+
+
+
+
+</header>
         
   
-    <h1 class="article-title" itemprop="name">
-      消息中间件
-    </h1>
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%E9%9D%A2%E8%AF%95%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">消息中间件面试题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-RabbitMQ"><span class="nav-number">2.</span> <span class="nav-text">一. RabbitMQ</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-RabbitMQ%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E6%B6%88%E6%81%AF%E4%B8%8D%E4%B8%A2%E5%A4%B1"><span class="nav-number">2.1.</span> <span class="nav-text">1. RabbitMQ如何保证消息不丢失</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-RabbitMQ%E6%B6%88%E6%81%AF%E7%9A%84%E9%87%8D%E5%A4%8D%E6%B6%88%E8%B4%B9%E9%97%AE%E9%A2%98"><span class="nav-number">2.2.</span> <span class="nav-text">2. RabbitMQ消息的重复消费问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-RabbitMQ%E4%B8%AD%E7%9A%84%E6%AD%BB%E4%BF%A1%E4%BA%A4%E6%8D%A2%E6%9C%BA-RabbitMQ-%E5%BB%B6%E8%BF%9F%E9%98%9F%E5%88%97"><span class="nav-number">2.3.</span> <span class="nav-text">3. RabbitMQ中的死信交换机(RabbitMQ 延迟队列)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E6%B6%88%E6%81%AF%E5%A0%86%E7%A7%AF%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3"><span class="nav-number">2.4.</span> <span class="nav-text">4. 消息堆积怎么解决</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-RabbitMQ%E7%9A%84%E9%AB%98%E5%8F%AF%E7%94%A8%E6%9C%BA%E5%88%B6"><span class="nav-number">2.5.</span> <span class="nav-text">5. RabbitMQ的高可用机制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-Kafka"><span class="nav-number">3.</span> <span class="nav-text">二. Kafka</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Kafka%E6%98%AF%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E6%B6%88%E6%81%AF%E4%B8%8D%E4%B8%A2%E5%A4%B1"><span class="nav-number">3.1.</span> <span class="nav-text">1. Kafka是如何保证消息不丢失</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Kafka%E6%98%AF%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E6%B6%88%E8%B4%B9%E7%9A%84%E9%A1%BA%E5%BA%8F%E6%80%A7"><span class="nav-number">3.2.</span> <span class="nav-text">2. Kafka是如何保证消费的顺序性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Kafka%E7%9A%84%E9%AB%98%E5%8F%AF%E7%94%A8%E6%9C%BA%E5%88%B6"><span class="nav-number">3.3.</span> <span class="nav-text">3. Kafka的高可用机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Kafka%E6%95%B0%E6%8D%AE%E6%B8%85%E7%90%86%E6%9C%BA%E5%88%B6"><span class="nav-number">3.4.</span> <span class="nav-text">4. Kafka数据清理机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-Kafka%E4%B8%AD%E5%AE%9E%E7%8E%B0%E9%AB%98%E6%80%A7%E8%83%BD%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="nav-number">3.5.</span> <span class="nav-text">5. Kafka中实现高性能的设计</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Zheng</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
   
 
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://lzhengjy.github.io/2023/10/08/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%E9%9D%A2%E8%AF%95%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zheng">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="消息中间件 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          消息中间件
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-10-08 14:16:59" itemprop="dateCreated datePublished" datetime="2023-10-08T14:16:59+08:00">2023-10-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-06-06 16:36:46" itemprop="dateModified" datetime="2024-06-06T16:36:46+08:00">2024-06-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E9%9D%A2%E8%AF%95%E7%AF%87/" itemprop="url" rel="index"><span itemprop="name">面试篇</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
       </header>
-      
-      <div class="article-info article-info-post">
-        
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/%E9%9D%A2%E8%AF%95%E7%AF%87/">面试篇</a>
-    </div>
 
-
-        
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kafka/" rel="tag">Kafka</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RabbitMQ/" rel="tag">RabbitMQ</a></li></ul>
-    </div>
-
-        <div class="clearfix"></div>
-      </div>
-      
     
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <h2 id="消息中间件面试题"><a href="#消息中间件面试题" class="headerlink" title="消息中间件面试题"></a>消息中间件面试题</h2><p>该笔记基于b站<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1yT411H7YK?vd_source=db8e7458ec195ac74979ce">黑马程序员Java面试题</a>视频制作</p>
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="消息中间件面试题"><a href="#消息中间件面试题" class="headerlink" title="消息中间件面试题"></a>消息中间件面试题</h2><p>该笔记基于b站<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1yT411H7YK?vd_source=db8e7458ec195ac74979ce">黑马程序员Java面试题</a>视频制作</p>
 <img src="/2023/10/08/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%E9%9D%A2%E8%AF%95%E9%A2%98/20231008142613.png" style="zoom:80%;">
 
 <br>
@@ -891,216 +798,94 @@
 
 <img src="/2023/10/08/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%E9%9D%A2%E8%AF%95%E9%A2%98/20231008193617.png" style="zoom:80%;">
 
-      
-    </div>
-    
-  </div>
-  
-    
-    <div class="copyright">
-        <p><span>本文标题:</span><a href="/2023/10/08/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%E9%9D%A2%E8%AF%95%E9%A2%98/">消息中间件</a></p>
-        <p><span>文章作者:</span><a href="/" title="回到主页"></a></p>
-        <p><span>发布时间:</span>2023-10-08, 14:16:59</p>
-        <p><span>最后更新:</span>2024-06-06, 16:36:46</p>
-        <p>
-            <span>原始链接:</span><a class="post-url" href="/2023/10/08/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%E9%9D%A2%E8%AF%95%E9%A2%98/" title="消息中间件">https://lzhengjy.github.io/2023/10/08/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%E9%9D%A2%E8%AF%95%E9%A2%98/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://lzhengjy.github.io/2023/10/08/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%E9%9D%A2%E8%AF%95%E9%A2%98/　　作者: " title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
-            <script> var clipboard = new Clipboard('.copy-path'); </script>
-        </p>
-        <p>
-            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
-        </p>
     </div>
 
+    
+    
+    
 
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/RabbitMQ/" rel="tag"># RabbitMQ</a>
+              <a href="/tags/Kafka/" rel="tag"># Kafka</a>
+          </div>
 
-    <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2023/10/09/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E9%9D%A2%E8%AF%95%E9%A2%98/">
-                    多线程
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/10/05/%E9%9B%86%E5%90%88%E9%9D%A2%E8%AF%95%E9%A2%98/" rel="prev" title="集合">
+                  <i class="fa fa-angle-left"></i> 集合
                 </a>
             </div>
-        
-        
-            <div id="article-nav-older" class="article-nav-title">
-                <a href="/2023/10/05/%E9%9B%86%E5%90%88%E9%9D%A2%E8%AF%95%E9%A2%98/">
-                    集合
+            <div class="post-nav-item">
+                <a href="/2023/10/09/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E9%9D%A2%E8%AF%95%E9%A2%98/" rel="next" title="多线程">
+                  多线程 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
-        
-    </nav>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Zheng</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
 
   
-</article>
-
-    <div id="toc" class="toc-article">
-        <strong class="toc-title">文章目录</strong>
-        
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%E9%9D%A2%E8%AF%95%E9%A2%98"><span class="toc-number">1.</span> <span class="toc-text">消息中间件面试题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80-RabbitMQ"><span class="toc-number">2.</span> <span class="toc-text">一. RabbitMQ</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-RabbitMQ%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E6%B6%88%E6%81%AF%E4%B8%8D%E4%B8%A2%E5%A4%B1"><span class="toc-number">2.1.</span> <span class="toc-text">1. RabbitMQ如何保证消息不丢失</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-RabbitMQ%E6%B6%88%E6%81%AF%E7%9A%84%E9%87%8D%E5%A4%8D%E6%B6%88%E8%B4%B9%E9%97%AE%E9%A2%98"><span class="toc-number">2.2.</span> <span class="toc-text">2. RabbitMQ消息的重复消费问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-RabbitMQ%E4%B8%AD%E7%9A%84%E6%AD%BB%E4%BF%A1%E4%BA%A4%E6%8D%A2%E6%9C%BA-RabbitMQ-%E5%BB%B6%E8%BF%9F%E9%98%9F%E5%88%97"><span class="toc-number">2.3.</span> <span class="toc-text">3. RabbitMQ中的死信交换机(RabbitMQ 延迟队列)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%B6%88%E6%81%AF%E5%A0%86%E7%A7%AF%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3"><span class="toc-number">2.4.</span> <span class="toc-text">4. 消息堆积怎么解决</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-RabbitMQ%E7%9A%84%E9%AB%98%E5%8F%AF%E7%94%A8%E6%9C%BA%E5%88%B6"><span class="toc-number">2.5.</span> <span class="toc-text">5. RabbitMQ的高可用机制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C-Kafka"><span class="toc-number">3.</span> <span class="toc-text">二. Kafka</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Kafka%E6%98%AF%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E6%B6%88%E6%81%AF%E4%B8%8D%E4%B8%A2%E5%A4%B1"><span class="toc-number">3.1.</span> <span class="toc-text">1. Kafka是如何保证消息不丢失</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Kafka%E6%98%AF%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E6%B6%88%E8%B4%B9%E7%9A%84%E9%A1%BA%E5%BA%8F%E6%80%A7"><span class="toc-number">3.2.</span> <span class="toc-text">2. Kafka是如何保证消费的顺序性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Kafka%E7%9A%84%E9%AB%98%E5%8F%AF%E7%94%A8%E6%9C%BA%E5%88%B6"><span class="toc-number">3.3.</span> <span class="toc-text">3. Kafka的高可用机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Kafka%E6%95%B0%E6%8D%AE%E6%B8%85%E7%90%86%E6%9C%BA%E5%88%B6"><span class="toc-number">3.4.</span> <span class="toc-text">4. Kafka数据清理机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-Kafka%E4%B8%AD%E5%AE%9E%E7%8E%B0%E9%AB%98%E6%80%A7%E8%83%BD%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="toc-number">3.5.</span> <span class="toc-text">5. Kafka中实现高性能的设计</span></a></li></ol></li></ol>
-        
-    </div>
-    <style>
-        .left-col .switch-btn,
-        .left-col .switch-area {
-            display: none;
-        }
-        .toc-level-3 i,
-        .toc-level-3 ol {
-            display: none !important;
-        }
-    </style>
-
-    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
-
-    <script>
-        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
-    </script>
-
-
-
-    
-<div class="share">
-    
-        <div class="bdsharebuttonbox">
-            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
-            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
-            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
-            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
-            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
-            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
-            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
-        </div>
-        <script>
-            window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"消息中间件　| Hexo　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
-        </script>
-    
-
-    
-</div>
-
-
-
-
-
-
-
-    
-
-
-
-
-    <div class="scroll" id="post-nav-button">
-        
-            <a href="/2023/10/09/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E9%9D%A2%E8%AF%95%E9%A2%98/" title="上一篇: 多线程">
-                <i class="fa fa-angle-left"></i>
-            </a>
-        
-
-        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
-
-        
-            <a href="/2023/10/05/%E9%9B%86%E5%90%88%E9%9D%A2%E8%AF%95%E9%A2%98/" title="下一篇: 集合">
-                <i class="fa fa-angle-right"></i>
-            </a>
-        
-    </div>
-
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2024/07/19/xxl-job/">xxl-job</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/07/01/ElasticSearch/">ElasticSearch</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/06/20/%E9%80%9A%E8%BF%87JWT%E5%AE%9E%E7%94%9F%E6%88%90Token/">通过JWT实生成Token</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/06/14/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">分布式事务的解决方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/06/10/%E5%BB%B6%E6%97%B6%E9%98%9F%E5%88%97/">延时队列</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/06/02/Java%E4%B8%AD%E7%9A%84%E5%90%84%E7%A7%8D%E9%94%81/">Java中的各种锁</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/05/23/Java%E4%B8%AD%E7%9A%84%E5%85%B3%E9%94%AE%E5%AD%97/">Java中的关键字</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/05/15/Spring-Boot%E4%B8%AD%E7%9A%84%E5%85%AD%E7%A7%8DAPI%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0%E8%AF%BB%E5%8F%96%E6%96%B9%E5%BC%8F/">Spring Boot中的六种API请求参数读取方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/05/02/%E7%BC%93%E5%AD%98%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%80%E8%87%B4%E6%80%A7/">缓存和数据库一致性</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/04/23/%E6%B3%A8%E5%86%8C%E7%94%A8%E6%88%B7%E5%A6%82%E4%BD%95%E9%98%B2%E6%AD%A2%E7%BC%93%E5%AD%98%E7%A9%BF/">注册用户如何防止缓存穿</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/04/15/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F/">责任链模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/04/13/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5/">从0开始实现一个简单的增删改查</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/03/26/RabbitMQ/">RabbitMQ</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/03/16/EasyExcel/">Apache poi 和 EasyExcel</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/03/10/Java%E6%96%B0%E7%89%B9%E6%80%A7/">Java新特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/02/15/OAuth2/">OAuth2</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/02/03/Spring-Security%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Spring Security学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/01/02/MyBatis-Plus/">MyBatis-Plus</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/12/28/MyBatis%E5%88%86%E9%A1%B5%E6%8F%92%E4%BB%B6/">MyBatis分页插件</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/12/23/Java%E5%8F%8D%E5%B0%84/">Java反射</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/12/13/Docker/">Docker</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/12/02/InnoDB%E5%BC%95%E6%93%8E/">InnoDB引擎</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/11/16/SpringBoot3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">SpringBoot3学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/11/09/SpringBoot%E6%95%B4%E5%90%88MyBatis%E5%92%8CSpringMVC/">SpringBoot整合MyBatis和SpringMVC</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/11/04/Vue2%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">Vue2基础知识</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/11/01/JS/">JavaScript</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/10/24/Stream%E6%B5%81/">Stream流</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/10/22/%E4%B8%8D%E5%8F%AF%E5%8F%98%E9%9B%86%E5%90%88/">不可变集合</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/10/21/%E5%85%AC%E5%85%B1%E5%AD%97%E6%AE%B5%E8%87%AA%E5%8A%A8%E5%A1%AB%E5%85%85/">公共字段自动填充</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/10/18/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/">Lambda表达式</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/">JVM-基础篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/10/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9D%A2%E8%AF%95%E9%A2%98/">微服务</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/10/09/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E9%9D%A2%E8%AF%95%E9%A2%98/">多线程</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/10/08/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%E9%9D%A2%E8%AF%95%E9%A2%98/">消息中间件</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/10/05/%E9%9B%86%E5%90%88%E9%9D%A2%E8%AF%95%E9%A2%98/">集合</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/09/28/%E6%A1%86%E6%9E%B6%E9%9D%A2%E8%AF%95%E9%A2%98/">框架</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/09/17/MySQL%E9%9D%A2%E8%AF%95%E9%A2%98/">MySQL</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/09/11/redis%E9%9D%A2%E8%AF%95%E9%A2%98/">redis</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/09/10/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/">我的第一篇博客文章</a></li></ul>
-
-
-
-
-    <script>
-        
-    </script>
-</div>
-      <footer id="footer">
-    <div class="outer">
-        <div id="footer-info">
-            <div class="footer-left">
-                <i class="fa fa-copyright"></i> 
-                2016-2024 Zheng
-            </div>
-            <div class="footer-right">
-                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
-            </div>
-        </div>
-        
-            <div class="visit">
-                
-                    <span id="busuanzi_container_site_pv" style='display:none'>
-                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
-                        </span>
-                    </span>
-                
-                
-                    <span>| </span>
-                
-                
-                    <span id="busuanzi_container_page_pv" style='display:none'>
-                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
-                        </span>
-                    </span>
-                
-            </div>
-        
-    </div>
-</footer>
-    </div>
-    
-<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
-
-    <script>
-        $(document).ready(function() {
-            var iPad = window.navigator.userAgent.indexOf('iPad');
-            if (iPad > -1 || $(".left-col").css("display") === "none") {
-                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
-                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
-                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
-            }
-            else {
-                var backgroundnum = 5;
-                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
-                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
-            }
-        })
-    </script>
-
-
-
-
-
-<div class="scroll" id="scroll">
-    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
-    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
-    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
-</div>
-<script>
-    // Open in New Window
-    
-        var oOpenInNew = {
-            
-            
-            
-            
-            
-            
-             archives: ".archive-article-title", 
-             miniArchives: "a.post-list-link", 
-            
-             friends: "#js-friends a", 
-             socail: ".social a" 
-        }
-        for (var x in oOpenInNew) {
-            $(oOpenInNew[x]).attr("target", "_blank");
-        }
-    
-</script>
-
-<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
   </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
 </body>
 </html>
