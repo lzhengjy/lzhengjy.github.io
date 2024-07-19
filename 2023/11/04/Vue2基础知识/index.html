@@ -1,24 +1,23 @@
+
+
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
-
-<script class="next-config" data-name="main" type="application/json">{"hostname":"lzhengjy.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
-
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zheng">
+  <meta name="keywords" content="">
+  
     <meta name="description" content="一. Vue2基础1. 环境准备安装脚手架 1npm install -g @vue&#x2F;cli   g 参数表示全局安装，这样在任意目录都可以使用 vue 脚本创建项目      创建项目 使用在需要创建项目的文件夹下打开命令行操作，输入指令回车后会跳转到vue创建项目的网站中去 1vue ui    在这里可以进行vue项目的创建       安装 devtools  devtools 插件网址：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Vue2基础知识">
@@ -50,189 +49,254 @@
 <meta property="article:author" content="Zheng">
 <meta property="article:tag" content="前端">
 <meta property="article:tag" content="vue">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://lzhengjy.github.io/2023/11/04/Vue2%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/20231104152637.png">
+  
+  
+  
+  <title>Vue2基础知识 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
-<link rel="canonical" href="https://lzhengjy.github.io/2023/11/04/Vue2%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://lzhengjy.github.io/2023/11/04/Vue2%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/","path":"2023/11/04/Vue2基础知识/","title":"Vue2基础知识"}</script>
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
 
-<script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Vue2基础知识 | Hexo</title>
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
 
 
 
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lzhengjy.github.io","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
 
 
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
 
 
-  <noscript>
-    <link rel="stylesheet" href="/css/noscript.css">
-  </noscript>
-</head>
+<body>
+  
 
-<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
-  <div class="headband"></div>
+  <header>
+    
 
-  <main class="main">
-    <div class="column">
-      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏" role="button">
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <i class="logo-line"></i>
-      <p class="site-title">Hexo</p>
-      <i class="logo-line"></i>
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zheng</strong>
     </a>
-  </div>
 
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger" aria-label="搜索" role="button">
-    </div>
-  </div>
-</div>
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
 
-
-
-
-
-
-
-</header>
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
         
-  
-  <aside class="sidebar">
-
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
-      <ul class="sidebar-nav">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
       </ul>
+    </div>
+  </div>
+</nav>
 
-      <div class="sidebar-panel-container">
-        <!--noindex-->
-        <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-Vue2%E5%9F%BA%E7%A1%80"><span class="nav-number">1.</span> <span class="nav-text">一. Vue2基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="nav-number">1.1.</span> <span class="nav-text">1. 环境准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Vue%E7%BB%84%E4%BB%B6"><span class="nav-number">1.2.</span> <span class="nav-text">2. Vue组件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-%E6%96%87%E6%9C%AC%E6%8F%92%E5%80%BC"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 文本插值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-%E5%B1%9E%E6%80%A7%E7%BB%91%E5%AE%9A"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 属性绑定</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-%E4%BA%8B%E4%BB%B6%E7%BB%91%E5%AE%9A"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3 事件绑定</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">1.2.4.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A"><span class="nav-number">1.2.5.</span> <span class="nav-text">2.4 双向绑定</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7"><span class="nav-number">1.2.6.</span> <span class="nav-text">2.5 计算属性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-axios"><span class="nav-number">1.3.</span> <span class="nav-text">3. axios</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-Vue2%E8%BF%9B%E9%98%B6"><span class="nav-number">2.</span> <span class="nav-text">二. Vue2进阶</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-ElementUI"><span class="nav-number">2.1.</span> <span class="nav-text">1. ElementUI</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-%E8%A1%A8%E6%A0%BC%E7%BB%84%E4%BB%B6"><span class="nav-number">2.1.1.</span> <span class="nav-text">1.1 表格组件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-%E5%88%86%E9%A1%B5%E7%BB%84%E4%BB%B6"><span class="nav-number">2.1.2.</span> <span class="nav-text">1.2 分页组件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-%E5%88%86%E9%A1%B5%E6%90%9C%E7%B4%A2"><span class="nav-number">2.1.3.</span> <span class="nav-text">1.3 分页搜索</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-%E7%BA%A7%E8%81%94%E9%80%89%E6%8B%A9%E5%99%A8"><span class="nav-number">2.1.4.</span> <span class="nav-text">1.4 级联选择器</span></a></li></ol></li></ol></li></ol></div>
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Vue2基础知识"></span>
+          
         </div>
-        <!--/noindex-->
 
-        <div class="site-overview-wrap sidebar-panel">
-          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">Zheng</p>
-  <div class="site-description" itemprop="description"></div>
-</div>
-<div class="site-state-wrap animated">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-        <a href="/archives/">
-          <span class="site-state-item-count">39</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-11-04 15:15" pubdate>
+          2023年11月4日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          18k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          148 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
       </div>
-      <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">7</span>
-        <span class="site-state-item-name">分类</span>
-      </div>
-      <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">21</span>
-        <span class="site-state-item-name">标签</span>
-      </div>
-  </nav>
+
+      
+    </div>
+  </div>
 </div>
 
-        </div>
-      </div>
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
     </div>
 
-    
-  </aside>
-
-
-    </div>
-
-    <div class="main-inner post posts-expand">
-
-
-  
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://lzhengjy.github.io/2023/11/04/Vue2%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Zheng">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Vue2基础知识 | Hexo">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          Vue2基础知识
-        </h1>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-11-04 15:15:15" itemprop="dateCreated datePublished" datetime="2023-11-04T15:15:15+08:00">2023-11-04</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-16 13:17:58" itemprop="dateModified" datetime="2023-11-16T13:17:58+08:00">2023-11-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody"><h2 id="一-Vue2基础"><a href="#一-Vue2基础" class="headerlink" title="一. Vue2基础"></a>一. Vue2基础</h2><h3 id="1-环境准备"><a href="#1-环境准备" class="headerlink" title="1. 环境准备"></a>1. 环境准备</h3><p><strong>安装脚手架</strong></p>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Vue2基础知识</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="一-Vue2基础"><a href="#一-Vue2基础" class="headerlink" title="一. Vue2基础"></a>一. Vue2基础</h2><h3 id="1-环境准备"><a href="#1-环境准备" class="headerlink" title="1. 环境准备"></a>1. 环境准备</h3><p><strong>安装脚手架</strong></p>
 <figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs coffeescript"><span class="hljs-built_in">npm</span> install -g @vue/cli<br></code></pre></td></tr></table></figure>
 
 <ul>
@@ -246,10 +310,10 @@
 <p>使用在需要创建项目的文件夹下打开命令行操作，输入指令回车后会跳转到vue创建项目的网站中去</p>
 <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">vue ui</span><br></code></pre></td></tr></table></figure>
 
-<img src="/2023/11/04/Vue2%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/20231104152637.png" style="zoom: 50%;">
+<img src="/2023/11/04/Vue2%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/20231104152637.png" srcset="/img/loading.gif" lazyload style="zoom: 50%;">
 
 <p>在这里可以进行vue项目的创建</p>
-<img src="/2023/11/04/Vue2%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/20231104153005.png" style="zoom:50%;">
+<img src="/2023/11/04/Vue2%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/20231104153005.png" srcset="/img/loading.gif" lazyload style="zoom:50%;">
 
 <br>
 
@@ -259,7 +323,7 @@
 <ul>
 <li>devtools 插件网址：<a target="_blank" rel="noopener" href="https://devtools.vuejs.org/guide/installation.html">https://devtools.vuejs.org/guide/installation.html</a></li>
 </ul>
-<img src="/2023/11/04/Vue2%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/20231105145007.png" style="zoom: 50%;">
+<img src="/2023/11/04/Vue2%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/20231105145007.png" srcset="/img/loading.gif" lazyload style="zoom: 50%;">
 
 <br>
 
@@ -269,9 +333,9 @@
 <p>在项目文件夹里打开终端输入指令</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">npm <span class="hljs-built_in">run</span> serve<br></code></pre></td></tr></table></figure>
 
-<img src="/2023/11/04/Vue2%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/20231105145350.png" style="zoom: 67%;">
+<img src="/2023/11/04/Vue2%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/20231105145350.png" srcset="/img/loading.gif" lazyload style="zoom: 67%;">
 
-<img src="/2023/11/04/Vue2%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/20231105145500.png" style="zoom:67%;">
+<img src="/2023/11/04/Vue2%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/20231105145500.png" srcset="/img/loading.gif" lazyload style="zoom:67%;">
 
 <br>
 
@@ -301,7 +365,7 @@
 
 
 <p><strong>Vue项目结构</strong></p>
-<p><img src="/2023/11/04/Vue2%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/20231105150531.png"></p>
+<p><img src="/2023/11/04/Vue2%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/20231105150531.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
 <li>assets - 静态资源</li>
 <li>components - 可重用组件</li>
@@ -338,7 +402,7 @@
 <li>这个对象有一个 data 方法，返回一个<strong>对象</strong>，给 template 提供数据</li>
 <li><code>&#123;&#123;&#125;&#125;</code> 在 Vue 里称之为插值表达式，用来<strong>绑定</strong> data 方法返回的<strong>对象</strong>属性，<strong>绑定</strong>的含义是数据发生变化时，页面显示会同步变化</li>
 </ul>
-<img src="/2023/11/04/Vue2%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/20231105152017.png" style="zoom:80%;">
+<img src="/2023/11/04/Vue2%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/20231105152017.png" srcset="/img/loading.gif" lazyload style="zoom:80%;">
 
 <br>
 
@@ -351,7 +415,7 @@
 <li>template 内只能有一个根元素</li>
 <li>插值内可以进行简单的表达式计算</li>
 </ul>
-<img src="/2023/11/04/Vue2%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/20231105154158.png" style="zoom:80%;">
+<img src="/2023/11/04/Vue2%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/20231105154158.png" srcset="/img/loading.gif" lazyload style="zoom:80%;">
 
 <br>
 
@@ -362,7 +426,7 @@
 <ul>
 <li>简写方式：可以省略 v-bind 只保留冒号</li>
 </ul>
-<img src="/2023/11/04/Vue2%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/20231105154654.png" style="zoom:80%;">
+<img src="/2023/11/04/Vue2%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/20231105154654.png" srcset="/img/loading.gif" lazyload style="zoom:80%;">
 
 <br>
 
@@ -374,7 +438,7 @@
 <li>简写方式：可以把 v-on: 替换为 @</li>
 <li>在 methods 方法中的 this 代表的是 data 函数返回的数据对象</li>
 </ul>
-<p><img src="/2023/11/04/Vue2%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/20231105213826.png"></p>
+<p><img src="/2023/11/04/Vue2%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/20231105213826.png" srcset="/img/loading.gif" lazyload></p>
 <br>
 
 
@@ -390,7 +454,7 @@
 <li>双向绑定只适用于表单这种带【输入】功能的标签，其它标签的数据绑定，单向就足够了</li>
 <li>复选框这种标签，双向绑定的 JavaScript 数据类型一般用数组</li>
 </ul>
-<img src="/2023/11/04/Vue2%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/20231106132653.png" style="zoom:67%;">
+<img src="/2023/11/04/Vue2%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/20231106132653.png" srcset="/img/loading.gif" lazyload style="zoom:67%;">
 
 <br>
 
@@ -405,7 +469,7 @@
 </ul>
 </li>
 </ul>
-<img src="/2023/11/04/Vue2%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/20231106134344.png" style="zoom:67%;">
+<img src="/2023/11/04/Vue2%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/20231106134344.png" srcset="/img/loading.gif" lazyload style="zoom:67%;">
 
 <br>
 
@@ -579,7 +643,7 @@
 <h2 id="二-Vue2进阶"><a href="#二-Vue2进阶" class="headerlink" title="二. Vue2进阶"></a>二. Vue2进阶</h2><h3 id="1-ElementUI"><a href="#1-ElementUI" class="headerlink" title="1. ElementUI"></a>1. ElementUI</h3><p>安装：在vue项目文件下打开命令行输入以下安装代码</p>
 <figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">npm install element-ui -S<br></code></pre></td></tr></table></figure>
 
-<p>安装完后在package.json文件中会引入element-ui的依赖<br><img src="/2023/11/04/Vue2%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20231110144914074.png" style="zoom:67%;"></p>
+<p>安装完后在package.json文件中会引入element-ui的依赖<br><img src="/2023/11/04/Vue2%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20231110144914074.png" srcset="/img/loading.gif" lazyload style="zoom:67%;"></p>
 <br>
 
 
@@ -605,7 +669,7 @@
 </ul>
 </li>
 </ul>
-<img src="/2023/11/04/Vue2%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20231110152129499.png" style="zoom: 50%;">
+<img src="/2023/11/04/Vue2%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20231110152129499.png" srcset="/img/loading.gif" lazyload style="zoom: 50%;">
 
 <br>
 
@@ -632,7 +696,7 @@
 <li><p>this.students &#x3D; resp.data.data.list和this.total &#x3D; resp.data.data.total     因为后端返回的数据中的data是一个map集合</p>
 </li>
 </ul>
-<p><img src="/2023/11/04/Vue2%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20231110223807689.png"></p>
+<p><img src="/2023/11/04/Vue2%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20231110223807689.png" srcset="/img/loading.gif" lazyload></p>
 <br>
 
 
@@ -643,16 +707,16 @@
 <li>el-option中的value是传给后端的值，label是显示在前端页面的值，如果没有添加label属性则把value显示在前端页面</li>
 <li>输入框和选择框都可以通过v-model实现数据的双向绑定</li>
 </ul>
-<p><img src="/2023/11/04/Vue2%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20231112203941703.png"></p>
-<p><img src="/2023/11/04/Vue2%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20231112204017960.png"></p>
-<p><img src="/2023/11/04/Vue2%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20231112204043990.png"></p>
+<p><img src="/2023/11/04/Vue2%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20231112203941703.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2023/11/04/Vue2%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20231112204017960.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2023/11/04/Vue2%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20231112204043990.png" srcset="/img/loading.gif" lazyload></p>
 <br>
 
 
 
 <h4 id="1-4-级联选择器"><a href="#1-4-级联选择器" class="headerlink" title="1.4 级联选择器"></a>1.4 级联选择器</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>    &lt;!-- el-cascader 组件用于显示级联选择器 --&gt;<br>    &lt;el-cascader :options=&quot;ops&quot; clearable&gt;&lt;/el-cascader&gt;<br>&lt;/template&gt;<br>&lt;script&gt;<br>const options = &#123;<br>    data() &#123;<br>        return &#123;<br>            // ops 是级联选择器的选项数据<br>            ops:[<br>                // 第一级选项：菜品<br>                &#123;value:100 ,label:&#x27;菜品&#x27; ,children:[<br>                    // 第二级选项：湘菜<br>                    &#123;value:110, label:&#x27;湘菜&#x27;, children:[<br>                        // 第三级选项：剁椒鱼头<br>                        &#123;value:111, label:&#x27;剁椒鱼头&#x27;&#125;,<br>                        // 第三级选项：辣椒炒肉<br>                        &#123;value:112, label:&#x27;辣椒炒肉&#x27;&#125;<br>                    ]&#125;,<br>                    // 第二级选项：川菜<br>                    &#123;value:120, label:&#x27;川菜&#x27;, children:[<br>                        // 第三级选项：红烧兔头<br>                        &#123;value:121, label:&#x27;红烧兔头&#x27;&#125;,<br>                        // 第三级选项：宫保鸡丁<br>                        &#123;value:122, label:&#x27;宫保鸡丁&#x27;&#125;<br>                    ]&#125;,<br>                    // 第二级选项：粤菜<br>                    &#123;value:130, label:&#x27;粤菜&#x27;, children:[<br>                        // 第三级选项：白切鸡<br>                        &#123;value:131, label:&#x27;白切鸡&#x27;&#125;,<br>                        // 第三级选项：蜜汁叉烧<br>                        &#123;value:132, label:&#x27;蜜汁叉烧&#x27;&#125;<br>                    ]&#125;<br>                ]&#125;,<br>                // 第一级选项：饮品<br>                &#123;value:200 ,label:&#x27;饮品&#x27; ,children:[<br>                    // 第二级选项：饮料<br>                    &#123;value:210, label:&#x27;饮料&#x27;, children:[<br>                        // 第三级选项：王老吉<br>                        &#123;value:211, label:&#x27;王老吉&#x27;&#125;,<br>                        // 第三级选项：可乐<br>                        &#123;value:212, label:&#x27;可乐&#x27;&#125;,<br>                        // 第三级选项：雪碧<br>                        &#123;value:213, label:&#x27;雪碧&#x27;&#125;<br>                    ]&#125;,<br>                    // 第二级选项：啤酒<br>                    &#123;value:220, label:&#x27;啤酒&#x27;, children:[<br>                        // 第三级选项：雪花<br>                        &#123;value:221, label:&#x27;雪花&#x27;&#125;,<br>                        // 第三级选项：百威<br>                        &#123;value:222, label:&#x27;百威&#x27;&#125;<br>                    ]&#125;,<br>                    // 第二级选项：白酒<br>                    &#123;value:230, label:&#x27;白酒&#x27;, children:[<br>                        // 第三级选项：茅台<br>                        &#123;value:231, label:&#x27;茅台&#x27;&#125;,<br>                        // 第三级选项：江小白<br>                        &#123;value:232, label:&#x27;江小白&#x27;&#125;<br>                    ]&#125;<br>                ]&#125;,<br>            ]<br>        &#125;<br>    &#125;<br>&#125;;<br>export default options;<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
 
-<p><img src="/2023/11/04/Vue2%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20231112212003863.png"></p>
+<p><img src="/2023/11/04/Vue2%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20231112212003863.png" srcset="/img/loading.gif" lazyload></p>
 <br>
 
 
@@ -660,94 +724,374 @@
 
 
 
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%89%8D%E7%AB%AF/" class="category-chain-item">前端</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%89%8D%E7%AB%AF/" class="print-no-link">#前端</a>
+      
+        <a href="/tags/vue/" class="print-no-link">#vue</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Vue2基础知识</div>
+      <div>https://lzhengjy.github.io/2023/11/04/Vue2基础知识/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zheng</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年11月4日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/11/09/SpringBoot%E6%95%B4%E5%90%88MyBatis%E5%92%8CSpringMVC/" title="SpringBoot整合MyBatis和SpringMVC">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">SpringBoot整合MyBatis和SpringMVC</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/11/01/JS/" title="JavaScript">
+                        <span class="hidden-mobile">JavaScript</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
     </div>
 
-    
-    
-    
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
 
-    <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag"># 前端</a>
-              <a href="/tags/vue/" rel="tag"># vue</a>
-          </div>
 
-        
 
-          <div class="post-nav">
-            <div class="post-nav-item">
-                <a href="/2023/11/01/JS/" rel="prev" title="JavaScript">
-                  <i class="fa fa-angle-left"></i> JavaScript
-                </a>
-            </div>
-            <div class="post-nav-item">
-                <a href="/2023/11/09/SpringBoot%E6%95%B4%E5%90%88MyBatis%E5%92%8CSpringMVC/" rel="next" title="SpringBoot整合MyBatis和SpringMVC">
-                  SpringBoot整合MyBatis和SpringMVC <i class="fa fa-angle-right"></i>
-                </a>
-            </div>
-          </div>
-    </footer>
-  </article>
+  </aside>
+
+
+    </div>
+  </div>
 </div>
 
 
 
 
 
+  
 
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
 </div>
+
+    
+
+    
   </main>
 
-  <footer class="footer">
+  <footer>
     <div class="footer-inner">
-
-  <div class="copyright">
-    &copy; 
-    <span itemprop="copyrightYear">2024</span>
-    <span class="with-love">
-      <i class="fa fa-heart"></i>
-    </span>
-    <span class="author" itemprop="copyrightHolder">Zheng</span>
-  </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
-  </div>
-
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
     </div>
+  
+  
+  
+  
+</div>
+
   </footer>
 
+  <!-- Scripts -->
   
-  <div class="toggle sidebar-toggle" role="button">
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-  </div>
-  <div class="sidebar-dimmer"></div>
-  <div class="back-to-top" role="button" aria-label="返回顶部">
-    <i class="fa fa-arrow-up fa-lg"></i>
-    <span>0%</span>
-  </div>
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
 
-<noscript>
-  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
-</noscript>
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
 
 
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
-
+    <script  src="/js/img-lazyload.js" ></script>
   
 
 
 
 
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
 
 
   
 
-
-
-
-
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>
