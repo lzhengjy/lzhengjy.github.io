@@ -1,12 +1,24 @@
+
+
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
   
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
-  <title>通过JWT实生成Token | Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="通过 JWT 生成用户登录唯一凭证通过 JWT 生成用户唯一 Token 凭证，并提供反解析 Token 凭证位用户信息方法。应用于用户服务以及网关服务 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566">
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zheng">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="通过 JWT 生成用户登录唯一凭证通过 JWT 生成用户唯一 Token 凭证，并提供反解析 Token 凭证位用户信息方法。应用于用户服务以及网关服务 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566">
 <meta property="og:type" content="article">
 <meta property="og:title" content="通过JWT实生成Token">
 <meta property="og:url" content="https://lzhengjy.github.io/2024/06/20/%E9%80%9A%E8%BF%87JWT%E5%AE%9E%E7%94%9F%E6%88%90Token/index.html">
@@ -16,93 +28,254 @@
 <meta property="article:published_time" content="2024-06-20T05:47:52.000Z">
 <meta property="article:modified_time" content="2024-06-30T07:29:33.538Z">
 <meta property="article:author" content="Zheng">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+<meta name="twitter:card" content="summary_large_image">
   
   
-    <link rel="shortcut icon" href="/favicon.png">
   
-  
-    
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+  <title>通过JWT实生成Token - Hexo</title>
 
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
-  
-    
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
 
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
   
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lzhengjy.github.io","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
   
 <meta name="generator" content="Hexo 6.3.0"></head>
 
+
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zheng</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="通过JWT实生成Token"></span>
+          
+        </div>
+
         
-          <a class="main-nav-link" href="/">Home</a>
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-20 13:47" pubdate>
+          2024年6月20日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
         
-          <a class="main-nav-link" href="/archives">Archives</a>
+          8.2k 字
         
-      </nav>
-      <nav id="sub-nav">
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
         
         
-          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
         
-        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://lzhengjy.github.io"></form>
+          69 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
       </div>
+
+      
     </div>
   </div>
-</header>
+</div>
 
-      <div class="outer">
-        <section id="main"><article id="post-通过JWT实生成Token" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/06/20/%E9%80%9A%E8%BF%87JWT%E5%AE%9E%E7%94%9F%E6%88%90Token/" class="article-date">
-  <time class="dt-published" datetime="2024-06-20T05:47:52.000Z" itemprop="datePublished">2024-06-20</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E7%BB%8F%E9%AA%8C/">技术经验</a>
-  </div>
+</div>
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="p-name article-title" itemprop="headline name">
-      通过JWT实生成Token
-    </h1>
-  
+  </header>
 
-      </header>
+  <main>
     
-    <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="通过-JWT-生成用户登录唯一凭证"><a href="#通过-JWT-生成用户登录唯一凭证" class="headerlink" title="通过 JWT 生成用户登录唯一凭证"></a>通过 JWT 生成用户登录唯一凭证</h4><p>通过 JWT 生成用户唯一 Token 凭证，并提供反解析 Token 凭证位用户信息方法。应用于用户服务以及网关服务</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">class</span> <span class="title class_">JWTUtil</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Token的过期时间（秒）</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">long</span> <span class="variable">EXPIRATION</span> <span class="operator">=</span> <span class="number">86400L</span>;</span><br><span class="line">    <span class="comment">// Token的前缀</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">TOKEN_PREFIX</span> <span class="operator">=</span> <span class="string">&quot;Bearer &quot;</span>;</span><br><span class="line">    <span class="comment">// Token的发行人</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">ISS</span> <span class="operator">=</span> <span class="string">&quot;zheng&quot;</span>;</span><br><span class="line">    <span class="comment">// 用于签名Token的密钥</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">SECRET</span> <span class="operator">=</span> <span class="string">&quot;SecretKey039245678901232039487623456783092349288901402967890140939827&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 生成用户 Token</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> userInfo 用户信息</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 用户访问 Token</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">generateAccessToken</span><span class="params">(UserInfoDTO userInfo)</span> &#123;</span><br><span class="line">        <span class="comment">// 创建一个Map来存储用户信息</span></span><br><span class="line">        Map&lt;String, Object&gt; customerUserMap = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">        customerUserMap.put(USER_ID_KEY, userInfo.getUserId());</span><br><span class="line">        customerUserMap.put(user_KEY, userInfo.getUsername());</span><br><span class="line">        customerUserMap.put(REAL_NAME_KEY, userInfo.getRealName());</span><br><span class="line">        <span class="comment">// 使用用户信息Map作为主题来创建JWT</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">jwtToken</span> <span class="operator">=</span> Jwts.builder()</span><br><span class="line">                .signWith(SignatureAlgorithm.HS512, SECRET) <span class="comment">// 设置签名算法和密钥</span></span><br><span class="line">                .setIssuedAt(<span class="keyword">new</span> <span class="title class_">Date</span>()) <span class="comment">// 设置发行时间</span></span><br><span class="line">                .setIssuer(ISS) <span class="comment">// 设置发行人</span></span><br><span class="line">                .setSubject(JSON.toJSONString(customerUserMap)) <span class="comment">// 设置主题</span></span><br><span class="line">                .setExpiration(<span class="keyword">new</span> <span class="title class_">Date</span>(System.currentTimeMillis() + EXPIRATION * <span class="number">1000</span>)) <span class="comment">// 设置过期时间</span></span><br><span class="line">                .compact();</span><br><span class="line">        <span class="comment">// 返回带有前缀的JWT</span></span><br><span class="line">        <span class="keyword">return</span> TOKEN_PREFIX + jwtToken;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 解析用户 Token</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> jwtToken 用户访问 Token</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 用户信息</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> UserInfoDTO <span class="title function_">parseJwtToken</span><span class="params">(String jwtToken)</span> &#123;</span><br><span class="line">        <span class="comment">// 检查JWT是否存在</span></span><br><span class="line">        <span class="keyword">if</span> (StringUtils.hasText(jwtToken)) &#123;</span><br><span class="line">            <span class="comment">// 去掉JWT的前缀</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">actualJwtToken</span> <span class="operator">=</span> jwtToken.replace(TOKEN_PREFIX, <span class="string">&quot;&quot;</span>);</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="comment">// 解析JWT并获取主题</span></span><br><span class="line">                <span class="type">Claims</span> <span class="variable">claims</span> <span class="operator">=</span> Jwts.parser().setSigningKey(SECRET).parseClaimsJws(actualJwtToken).getBody();</span><br><span class="line">                <span class="type">Date</span> <span class="variable">expiration</span> <span class="operator">=</span> claims.getExpiration();</span><br><span class="line">                <span class="comment">// 检查JWT是否过期</span></span><br><span class="line">                <span class="keyword">if</span> (expiration.after(<span class="keyword">new</span> <span class="title class_">Date</span>())) &#123;</span><br><span class="line">                    <span class="type">String</span> <span class="variable">subject</span> <span class="operator">=</span> claims.getSubject();</span><br><span class="line">                    <span class="comment">// 将主题解析为UserInfoDTO对象</span></span><br><span class="line">                    <span class="keyword">return</span> JSON.parseObject(subject, UserInfoDTO.class);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">catch</span> (ExpiredJwtException ignored) &#123;</span><br><span class="line">                <span class="comment">// 如果JWT已过期，忽略异常</span></span><br><span class="line">            &#125; <span class="keyword">catch</span> (Exception ex) &#123;</span><br><span class="line">                <span class="comment">// 如果在解析过程中发生其他错误，记录错误消息</span></span><br><span class="line">                log.error(<span class="string">&quot;JWT Token解析失败，请检查&quot;</span>, ex);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 如果JWT不存在或解析失败，返回null</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">通过JWT实生成Token</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h4 id="通过-JWT-生成用户登录唯一凭证"><a href="#通过-JWT-生成用户登录唯一凭证" class="headerlink" title="通过 JWT 生成用户登录唯一凭证"></a>通过 JWT 生成用户登录唯一凭证</h4><p>通过 JWT 生成用户唯一 Token 凭证，并提供反解析 Token 凭证位用户信息方法。应用于用户服务以及网关服务</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Slf4j</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">JWTUtil</span> &#123;<br><br>    <span class="hljs-comment">// Token的过期时间（秒）</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">long</span> <span class="hljs-variable">EXPIRATION</span> <span class="hljs-operator">=</span> <span class="hljs-number">86400L</span>;<br>    <span class="hljs-comment">// Token的前缀</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">TOKEN_PREFIX</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Bearer &quot;</span>;<br>    <span class="hljs-comment">// Token的发行人</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">ISS</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;zheng&quot;</span>;<br>    <span class="hljs-comment">// 用于签名Token的密钥</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">SECRET</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;SecretKey039245678901232039487623456783092349288901402967890140939827&quot;</span>;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 生成用户 Token</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> userInfo 用户信息</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 用户访问 Token</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">generateAccessToken</span><span class="hljs-params">(UserInfoDTO userInfo)</span> &#123;<br>        <span class="hljs-comment">// 创建一个Map来存储用户信息</span><br>        Map&lt;String, Object&gt; customerUserMap = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br>        customerUserMap.put(USER_ID_KEY, userInfo.getUserId());<br>        customerUserMap.put(user_KEY, userInfo.getUsername());<br>        customerUserMap.put(REAL_NAME_KEY, userInfo.getRealName());<br>        <span class="hljs-comment">// 使用用户信息Map作为主题来创建JWT</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">jwtToken</span> <span class="hljs-operator">=</span> Jwts.builder()<br>                .signWith(SignatureAlgorithm.HS512, SECRET) <span class="hljs-comment">// 设置签名算法和密钥</span><br>                .setIssuedAt(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>()) <span class="hljs-comment">// 设置发行时间</span><br>                .setIssuer(ISS) <span class="hljs-comment">// 设置发行人</span><br>                .setSubject(JSON.toJSONString(customerUserMap)) <span class="hljs-comment">// 设置主题</span><br>                .setExpiration(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(System.currentTimeMillis() + EXPIRATION * <span class="hljs-number">1000</span>)) <span class="hljs-comment">// 设置过期时间</span><br>                .compact();<br>        <span class="hljs-comment">// 返回带有前缀的JWT</span><br>        <span class="hljs-keyword">return</span> TOKEN_PREFIX + jwtToken;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 解析用户 Token</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> jwtToken 用户访问 Token</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 用户信息</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> UserInfoDTO <span class="hljs-title function_">parseJwtToken</span><span class="hljs-params">(String jwtToken)</span> &#123;<br>        <span class="hljs-comment">// 检查JWT是否存在</span><br>        <span class="hljs-keyword">if</span> (StringUtils.hasText(jwtToken)) &#123;<br>            <span class="hljs-comment">// 去掉JWT的前缀</span><br>            <span class="hljs-type">String</span> <span class="hljs-variable">actualJwtToken</span> <span class="hljs-operator">=</span> jwtToken.replace(TOKEN_PREFIX, <span class="hljs-string">&quot;&quot;</span>);<br>            <span class="hljs-keyword">try</span> &#123;<br>                <span class="hljs-comment">// 解析JWT并获取主题</span><br>                <span class="hljs-type">Claims</span> <span class="hljs-variable">claims</span> <span class="hljs-operator">=</span> Jwts.parser().setSigningKey(SECRET).parseClaimsJws(actualJwtToken).getBody();<br>                <span class="hljs-type">Date</span> <span class="hljs-variable">expiration</span> <span class="hljs-operator">=</span> claims.getExpiration();<br>                <span class="hljs-comment">// 检查JWT是否过期</span><br>                <span class="hljs-keyword">if</span> (expiration.after(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>())) &#123;<br>                    <span class="hljs-type">String</span> <span class="hljs-variable">subject</span> <span class="hljs-operator">=</span> claims.getSubject();<br>                    <span class="hljs-comment">// 将主题解析为UserInfoDTO对象</span><br>                    <span class="hljs-keyword">return</span> JSON.parseObject(subject, UserInfoDTO.class);<br>                &#125;<br>            &#125; <span class="hljs-keyword">catch</span> (ExpiredJwtException ignored) &#123;<br>                <span class="hljs-comment">// 如果JWT已过期，忽略异常</span><br>            &#125; <span class="hljs-keyword">catch</span> (Exception ex) &#123;<br>                <span class="hljs-comment">// 如果在解析过程中发生其他错误，记录错误消息</span><br>                log.error(<span class="hljs-string">&quot;JWT Token解析失败，请检查&quot;</span>, ex);<br>            &#125;<br>        &#125;<br>        <span class="hljs-comment">// 如果JWT不存在或解析失败，返回null</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
 
 <ul>
 <li><code>generateAccessToken(UserInfoDTO userInfo)</code>：这个方法用于生成一个新的JWT。它首先创建一个包含用户信息的Map，然后使用这个Map作为JWT的主体（subject）。然后，它设置JWT的签名算法（HS512），发行时间，发行人，以及过期时间。最后，它将生成的JWT添加到一个字符串前缀 “Bearer “ 并返回</li>
@@ -117,7 +290,7 @@
 
 
 <h4 id="封装当前请求用户上下文"><a href="#封装当前请求用户上下文" class="headerlink" title="封装当前请求用户上下文"></a>封装当前请求用户上下文</h4><p>仅定义有且必须的，不限于下面的三个字段</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="meta">@Builder</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserInfoDTO</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 用户 ID</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String userId;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 用户名</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String username;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 真实姓名</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String realName;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Data</span><br><span class="hljs-meta">@NoArgsConstructor</span><br><span class="hljs-meta">@AllArgsConstructor</span><br><span class="hljs-meta">@Builder</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserInfoDTO</span> &#123;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 用户 ID</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> String userId;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 用户名</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> String username;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 真实姓名</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> String realName;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <br>
 
@@ -125,7 +298,7 @@
 
 <p>定义用户参数上下文</p>
 <p>这个类主要用于在同一线程中存储和检索用户信息。这是通过使用<code>ThreadLocal</code>实现的，<code>ThreadLocal</code>是Java中的一个类，它可以为每个线程提供一个独立的变量副本。在这个例子中，<code>ThreadLocal</code>变量<code>USER_THREAD_LOCAL</code>用于存储<code>UserInfoDTO</code>对象，这个对象包含了用户的详细信息。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 用户上下文</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">class</span> <span class="title class_">UserContext</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 使用TransmittableThreadLocal来存储用户信息，这样可以在同一线程中的不同方法间共享数据</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> ThreadLocal&lt;UserInfoDTO&gt; USER_THREAD_LOCAL = <span class="keyword">new</span> <span class="title class_">TransmittableThreadLocal</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 设置用户至上下文</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> user 用户详情信息</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">setUser</span><span class="params">(UserInfoDTO user)</span> &#123;</span><br><span class="line">        <span class="comment">// 将用户信息存储在ThreadLocal变量中</span></span><br><span class="line">        USER_THREAD_LOCAL.set(user);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取上下文中用户 ID</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 用户 ID</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">getUserId</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 从ThreadLocal变量中获取用户信息</span></span><br><span class="line">        <span class="type">UserInfoDTO</span> <span class="variable">userInfoDTO</span> <span class="operator">=</span> USER_THREAD_LOCAL.get();</span><br><span class="line">        <span class="comment">// 如果用户信息存在，返回用户ID，否则返回null</span></span><br><span class="line">        <span class="keyword">return</span> Optional.ofNullable(userInfoDTO).map(UserInfoDTO::getUserId).orElse(<span class="literal">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取上下文中用户名称</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 用户名称</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">getUsername</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 从ThreadLocal变量中获取用户信息</span></span><br><span class="line">        <span class="type">UserInfoDTO</span> <span class="variable">userInfoDTO</span> <span class="operator">=</span> USER_THREAD_LOCAL.get();</span><br><span class="line">        <span class="comment">// 如果用户信息存在，返回用户名，否则返回null</span></span><br><span class="line">        <span class="keyword">return</span> Optional.ofNullable(userInfoDTO).map(UserInfoDTO::getUsername).orElse(<span class="literal">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取上下文中用户真实姓名</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 用户真实姓名</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">getRealName</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 从ThreadLocal变量中获取用户信息</span></span><br><span class="line">        <span class="type">UserInfoDTO</span> <span class="variable">userInfoDTO</span> <span class="operator">=</span> USER_THREAD_LOCAL.get();</span><br><span class="line">        <span class="comment">// 如果用户信息存在，返回用户真实姓名，否则返回null</span></span><br><span class="line">        <span class="keyword">return</span> Optional.ofNullable(userInfoDTO).map(UserInfoDTO::getRealName).orElse(<span class="literal">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 清理用户上下文</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">removeUser</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 从ThreadLocal变量中移除用户信息</span></span><br><span class="line">        USER_THREAD_LOCAL.remove();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 用户上下文</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserContext</span> &#123;<br><br>    <span class="hljs-comment">// 使用TransmittableThreadLocal来存储用户信息，这样可以在同一线程中的不同方法间共享数据</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> ThreadLocal&lt;UserInfoDTO&gt; USER_THREAD_LOCAL = <span class="hljs-keyword">new</span> <span class="hljs-title class_">TransmittableThreadLocal</span>&lt;&gt;();<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 设置用户至上下文</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> user 用户详情信息</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setUser</span><span class="hljs-params">(UserInfoDTO user)</span> &#123;<br>        <span class="hljs-comment">// 将用户信息存储在ThreadLocal变量中</span><br>        USER_THREAD_LOCAL.set(user);<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 获取上下文中用户 ID</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 用户 ID</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">getUserId</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-comment">// 从ThreadLocal变量中获取用户信息</span><br>        <span class="hljs-type">UserInfoDTO</span> <span class="hljs-variable">userInfoDTO</span> <span class="hljs-operator">=</span> USER_THREAD_LOCAL.get();<br>        <span class="hljs-comment">// 如果用户信息存在，返回用户ID，否则返回null</span><br>        <span class="hljs-keyword">return</span> Optional.ofNullable(userInfoDTO).map(UserInfoDTO::getUserId).orElse(<span class="hljs-literal">null</span>);<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 获取上下文中用户名称</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 用户名称</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">getUsername</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-comment">// 从ThreadLocal变量中获取用户信息</span><br>        <span class="hljs-type">UserInfoDTO</span> <span class="hljs-variable">userInfoDTO</span> <span class="hljs-operator">=</span> USER_THREAD_LOCAL.get();<br>        <span class="hljs-comment">// 如果用户信息存在，返回用户名，否则返回null</span><br>        <span class="hljs-keyword">return</span> Optional.ofNullable(userInfoDTO).map(UserInfoDTO::getUsername).orElse(<span class="hljs-literal">null</span>);<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 获取上下文中用户真实姓名</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 用户真实姓名</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">getRealName</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-comment">// 从ThreadLocal变量中获取用户信息</span><br>        <span class="hljs-type">UserInfoDTO</span> <span class="hljs-variable">userInfoDTO</span> <span class="hljs-operator">=</span> USER_THREAD_LOCAL.get();<br>        <span class="hljs-comment">// 如果用户信息存在，返回用户真实姓名，否则返回null</span><br>        <span class="hljs-keyword">return</span> Optional.ofNullable(userInfoDTO).map(UserInfoDTO::getRealName).orElse(<span class="hljs-literal">null</span>);<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 清理用户上下文</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">removeUser</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-comment">// 从ThreadLocal变量中移除用户信息</span><br>        USER_THREAD_LOCAL.remove();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li><code>setUser(UserInfoDTO user)</code>：这个方法接收一个<code>UserInfoDTO</code>对象作为参数，并将其存储在<code>USER_THREAD_LOCAL</code>中。这样，这个用户信息就可以在当前线程的后续执行中被检索和使用</li>
@@ -149,7 +322,7 @@
 <p><strong>关于<code>TransmittableThreadLocal</code></strong></p>
 <p><code>TransmittableThreadLocal</code>是阿里巴巴开源的一个类，它是Java的<code>ThreadLocal</code>类的一个扩展。它的主要作用是在多线程环境下，将某个变量的值从一个线程传递到另一个线程。与普通的<code>ThreadLocal</code>不同，<code>TransmittableThreadLocal</code>可以在线程切换时保持变量的值不变，从而实现线程间的值传递。这对于一些特定的应用场景，如线程池中的线程复用，非常有用。</p>
 <p>引入依赖</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;com.alibaba&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;transmittable-thread-local&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;2.14.3&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs pom">&lt;dependency&gt;<br>    &lt;groupId&gt;com.alibaba&lt;/groupId&gt;<br>    &lt;artifactId&gt;transmittable-thread-local&lt;/artifactId&gt;<br>    &lt;version&gt;2.14.3&lt;/version&gt;<br>&lt;/dependency&gt;<br></code></pre></td></tr></table></figure>
 
 <br>
 
@@ -171,7 +344,7 @@
 
 
 <h4 id="用户上下文拦截器"><a href="#用户上下文拦截器" class="headerlink" title="用户上下文拦截器"></a>用户上下文拦截器</h4><p>定义了一个名为<code>UserTransmitFilter</code>的过滤器，它实现了<code>jakarta.servlet.Filter</code>接口。这个过滤器的主要作用是在HTTP请求处理过程中，从请求头中获取用户信息，并将这些信息存储在<code>UserContext</code>中</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 用户信息传输过滤器</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserTransmitFilter</span> <span class="keyword">implements</span> <span class="title class_">Filter</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">doFilter</span><span class="params">(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)</span> <span class="keyword">throws</span> IOException, ServletException &#123;</span><br><span class="line">        <span class="comment">// 将ServletRequest转换为HttpServletRequest</span></span><br><span class="line">        <span class="type">HttpServletRequest</span> <span class="variable">httpServletRequest</span> <span class="operator">=</span> (HttpServletRequest) servletRequest;</span><br><span class="line">        <span class="comment">// 从请求头中获取用户ID</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">userId</span> <span class="operator">=</span> httpServletRequest.getHeader(UserConstant.USER_ID_KEY);</span><br><span class="line">        <span class="comment">// 检查用户ID是否存在</span></span><br><span class="line">        <span class="keyword">if</span> (StringUtils.hasText(userId)) &#123;</span><br><span class="line">            <span class="comment">// 从请求头中获取用户名和真实姓名</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">userName</span> <span class="operator">=</span> httpServletRequest.getHeader(UserConstant.user_KEY);</span><br><span class="line">            <span class="type">String</span> <span class="variable">realMame</span> <span class="operator">=</span> httpServletRequest.getHeader(UserConstant.REAL_NAME_KEY);</span><br><span class="line">            <span class="comment">// 如果用户名和真实姓名存在，进行URL解码</span></span><br><span class="line">            <span class="keyword">if</span> (StringUtils.hasText(userName)) &#123;</span><br><span class="line">                userName = URLDecoder.decode(userName, UTF_8);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (StringUtils.hasText(realMame)) &#123;</span><br><span class="line">                realMame = URLDecoder.decode(realMame, UTF_8);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 构建用户信息对象</span></span><br><span class="line">            <span class="type">UserInfoDTO</span> <span class="variable">userInfoDTO</span> <span class="operator">=</span> UserInfoDTO.builder()</span><br><span class="line">                    .userId(userId)</span><br><span class="line">                    .username(userName)</span><br><span class="line">                    .realName(realMame)</span><br><span class="line">                    .build();</span><br><span class="line">            <span class="comment">// 将用户信息对象设置到UserContext中</span></span><br><span class="line">            UserContext.setUser(userInfoDTO);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// 将请求传递给过滤器链中的下一个过滤器或目标资源</span></span><br><span class="line">            filterChain.doFilter(servletRequest, servletResponse);</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="comment">// 请求处理完成后，清理UserContext中的用户信息</span></span><br><span class="line">            UserContext.removeUser();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 用户信息传输过滤器</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserTransmitFilter</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Filter</span> &#123;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">doFilter</span><span class="hljs-params">(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)</span> <span class="hljs-keyword">throws</span> IOException, ServletException &#123;<br>        <span class="hljs-comment">// 将ServletRequest转换为HttpServletRequest</span><br>        <span class="hljs-type">HttpServletRequest</span> <span class="hljs-variable">httpServletRequest</span> <span class="hljs-operator">=</span> (HttpServletRequest) servletRequest;<br>        <span class="hljs-comment">// 从请求头中获取用户ID</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">userId</span> <span class="hljs-operator">=</span> httpServletRequest.getHeader(UserConstant.USER_ID_KEY);<br>        <span class="hljs-comment">// 检查用户ID是否存在</span><br>        <span class="hljs-keyword">if</span> (StringUtils.hasText(userId)) &#123;<br>            <span class="hljs-comment">// 从请求头中获取用户名和真实姓名</span><br>            <span class="hljs-type">String</span> <span class="hljs-variable">userName</span> <span class="hljs-operator">=</span> httpServletRequest.getHeader(UserConstant.user_KEY);<br>            <span class="hljs-type">String</span> <span class="hljs-variable">realMame</span> <span class="hljs-operator">=</span> httpServletRequest.getHeader(UserConstant.REAL_NAME_KEY);<br>            <span class="hljs-comment">// 如果用户名和真实姓名存在，进行URL解码</span><br>            <span class="hljs-keyword">if</span> (StringUtils.hasText(userName)) &#123;<br>                userName = URLDecoder.decode(userName, UTF_8);<br>            &#125;<br>            <span class="hljs-keyword">if</span> (StringUtils.hasText(realMame)) &#123;<br>                realMame = URLDecoder.decode(realMame, UTF_8);<br>            &#125;<br>            <span class="hljs-comment">// 构建用户信息对象</span><br>            <span class="hljs-type">UserInfoDTO</span> <span class="hljs-variable">userInfoDTO</span> <span class="hljs-operator">=</span> UserInfoDTO.builder()<br>                    .userId(userId)<br>                    .username(userName)<br>                    .realName(realMame)<br>                    .build();<br>            <span class="hljs-comment">// 将用户信息对象设置到UserContext中</span><br>            UserContext.setUser(userInfoDTO);<br>        &#125;<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-comment">// 将请求传递给过滤器链中的下一个过滤器或目标资源</span><br>            filterChain.doFilter(servletRequest, servletResponse);<br>        &#125; <span class="hljs-keyword">finally</span> &#123;<br>            <span class="hljs-comment">// 请求处理完成后，清理UserContext中的用户信息</span><br>            UserContext.removeUser();<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li><code>doFilter()</code>：这是<code>Filter</code>接口的核心方法，它在每次HTTP请求处理时都会被调用</li>
@@ -193,155 +366,365 @@
 <p><a target="_blank" rel="noopener" href="http://t.csdnimg.cn/EfWcP">http://t.csdnimg.cn/EfWcP</a></p>
 <p><a target="_blank" rel="noopener" href="https://github.com/alibaba/transmittable-thread-local">TransmittableThreadLocal</a></p>
 
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
       
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://lzhengjy.github.io/2024/06/20/%E9%80%9A%E8%BF%87JWT%E5%AE%9E%E7%94%9F%E6%88%90Token/" data-id="clywa1f51003vecvee5qgh9su" data-title="通过JWT实生成Token" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-    </footer>
-  </div>
+
+<span class="category-chains">
+  
   
     
-<nav id="article-nav">
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%8A%80%E6%9C%AF%E7%BB%8F%E9%AA%8C/" class="category-chain-item">技术经验</a>
   
-    <a href="/2024/07/01/ElasticSearch/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">前一篇</strong>
-      <div class="article-nav-title">
-        
-          ElasticSearch
-        
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>通过JWT实生成Token</div>
+      <div>https://lzhengjy.github.io/2024/06/20/通过JWT实生成Token/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zheng</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年6月20日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/07/01/ElasticSearch/" title="ElasticSearch">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">ElasticSearch</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/14/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" title="分布式事务的解决方案">
+                        <span class="hidden-mobile">分布式事务的解决方案</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
       </div>
-    </a>
-  
-  
-    <a href="/2024/06/14/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">后一篇</strong>
-      <div class="article-nav-title">分布式事务的解决方案</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">分类</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JVM%E7%AF%87/">JVM篇</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E7%BB%8F%E9%AA%8C/">技术经验</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A1%86%E6%9E%B6%E5%92%8C%E4%B8%AD%E9%97%B4%E4%BB%B6/">框架和中间件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95%E7%AF%87/">面试篇</a></li></ul>
     </div>
-  </div>
 
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/" rel="tag">JVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kafka/" rel="tag">Kafka</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lambda/" rel="tag">Lambda</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mybatis/" rel="tag">Mybatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MybatisPlus/" rel="tag">MybatisPlus</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RabbitMQ/" rel="tag">RabbitMQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot3/" rel="tag">SpringBoot3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringCloud/" rel="tag">SpringCloud</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/excel/" rel="tag">excel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/" rel="tag">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" rel="tag">多线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/" rel="tag">权限管理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9B%86%E5%90%88/" rel="tag">集合</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Kafka/" style="font-size: 10px;">Kafka</a> <a href="/tags/Lambda/" style="font-size: 10px;">Lambda</a> <a href="/tags/MySQL/" style="font-size: 13.33px;">MySQL</a> <a href="/tags/Mybatis/" style="font-size: 10px;">Mybatis</a> <a href="/tags/MybatisPlus/" style="font-size: 10px;">MybatisPlus</a> <a href="/tags/RabbitMQ/" style="font-size: 13.33px;">RabbitMQ</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/SpringBoot3/" style="font-size: 10px;">SpringBoot3</a> <a href="/tags/SpringCloud/" style="font-size: 10px;">SpringCloud</a> <a href="/tags/excel/" style="font-size: 10px;">excel</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/redis/" style="font-size: 16.67px;">redis</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 13.33px;">前端</a> <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 10px;">多线程</a> <a href="/tags/%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/" style="font-size: 10px;">权限管理</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">设计模式</a> <a href="/tags/%E9%9B%86%E5%90%88/" style="font-size: 10px;">集合</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">七月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">六月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">五月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">四月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">二月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">一月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">十二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">十一月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">十月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">九月 2023</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">最新文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2024/07/19/xxl-job/">xxl-job</a>
-          </li>
-        
-          <li>
-            <a href="/2024/07/01/ElasticSearch/">ElasticSearch</a>
-          </li>
-        
-          <li>
-            <a href="/2024/06/20/%E9%80%9A%E8%BF%87JWT%E5%AE%9E%E7%94%9F%E6%88%90Token/">通过JWT实生成Token</a>
-          </li>
-        
-          <li>
-            <a href="/2024/06/14/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">分布式事务的解决方案</a>
-          </li>
-        
-          <li>
-            <a href="/2024/06/10/%E5%BB%B6%E6%97%B6%E9%98%9F%E5%88%97/">延时队列</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
+    <div class="side-col d-none d-lg-block col-lg-2">
       
-      &copy; 2024 Zheng<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
 
     </div>
-    <nav id="mobile-nav">
+  </div>
+</div>
+
+
+
+
+
   
-    <a href="/" class="mobile-nav-link">Home</a>
+
+
+
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
+
+
+
   
-</nav>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
     
 
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-<script src="/js/jquery-3.6.4.min.js"></script>
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
 
 
 
   
-<script src="/fancybox/jquery.fancybox.min.js"></script>
+    <script  src="/js/img-lazyload.js" ></script>
+  
 
 
 
 
-<script src="/js/script.js"></script>
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
 
 
 
 
 
-  </div>
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>

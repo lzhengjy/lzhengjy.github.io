@@ -1,12 +1,24 @@
+
+
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
   
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
-  <title>微服务 | Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="该笔记基于b站黑马程序员Java面试题视频制作        一. Spring Cloud1. Spring Cloud的5大组件有哪些？   Eureka：注册中心 Ribbon：负载均衡 Feign：远程调用 Hystrix：服务熔断 Zuul&#x2F;Gateway：网关    随着SpringCloudAlibba在国内兴起 , 我们项目中使用了一些阿里巴巴的组件  注册中心：Naco">
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zheng">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="该笔记基于b站黑马程序员Java面试题视频制作        一. Spring Cloud1. Spring Cloud的5大组件有哪些？   Eureka：注册中心 Ribbon：负载均衡 Feign：远程调用 Hystrix：服务熔断 Zuul&#x2F;Gateway：网关    随着SpringCloudAlibba在国内兴起 , 我们项目中使用了一些阿里巴巴的组件  注册中心：Naco">
 <meta property="og:type" content="article">
 <meta property="og:title" content="微服务">
 <meta property="og:url" content="https://lzhengjy.github.io/2023/10/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9D%A2%E8%AF%95%E9%A2%98/index.html">
@@ -40,101 +52,262 @@
 <meta property="article:modified_time" content="2024-06-06T08:37:29.650Z">
 <meta property="article:author" content="Zheng">
 <meta property="article:tag" content="SpringCloud">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://lzhengjy.github.io/2023/10/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9D%A2%E8%AF%95%E9%A2%98/20231013145620.png">
   
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
   
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
-    
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+  <title>微服务 - Hexo</title>
 
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
-  
-    
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
 
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
   
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lzhengjy.github.io","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
   
 <meta name="generator" content="Hexo 6.3.0"></head>
 
+
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zheng</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="微服务"></span>
+          
+        </div>
+
         
-          <a class="main-nav-link" href="/">Home</a>
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-10-13 14:53" pubdate>
+          2023年10月13日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
         
-          <a class="main-nav-link" href="/archives">Archives</a>
+          8.2k 字
         
-      </nav>
-      <nav id="sub-nav">
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
         
         
-          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
         
-        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://lzhengjy.github.io"></form>
+          69 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
       </div>
+
+      
     </div>
   </div>
-</header>
+</div>
 
-      <div class="outer">
-        <section id="main"><article id="post-微服务面试题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/10/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9D%A2%E8%AF%95%E9%A2%98/" class="article-date">
-  <time class="dt-published" datetime="2023-10-13T06:53:38.000Z" itemprop="datePublished">2023-10-13</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E9%9D%A2%E8%AF%95%E7%AF%87/">面试篇</a>
-  </div>
+</div>
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="p-name article-title" itemprop="headline name">
-      微服务
-    </h1>
-  
+  </header>
 
-      </header>
+  <main>
     
-    <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>该笔记基于b站<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1yT411H7YK?vd_source=db8e7458ec195ac74979ce">黑马程序员Java面试题</a>视频制作</p>
-<img src="/2023/10/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9D%A2%E8%AF%95%E9%A2%98/20231013145620.png" style="zoom:80%;">
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">微服务</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>该笔记基于b站<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1yT411H7YK?vd_source=db8e7458ec195ac74979ce">黑马程序员Java面试题</a>视频制作</p>
+<img src="/2023/10/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9D%A2%E8%AF%95%E9%A2%98/20231013145620.png" srcset="/img/loading.gif" lazyload style="zoom:80%;">
 
 
 
 <br>
 
 <hr>
-<h2 id="一-Spring-Cloud"><a href="#一-Spring-Cloud" class="headerlink" title="一. Spring Cloud"></a>一. Spring Cloud</h2><h3 id="1-Spring-Cloud的5大组件有哪些？"><a href="#1-Spring-Cloud的5大组件有哪些？" class="headerlink" title="1. Spring Cloud的5大组件有哪些？"></a>1. Spring Cloud的5大组件有哪些？</h3><img src="/2023/10/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9D%A2%E8%AF%95%E9%A2%98/20231013145753.png" style="zoom:67%;">
+<h2 id="一-Spring-Cloud"><a href="#一-Spring-Cloud" class="headerlink" title="一. Spring Cloud"></a>一. Spring Cloud</h2><h3 id="1-Spring-Cloud的5大组件有哪些？"><a href="#1-Spring-Cloud的5大组件有哪些？" class="headerlink" title="1. Spring Cloud的5大组件有哪些？"></a>1. Spring Cloud的5大组件有哪些？</h3><img src="/2023/10/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9D%A2%E8%AF%95%E9%A2%98/20231013145753.png" srcset="/img/loading.gif" lazyload style="zoom:67%;">
 
 <ul>
 <li>Eureka：注册中心</li>
@@ -165,14 +338,14 @@
 <br>
 
 <p><strong>Eureka的作用</strong></p>
-<img src="/2023/10/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9D%A2%E8%AF%95%E9%A2%98/20231014195203.png" style="zoom:67%;">
+<img src="/2023/10/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9D%A2%E8%AF%95%E9%A2%98/20231014195203.png" srcset="/img/loading.gif" lazyload style="zoom:67%;">
 
 
 
 <br>
 
 <p><strong>Nacos的作用</strong></p>
-<img src="/2023/10/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9D%A2%E8%AF%95%E9%A2%98/20231014195259.png" style="zoom:67%;">
+<img src="/2023/10/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9D%A2%E8%AF%95%E9%A2%98/20231014195259.png" srcset="/img/loading.gif" lazyload style="zoom:67%;">
 
 
 
@@ -214,7 +387,7 @@
 <br>
 
 <p><strong>Ribbon负载均衡流程</strong></p>
-<img src="/2023/10/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9D%A2%E8%AF%95%E9%A2%98/20231014195930.png" style="zoom:67%;">
+<img src="/2023/10/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9D%A2%E8%AF%95%E9%A2%98/20231014195930.png" srcset="/img/loading.gif" lazyload style="zoom:67%;">
 
 
 
@@ -233,7 +406,7 @@
 <br>
 
 <p><strong>自定义负载均衡的实现</strong></p>
-<p>可以自己创建类实现IRule接口 , 然后再通过配置类或者配置文件配置即可 ，通过定义IRule实现可以修改负载均衡规则，有两种方式：<br><img src="/2023/10/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9D%A2%E8%AF%95%E9%A2%98/20231014200850.png" style="zoom:67%;"></p>
+<p>可以自己创建类实现IRule接口 , 然后再通过配置类或者配置文件配置即可 ，通过定义IRule实现可以修改负载均衡规则，有两种方式：<br><img src="/2023/10/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9D%A2%E8%AF%95%E9%A2%98/20231014200850.png" srcset="/img/loading.gif" lazyload style="zoom:67%;"></p>
 <br>
 
 <p><strong>负载均衡如何实现的？</strong></p>
@@ -260,10 +433,10 @@
 <hr>
 <h3 id="4-什么是服务雪崩"><a href="#4-什么是服务雪崩" class="headerlink" title="4. 什么是服务雪崩"></a>4. 什么是服务雪崩</h3><p>服务雪崩：一个服务失败，导致整条链路的服务都失败的情形<br>解决方法: 熔断降级</p>
 <p><strong>服务降级</strong></p>
-<p>服务降级是服务自我保护的一种方式，或者保护下游服务的一种方式，用于确保服务不会受请求突增影响变得不可用，确保服务不会崩溃<br><img src="/2023/10/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9D%A2%E8%AF%95%E9%A2%98/20231014202100.png" style="zoom:67%;"></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FeignClient(value = &quot;leadnews-article&quot;, fallback = IArticleClientFallback.class)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">IArticleClient</span> &#123;</span><br><span class="line">    <span class="meta">@PostMapping(&quot;/api/v1/article/save&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> ResponseResult <span class="title function_">saveArticle</span><span class="params">(<span class="meta">@RequestBody</span> ArticleDto dto)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>服务降级是服务自我保护的一种方式，或者保护下游服务的一种方式，用于确保服务不会受请求突增影响变得不可用，确保服务不会崩溃<br><img src="/2023/10/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9D%A2%E8%AF%95%E9%A2%98/20231014202100.png" srcset="/img/loading.gif" lazyload style="zoom:67%;"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@FeignClient(value = &quot;leadnews-article&quot;, fallback = IArticleClientFallback.class)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">IArticleClient</span> &#123;<br>    <span class="hljs-meta">@PostMapping(&quot;/api/v1/article/save&quot;)</span><br>    <span class="hljs-keyword">public</span> ResponseResult <span class="hljs-title function_">saveArticle</span><span class="hljs-params">(<span class="hljs-meta">@RequestBody</span> ArticleDto dto)</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">IArticleClientFallback</span> <span class="keyword">implements</span> <span class="title class_">IArticleClient</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> ResponseResult <span class="title function_">saveArticle</span><span class="params">(ArticleDto dto)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> ResponseResult.errorResult(AppHttpCodeEnum.SERVER_ERROR, <span class="string">&quot;获取数据失败&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">IArticleClientFallback</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">IArticleClient</span> &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> ResponseResult <span class="hljs-title function_">saveArticle</span><span class="hljs-params">(ArticleDto dto)</span> &#123;<br>        <span class="hljs-keyword">return</span> ResponseResult.errorResult(AppHttpCodeEnum.SERVER_ERROR, <span class="hljs-string">&quot;获取数据失败&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
@@ -271,7 +444,7 @@
 
 <p><strong>服务熔断</strong></p>
 <p>Hystrix 熔断机制，用于监控微服务调用情况， 默认是关闭的，如果需要开启需要在引导类上添加注解：@EnableCircuitBreaker<br>如果检测到 10 秒内请求的失败率超过 50%，就触发熔断机制。之后每隔 5 秒重新尝试请求微服务，如果微服务不能响应，继续走熔断机制。如果微服务可达，则关闭熔断机制，恢复正常请求</p>
-<img src="/2023/10/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9D%A2%E8%AF%95%E9%A2%98/20231014202129.png" style="zoom:67%;">
+<img src="/2023/10/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9D%A2%E8%AF%95%E9%A2%98/20231014202129.png" srcset="/img/loading.gif" lazyload style="zoom:67%;">
 
 
 
@@ -287,7 +460,7 @@
 
 <hr>
 <h3 id="5-微服务是怎么监控的"><a href="#5-微服务是怎么监控的" class="headerlink" title="5. 微服务是怎么监控的"></a>5. 微服务是怎么监控的</h3><p><strong>skywalking</strong></p>
-<img src="/2023/10/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9D%A2%E8%AF%95%E9%A2%98/20231014203502.png" style="zoom:67%;">
+<img src="/2023/10/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9D%A2%E8%AF%95%E9%A2%98/20231014203502.png" srcset="/img/loading.gif" lazyload style="zoom:67%;">
 
 <ul>
 <li>服务（service）：业务资源应用系统（微服务）</li>
@@ -317,7 +490,7 @@
 
 <p><strong>Nginx限流</strong></p>
 <p>控制速率（突发流量）</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">    limit_req_zone $binary_remote_addr zone=servicelRateLimit:10m rate=10r/s</span><br><span class="line">    server &#123;</span><br><span class="line">        listen	<span class="number">80</span>;</span><br><span class="line">        server_name localhost;</span><br><span class="line">        location / &#123;</span><br><span class="line">            limit_req_zone = servicelRateLimit burst=<span class="number">20</span> nodelay;</span><br><span class="line">            proxy_pass http:<span class="comment">//targetserver;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java">http &#123;<br>    limit_req_zone $binary_remote_addr zone=servicelRateLimit:10m rate=10r/s<br>    server &#123;<br>        listen	<span class="hljs-number">80</span>;<br>        server_name localhost;<br>        location / &#123;<br>            limit_req_zone = servicelRateLimit burst=<span class="hljs-number">20</span> nodelay;<br>            proxy_pass http:<span class="hljs-comment">//targetserver;</span><br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>语法: limit_req_zone key zone rate</li>
@@ -330,7 +503,7 @@
 <br>
 
 <p>控制并发连接数</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">    limit_conn_zone $binary_remote_addr zone=perip:10m;</span><br><span class="line">    limit_conn_zone $server_name zone=perserver:10m;</span><br><span class="line">    server &#123;</span><br><span class="line">        listen 	<span class="number">80</span>;</span><br><span class="line">        server_name localhost;</span><br><span class="line">        location / &#123;</span><br><span class="line">            ...</span><br><span class="line">            limit_conn perip <span class="number">20</span>;</span><br><span class="line">            limit_conn perserver <span class="number">100</span>;</span><br><span class="line">            proxy_pass http:<span class="comment">//targetserver;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java">http &#123;<br>    limit_conn_zone $binary_remote_addr zone=perip:10m;<br>    limit_conn_zone $server_name zone=perserver:10m;<br>    server &#123;<br>        listen 	<span class="hljs-number">80</span>;<br>        server_name localhost;<br>        location / &#123;<br>            ...<br>            limit_conn perip <span class="hljs-number">20</span>;<br>            limit_conn perserver <span class="hljs-number">100</span>;<br>            proxy_pass http:<span class="hljs-comment">//targetserver;</span><br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>limit_conn perip 20：对应的key是 $binary_remote_addr，表示限制单个IP同时最多能持有20个连接。</li>
@@ -340,7 +513,7 @@
 
 <p><strong>网关限流</strong></p>
 <p>yml配置文件中，微服务路由设置添加局部过滤器RequestRateLimiter</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">id:</span> <span class="string">gateway-consumer</span></span><br><span class="line"><span class="attr">uri:</span> <span class="string">lb://GATEWAY-CONSUMER</span></span><br><span class="line"><span class="attr">predicates:</span></span><br><span class="line">	<span class="bullet">-</span> <span class="string">Path=/order/**</span></span><br><span class="line"><span class="attr">filters:</span></span><br><span class="line">	<span class="bullet">-</span> <span class="attr">name:</span> <span class="string">RequestRateLimiter</span></span><br><span class="line">	  <span class="attr">args:</span></span><br><span class="line">	  	<span class="comment"># 使用SpEL从容器中获取对象</span></span><br><span class="line">	  	<span class="attr">key-resolver:</span> <span class="string">&#x27;#&#123;@pathKeyResolver&#125;&#x27;</span></span><br><span class="line">	  	<span class="comment"># 命令桶每秒填充平均速率</span></span><br><span class="line">	  	<span class="attr">redis-rate-limiter.replenishRate:</span> <span class="number">1</span></span><br><span class="line">	  	<span class="comment"># 命令桶的上限</span></span><br><span class="line">	  	<span class="attr">redis-rate-limiter.burstCapacity:</span> <span class="number">3</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">id:</span> <span class="hljs-string">gateway-consumer</span><br><span class="hljs-attr">uri:</span> <span class="hljs-string">lb://GATEWAY-CONSUMER</span><br><span class="hljs-attr">predicates:</span><br>	<span class="hljs-bullet">-</span> <span class="hljs-string">Path=/order/**</span><br><span class="hljs-attr">filters:</span><br>	<span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">RequestRateLimiter</span><br>	  <span class="hljs-attr">args:</span><br>	  	<span class="hljs-comment"># 使用SpEL从容器中获取对象</span><br>	  	<span class="hljs-attr">key-resolver:</span> <span class="hljs-string">&#x27;#&#123;@pathKeyResolver&#125;&#x27;</span><br>	  	<span class="hljs-comment"># 命令桶每秒填充平均速率</span><br>	  	<span class="hljs-attr">redis-rate-limiter.replenishRate:</span> <span class="hljs-number">1</span><br>	  	<span class="hljs-comment"># 命令桶的上限</span><br>	  	<span class="hljs-attr">redis-rate-limiter.burstCapacity:</span> <span class="hljs-number">3</span><br><br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>key-resolver ：定义限流对象（ ip 、路径、参数），需代码实现，使用spel表达式获取</li>
@@ -362,13 +535,13 @@
 <p>Eric Brewer 说，分布式系统无法同时满足这三个指标<br>这个结论就叫做 CAP 定理。</p>
 <br>
 
-<p>Consistency（一致性）：用户访问分布式系统中的任意节点，得到的数据必须一致<br><img src="/2023/10/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9D%A2%E8%AF%95%E9%A2%98/20231017212903.png" style="zoom:67%;"></p>
+<p>Consistency（一致性）：用户访问分布式系统中的任意节点，得到的数据必须一致<br><img src="/2023/10/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9D%A2%E8%AF%95%E9%A2%98/20231017212903.png" srcset="/img/loading.gif" lazyload style="zoom:67%;"></p>
 <br>
 
-<p>Availability （可用性）：用户访问集群中的任意健康节点，必须能得到响应，而不是超时或拒绝<br><img src="/2023/10/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9D%A2%E8%AF%95%E9%A2%98/20231017212937.png" style="zoom:60%;"></p>
+<p>Availability （可用性）：用户访问集群中的任意健康节点，必须能得到响应，而不是超时或拒绝<br><img src="/2023/10/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9D%A2%E8%AF%95%E9%A2%98/20231017212937.png" srcset="/img/loading.gif" lazyload style="zoom:60%;"></p>
 <br>
 
-<p>Partition（分区）：因为网络故障或其它原因导致分布式系统中的部分节点与其它节点失去连接，形成独立分区。<br>Tolerance（容错）：在集群出现分区时，整个系统也要持续对外提供服务<br><img src="/2023/10/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9D%A2%E8%AF%95%E9%A2%98/20231017213002.png" style="zoom:67%;"></p>
+<p>Partition（分区）：因为网络故障或其它原因导致分布式系统中的部分节点与其它节点失去连接，形成独立分区。<br>Tolerance（容错）：在集群出现分区时，整个系统也要持续对外提供服务<br><img src="/2023/10/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9D%A2%E8%AF%95%E9%A2%98/20231017213002.png" srcset="/img/loading.gif" lazyload style="zoom:67%;"></p>
 <br>
 
 <ul>
@@ -385,7 +558,7 @@
 <li>Soft State（软状态）：在一定时间内，允许出现中间状态，比如临时的不一致状态</li>
 <li>Eventually Consistent（最终一致性）：虽然无法保证强一致性，但是在软状态结束后，最终达到数据一致</li>
 </ul>
-<img src="/2023/10/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9D%A2%E8%AF%95%E9%A2%98/20231017213036.png" style="zoom:67%;">
+<img src="/2023/10/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9D%A2%E8%AF%95%E9%A2%98/20231017213036.png" srcset="/img/loading.gif" lazyload style="zoom:67%;">
 
 <br>
 
@@ -427,7 +600,7 @@
 <li><strong>TM (Transaction Manager) -</strong> <strong>事务管理器：</strong>定义全局事务的范围、开始全局事务、提交或回滚全局事务。</li>
 <li><strong>RM (Resource Manager) -</strong> <strong>资源管理器：</strong>管理分支事务处理的资源，与TC交谈以注册分支事务和报告分支事务的状态，并驱动分支事务提交或回滚。</li>
 </ul>
-<img src="/2023/10/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9D%A2%E8%AF%95%E9%A2%98/20231017214433.png" style="zoom: 80%;">
+<img src="/2023/10/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9D%A2%E8%AF%95%E9%A2%98/20231017214433.png" srcset="/img/loading.gif" lazyload style="zoom: 80%;">
 
 
 
@@ -452,7 +625,7 @@
 <ul>
 <li>接受TC指令，提交或回滚事务</li>
 </ul>
-<img src="/2023/10/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9D%A2%E8%AF%95%E9%A2%98/20231017214725.png" style="zoom: 80%;">
+<img src="/2023/10/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9D%A2%E8%AF%95%E9%A2%98/20231017214725.png" srcset="/img/loading.gif" lazyload style="zoom: 80%;">
 
 
 
@@ -475,7 +648,7 @@
 <ul>
 <li>根据undo-log恢复数据到更新前</li>
 </ul>
-<img src="/2023/10/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9D%A2%E8%AF%95%E9%A2%98/20231017214744.png" style="zoom: 80%;">
+<img src="/2023/10/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9D%A2%E8%AF%95%E9%A2%98/20231017214744.png" srcset="/img/loading.gif" lazyload style="zoom: 80%;">
 
 
 
@@ -487,14 +660,14 @@
 <li>Confirm：完成资源操作业务；要求 Try 成功 Confirm 一定要能成功。</li>
 <li>Cancel：预留资源释放，可以理解为try的反向操作。</li>
 </ol>
-<img src="/2023/10/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9D%A2%E8%AF%95%E9%A2%98/20231017214807.png" style="zoom:80%;">
+<img src="/2023/10/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9D%A2%E8%AF%95%E9%A2%98/20231017214807.png" srcset="/img/loading.gif" lazyload style="zoom:80%;">
 
 
 
 <br>
 
 <p><strong>MQ分布式事务</strong></p>
-<img src="/2023/10/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9D%A2%E8%AF%95%E9%A2%98/20231017214832.png" style="zoom:80%;">
+<img src="/2023/10/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9D%A2%E8%AF%95%E9%A2%98/20231017214832.png" srcset="/img/loading.gif" lazyload style="zoom:80%;">
 
 <p>MQ模式实现分布式事务，在A服务写数据的时候，需要在同一个事务内发送消息到另外一个事务，异步，性能最好</p>
 <br>
@@ -541,7 +714,7 @@
 
 <p><strong>token+redis</strong></p>
 <p>创建商品、提交订单、转账、支付等操作</p>
-<img src="/2023/10/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9D%A2%E8%AF%95%E9%A2%98/20231017220614.png" style="zoom:67%;">
+<img src="/2023/10/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9D%A2%E8%AF%95%E9%A2%98/20231017220614.png" srcset="/img/loading.gif" lazyload style="zoom:67%;">
 
 
 
@@ -552,7 +725,7 @@
 <li>快速失败（抢不到锁的线程）</li>
 <li>控制锁的力度</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">saveOrder</span><span class="params">(Item item)</span> <span class="keyword">throws</span> InterruptedException &#123;</span><br><span class="line">    <span class="comment">//获取锁（重入锁），执行锁的名称</span></span><br><span class="line">    <span class="type">RLock</span> <span class="variable">lock</span> <span class="operator">=</span> redissonClient.getLock(<span class="string">&quot;heimalock&quot;</span>);</span><br><span class="line">    <span class="comment">//尝试获取锁，参数分别是：获取锁的最大等待时间（期间会重试），锁自动释放时间，时间单位</span></span><br><span class="line">    <span class="type">boolean</span> <span class="variable">isLock</span> <span class="operator">=</span> lock.tryLock(<span class="number">10</span>, TimeUnit.SECONDS);</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">//判断是否获取成功</span></span><br><span class="line">        <span class="keyword">if</span> (!isLock) &#123;</span><br><span class="line">            log.info(<span class="string">&quot;下单操作获取锁失败,order:&#123;&#125;&quot;</span>,item);</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(<span class="string">&quot;新增或修改失败&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//下单操作</span></span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="comment">//释放锁</span></span><br><span class="line">        lock.unlock();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">saveOrder</span><span class="hljs-params">(Item item)</span> <span class="hljs-keyword">throws</span> InterruptedException &#123;<br>    <span class="hljs-comment">//获取锁（重入锁），执行锁的名称</span><br>    <span class="hljs-type">RLock</span> <span class="hljs-variable">lock</span> <span class="hljs-operator">=</span> redissonClient.getLock(<span class="hljs-string">&quot;heimalock&quot;</span>);<br>    <span class="hljs-comment">//尝试获取锁，参数分别是：获取锁的最大等待时间（期间会重试），锁自动释放时间，时间单位</span><br>    <span class="hljs-type">boolean</span> <span class="hljs-variable">isLock</span> <span class="hljs-operator">=</span> lock.tryLock(<span class="hljs-number">10</span>, TimeUnit.SECONDS);<br>    <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-comment">//判断是否获取成功</span><br>        <span class="hljs-keyword">if</span> (!isLock) &#123;<br>            log.info(<span class="hljs-string">&quot;下单操作获取锁失败,order:&#123;&#125;&quot;</span>,item);<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RuntimeException</span>(<span class="hljs-string">&quot;新增或修改失败&quot;</span>);<br>        &#125;<br>        <span class="hljs-comment">//下单操作</span><br>    &#125; <span class="hljs-keyword">finally</span> &#123;<br>        <span class="hljs-comment">//释放锁</span><br>        lock.unlock();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
@@ -589,7 +762,7 @@
 
 
 <p><strong>XXL-JOB路由策略有哪些？</strong></p>
-<img src="/2023/10/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9D%A2%E8%AF%95%E9%A2%98/20231017224713.png" style="zoom: 80%;">
+<img src="/2023/10/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9D%A2%E8%AF%95%E9%A2%98/20231017224713.png" srcset="/img/loading.gif" lazyload style="zoom: 80%;">
 
 <ol>
 <li>FIRST（第一个）：固定选择第一个机器；</li>
@@ -606,21 +779,21 @@
 <br>
 
 <p><strong>XXL-JOB任务执行失败怎么解决？</strong></p>
-<p>故障转移+失败重试，查看日志分析—-&gt; 邮件告警<br><img src="/2023/10/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9D%A2%E8%AF%95%E9%A2%98/20231017225001.png" style="zoom:67%;"></p>
-<img src="/2023/10/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9D%A2%E8%AF%95%E9%A2%98/20231017225020.png" style="zoom:80%;">
+<p>故障转移+失败重试，查看日志分析—-&gt; 邮件告警<br><img src="/2023/10/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9D%A2%E8%AF%95%E9%A2%98/20231017225001.png" srcset="/img/loading.gif" lazyload style="zoom:67%;"></p>
+<img src="/2023/10/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9D%A2%E8%AF%95%E9%A2%98/20231017225020.png" srcset="/img/loading.gif" lazyload style="zoom:80%;">
 
 
 
 <br>
 
 <p><strong>如果有大数据量的任务同时都需要执行，怎么解决？</strong></p>
-<p>执行器集群部署时，任务路由策略选择分片广播情况下，一次任务调度将会广播触发对应集群中所有执行器执行一次任务<br><img src="/2023/10/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9D%A2%E8%AF%95%E9%A2%98/20231017225039.png" style="zoom:67%;"></p>
+<p>执行器集群部署时，任务路由策略选择分片广播情况下，一次任务调度将会广播触发对应集群中所有执行器执行一次任务<br><img src="/2023/10/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9D%A2%E8%AF%95%E9%A2%98/20231017225039.png" srcset="/img/loading.gif" lazyload style="zoom:67%;"></p>
 <p>分片参数</p>
 <ul>
 <li>index：当前分片序号(从0开始)，执行器集群列表中当前执行器的序号；</li>
 <li>total：总分片数，执行器集群的总机器数量；</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@XxlJob(&quot;shadingSample&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">shardingJobHandler</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    <span class="comment">// 分片参数</span></span><br><span class="line">    <span class="type">int</span> <span class="variable">shardIndex</span> <span class="operator">=</span> XxlJobHelper.getShardIndex();</span><br><span class="line">    <span class="type">int</span> <span class="variable">shardTotal</span> <span class="operator">=</span> XxlJobHelper.getShardTotal();</span><br><span class="line">    XxlJobHelper.log(<span class="string">&quot;分片参数：当前分片序号 = &#123;&#125;, 总分片数 = &#123;&#125;&quot;</span>, shardIndex, shardTotal);</span><br><span class="line">    <span class="comment">// 业务逻辑</span></span><br><span class="line">    List&lt;Integer&gt; list = getList();</span><br><span class="line">    <span class="keyword">for</span> (Integer integer : list) &#123;</span><br><span class="line">        <span class="keyword">if</span>(integer % shardTotal == shardIndex)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;第&quot;</span>+shardIndex+<span class="string">&quot;分片执行，执行数据为：&quot;</span>+integer);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@XxlJob(&quot;shadingSample&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">shardingJobHandler</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>    <span class="hljs-comment">// 分片参数</span><br>    <span class="hljs-type">int</span> <span class="hljs-variable">shardIndex</span> <span class="hljs-operator">=</span> XxlJobHelper.getShardIndex();<br>    <span class="hljs-type">int</span> <span class="hljs-variable">shardTotal</span> <span class="hljs-operator">=</span> XxlJobHelper.getShardTotal();<br>    XxlJobHelper.log(<span class="hljs-string">&quot;分片参数：当前分片序号 = &#123;&#125;, 总分片数 = &#123;&#125;&quot;</span>, shardIndex, shardTotal);<br>    <span class="hljs-comment">// 业务逻辑</span><br>    List&lt;Integer&gt; list = getList();<br>    <span class="hljs-keyword">for</span> (Integer integer : list) &#123;<br>        <span class="hljs-keyword">if</span>(integer % shardTotal == shardIndex)&#123;<br>            System.out.println(<span class="hljs-string">&quot;第&quot;</span>+shardIndex+<span class="hljs-string">&quot;分片执行，执行数据为：&quot;</span>+integer);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
@@ -639,157 +812,372 @@
 <li>在任务执行的代码中可以获取分片总数和当前分片，按照取模的方式分摊到各个实例执行</li>
 </ul>
 
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
       
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://lzhengjy.github.io/2023/10/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9D%A2%E8%AF%95%E9%A2%98/" data-id="clywa1f4v0034ecve4kj3crn5" data-title="微服务" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringCloud/" rel="tag">SpringCloud</a></li></ul>
 
-    </footer>
-  </div>
+<span class="category-chains">
+  
   
     
-<nav id="article-nav">
+      <span class="category-chain">
+        
+  <a href="/categories/%E9%9D%A2%E8%AF%95%E7%AF%87/" class="category-chain-item">面试篇</a>
   
-    <a href="/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">前一篇</strong>
-      <div class="article-nav-title">
-        
-          JVM-基础篇
-        
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/SpringCloud/" class="print-no-link">#SpringCloud</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>微服务</div>
+      <div>https://lzhengjy.github.io/2023/10/13/微服务面试题/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zheng</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年10月13日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/10/17/JVM-%E5%9F%BA%E7%A1%80%E7%AF%87/" title="JVM-基础篇">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">JVM-基础篇</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/10/09/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E9%9D%A2%E8%AF%95%E9%A2%98/" title="多线程">
+                        <span class="hidden-mobile">多线程</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
       </div>
-    </a>
-  
-  
-    <a href="/2023/10/09/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E9%9D%A2%E8%AF%95%E9%A2%98/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">后一篇</strong>
-      <div class="article-nav-title">多线程</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">分类</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JVM%E7%AF%87/">JVM篇</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E7%BB%8F%E9%AA%8C/">技术经验</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A1%86%E6%9E%B6%E5%92%8C%E4%B8%AD%E9%97%B4%E4%BB%B6/">框架和中间件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95%E7%AF%87/">面试篇</a></li></ul>
     </div>
-  </div>
 
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/" rel="tag">JVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kafka/" rel="tag">Kafka</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lambda/" rel="tag">Lambda</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mybatis/" rel="tag">Mybatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MybatisPlus/" rel="tag">MybatisPlus</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RabbitMQ/" rel="tag">RabbitMQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot3/" rel="tag">SpringBoot3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringCloud/" rel="tag">SpringCloud</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/excel/" rel="tag">excel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/" rel="tag">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" rel="tag">多线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/" rel="tag">权限管理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9B%86%E5%90%88/" rel="tag">集合</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Kafka/" style="font-size: 10px;">Kafka</a> <a href="/tags/Lambda/" style="font-size: 10px;">Lambda</a> <a href="/tags/MySQL/" style="font-size: 13.33px;">MySQL</a> <a href="/tags/Mybatis/" style="font-size: 10px;">Mybatis</a> <a href="/tags/MybatisPlus/" style="font-size: 10px;">MybatisPlus</a> <a href="/tags/RabbitMQ/" style="font-size: 13.33px;">RabbitMQ</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/SpringBoot3/" style="font-size: 10px;">SpringBoot3</a> <a href="/tags/SpringCloud/" style="font-size: 10px;">SpringCloud</a> <a href="/tags/excel/" style="font-size: 10px;">excel</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/redis/" style="font-size: 16.67px;">redis</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 13.33px;">前端</a> <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 10px;">多线程</a> <a href="/tags/%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/" style="font-size: 10px;">权限管理</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">设计模式</a> <a href="/tags/%E9%9B%86%E5%90%88/" style="font-size: 10px;">集合</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">七月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">六月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">五月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">四月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">二月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">一月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">十二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">十一月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">十月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">九月 2023</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">最新文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2024/07/19/xxl-job/">xxl-job</a>
-          </li>
-        
-          <li>
-            <a href="/2024/07/01/ElasticSearch/">ElasticSearch</a>
-          </li>
-        
-          <li>
-            <a href="/2024/06/20/%E9%80%9A%E8%BF%87JWT%E5%AE%9E%E7%94%9F%E6%88%90Token/">通过JWT实生成Token</a>
-          </li>
-        
-          <li>
-            <a href="/2024/06/14/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">分布式事务的解决方案</a>
-          </li>
-        
-          <li>
-            <a href="/2024/06/10/%E5%BB%B6%E6%97%B6%E9%98%9F%E5%88%97/">延时队列</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
+    <div class="side-col d-none d-lg-block col-lg-2">
       
-      &copy; 2024 Zheng<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
 
     </div>
-    <nav id="mobile-nav">
+  </div>
+</div>
+
+
+
+
+
   
-    <a href="/" class="mobile-nav-link">Home</a>
+
+
+
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
+
+
+
   
-</nav>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
     
 
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-<script src="/js/jquery-3.6.4.min.js"></script>
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
 
 
 
   
-<script src="/fancybox/jquery.fancybox.min.js"></script>
+    <script  src="/js/img-lazyload.js" ></script>
+  
 
 
 
 
-<script src="/js/script.js"></script>
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
 
 
 
 
 
-  </div>
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>
