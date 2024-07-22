@@ -1,24 +1,12 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
-
-
-
+<html>
 <head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta charset="utf-8">
   
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="Zheng">
-  <meta name="keywords" content="">
-  
-    <meta name="description" content="在分布式系统中，事务的ACID特性（原子性、一致性、隔离性、持久性）面临着巨大的挑战。传统的关系型数据库事务在分布式场景下往往难以适用，因此，各种分布式事务解决方案应运而生     两阶段提交（2PC） 两阶段提交是一种分布式事务协议，用于确保分布式系统中的事务一致性。它通过协调参与者节点的操作来实现分布式事务的提交或回滚 在第一阶段（准备阶段），事务协调器向所有参与者节点发送准备请求，并等待它们">
+  <title>分布式事务的解决方案 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="在分布式系统中，事务的ACID特性（原子性、一致性、隔离性、持久性）面临着巨大的挑战。传统的关系型数据库事务在分布式场景下往往难以适用，因此，各种分布式事务解决方案应运而生     两阶段提交（2PC） 两阶段提交是一种分布式事务协议，用于确保分布式系统中的事务一致性。它通过协调参与者节点的操作来实现分布式事务的提交或回滚 在第一阶段（准备阶段），事务协调器向所有参与者节点发送准备请求，并等待它们">
 <meta property="og:type" content="article">
 <meta property="og:title" content="分布式事务的解决方案">
 <meta property="og:url" content="https://lzhengjy.github.io/2024/06/14/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/index.html">
@@ -29,254 +17,93 @@
 <meta property="article:published_time" content="2024-06-14T10:22:09.000Z">
 <meta property="article:modified_time" content="2024-06-30T12:21:25.562Z">
 <meta property="article:author" content="Zheng">
-<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://lzhengjy.github.io/2024/06/14/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/image-20240630195541206.png">
   
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
   
-  <title>分布式事务的解决方案 - Hexo</title>
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
-
-
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
-
-
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+    <link rel="shortcut icon" href="/favicon.png">
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
 
-
-
-
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"lzhengjy.github.io","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
-
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
-    }
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
   
+  
+<link rel="stylesheet" href="/css/style.css">
 
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
 
+  
   
 <meta name="generator" content="Hexo 6.3.0"></head>
 
-
 <body>
-  
-
-  <header>
-    
-
-<div class="header-inner" style="height: 70vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>Zheng</strong>
-    </a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
-                <i class="iconfont icon-home-fill"></i>
-                <span>首页</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
-                <i class="iconfont icon-archive-fill"></i>
-                <span>归档</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
-                <i class="iconfont icon-category-fill"></i>
-                <span>分类</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
-                <i class="iconfont icon-tags-fill"></i>
-                <span>标签</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
-                <i class="iconfont icon-user-fill"></i>
-                <span>关于</span>
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              <i class="iconfont icon-search"></i>
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
-              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
-            </a>
-          </li>
-        
-      </ul>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
     </div>
-  </div>
-</nav>
-
-  
-
-<div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle" data-typed-text="分布式事务的解决方案"></span>
-          
-        </div>
-
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
         
-          
-  <div class="mt-3">
-    
-    
-      <span class="post-meta">
-        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-14 18:22" pubdate>
-          2024年6月14日 晚上
-        </time>
-      </span>
-    
-  </div>
-
-  <div class="mt-1">
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-chart"></i>
+          <a class="main-nav-link" href="/">Home</a>
         
-          7.9k 字
+          <a class="main-nav-link" href="/archives">Archives</a>
         
-      </span>
-    
-
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-clock-fill"></i>
+      </nav>
+      <nav id="sub-nav">
         
         
+          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
         
-          66 分钟
-        
-      </span>
-    
-
-    
-    
-  </div>
-
-
-        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://lzhengjy.github.io"></form>
       </div>
-
-      
     </div>
   </div>
-</div>
+</header>
 
-</div>
-
-  </header>
-
-  <main>
+      <div class="outer">
+        <section id="main"><article id="post-分布式事务的解决方案" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/06/14/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" class="article-date">
+  <time class="dt-published" datetime="2024-06-14T10:22:09.000Z" itemprop="datePublished">2024-06-14</time>
+</a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E7%BB%8F%E9%AA%8C/">技术经验</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      分布式事务的解决方案
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
       
-
-<div class="container-fluid nopadding-x">
-  <div class="row nomargin-x">
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-
-    </div>
-
-    <div class="col-lg-8 nopadding-x-md">
-      <div class="container nopadding-x-md" id="board-ctn">
-        <div id="board">
-          <article class="post-content mx-auto">
-            <h1 id="seo-header">分布式事务的解决方案</h1>
-            
-            
-              <div class="markdown-body">
-                
-                <p>在分布式系统中，事务的ACID特性（原子性、一致性、隔离性、持久性）面临着巨大的挑战。传统的关系型数据库事务在分布式场景下往往难以适用，因此，各种分布式事务解决方案应运而生</p>
+        <p>在分布式系统中，事务的ACID特性（原子性、一致性、隔离性、持久性）面临着巨大的挑战。传统的关系型数据库事务在分布式场景下往往难以适用，因此，各种分布式事务解决方案应运而生</p>
 <br>
 
 
@@ -302,7 +129,7 @@
 
 
 <p>示例代码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">BaseTwoPhaseCommit</span> &#123;<br>    <span class="hljs-comment">// 提交事务的方法，具体实现由子类完成</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">commit</span><span class="hljs-params">()</span>;<br>    <span class="hljs-comment">// 回滚事务的方法，具体实现由子类完成</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">rollback</span><span class="hljs-params">()</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">BaseTwoPhaseCommit</span> &#123;</span><br><span class="line">    <span class="comment">// 提交事务的方法，具体实现由子类完成</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title function_">commit</span><span class="params">()</span>;</span><br><span class="line">    <span class="comment">// 回滚事务的方法，具体实现由子类完成</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title function_">rollback</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <br>
 
@@ -324,7 +151,7 @@
 
 
 <p>示例代码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">TransactionCoordinator</span> &#123;<br>    <span class="hljs-keyword">private</span> List&lt;Participant&gt; participants; <span class="hljs-comment">// 参与者列表</span><br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">TransactionCoordinator</span><span class="hljs-params">(List&lt;Participant&gt; participants)</span> &#123;<br>        <span class="hljs-built_in">this</span>.participants = participants; <span class="hljs-comment">// 初始化参与者列表</span><br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">executeTransaction</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-comment">// 阶段1：准备</span><br>        <span class="hljs-keyword">for</span> (Participant participant : participants) &#123;<br>            <span class="hljs-type">boolean</span> <span class="hljs-variable">prepared</span> <span class="hljs-operator">=</span> participant.prepare(); <span class="hljs-comment">// 让每个参与者准备事务</span><br>            <span class="hljs-keyword">if</span> (!prepared) &#123;<br>                <span class="hljs-comment">// 如果有参与者没有准备好，那么回滚事务</span><br>                rollback();<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>            &#125;<br>        &#125;<br><br>        <span class="hljs-comment">// 阶段2：预提交</span><br>        <span class="hljs-type">boolean</span> <span class="hljs-variable">canCommit</span> <span class="hljs-operator">=</span> <span class="hljs-literal">true</span>;<br>        <span class="hljs-keyword">for</span> (Participant participant : participants) &#123;<br>            <span class="hljs-type">CommitState</span> <span class="hljs-variable">commitState</span> <span class="hljs-operator">=</span> participant.preCommit(); <span class="hljs-comment">// 让每个参与者预提交事务</span><br>            <span class="hljs-keyword">if</span> (commitState == CommitState.ABORTED) &#123;<br>                <span class="hljs-comment">// 如果有参与者预提交失败，那么回滚事务</span><br>                canCommit = <span class="hljs-literal">false</span>;<br>                <span class="hljs-keyword">break</span>;<br>            &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (commitState == CommitState.UNKNOWN) &#123;<br>                <span class="hljs-comment">// 处理未知状态（可选）</span><br>            &#125;<br>        &#125;<br><br>        <span class="hljs-comment">// 阶段3：提交或回滚</span><br>        <span class="hljs-keyword">if</span> (canCommit) &#123;<br>            <span class="hljs-keyword">for</span> (Participant participant : participants) &#123;<br>                participant.commit(); <span class="hljs-comment">// 让每个参与者提交事务</span><br>            &#125;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            rollback(); <span class="hljs-comment">// 回滚事务</span><br>        &#125;<br><br>        <span class="hljs-keyword">return</span> canCommit;<br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">rollback</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">for</span> (Participant participant : participants) &#123;<br>            participant.rollback(); <span class="hljs-comment">// 让每个参与者回滚事务</span><br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TransactionCoordinator</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> List&lt;Participant&gt; participants; <span class="comment">// 参与者列表</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">TransactionCoordinator</span><span class="params">(List&lt;Participant&gt; participants)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.participants = participants; <span class="comment">// 初始化参与者列表</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">executeTransaction</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 阶段1：准备</span></span><br><span class="line">        <span class="keyword">for</span> (Participant participant : participants) &#123;</span><br><span class="line">            <span class="type">boolean</span> <span class="variable">prepared</span> <span class="operator">=</span> participant.prepare(); <span class="comment">// 让每个参与者准备事务</span></span><br><span class="line">            <span class="keyword">if</span> (!prepared) &#123;</span><br><span class="line">                <span class="comment">// 如果有参与者没有准备好，那么回滚事务</span></span><br><span class="line">                rollback();</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 阶段2：预提交</span></span><br><span class="line">        <span class="type">boolean</span> <span class="variable">canCommit</span> <span class="operator">=</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span> (Participant participant : participants) &#123;</span><br><span class="line">            <span class="type">CommitState</span> <span class="variable">commitState</span> <span class="operator">=</span> participant.preCommit(); <span class="comment">// 让每个参与者预提交事务</span></span><br><span class="line">            <span class="keyword">if</span> (commitState == CommitState.ABORTED) &#123;</span><br><span class="line">                <span class="comment">// 如果有参与者预提交失败，那么回滚事务</span></span><br><span class="line">                canCommit = <span class="literal">false</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (commitState == CommitState.UNKNOWN) &#123;</span><br><span class="line">                <span class="comment">// 处理未知状态（可选）</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 阶段3：提交或回滚</span></span><br><span class="line">        <span class="keyword">if</span> (canCommit) &#123;</span><br><span class="line">            <span class="keyword">for</span> (Participant participant : participants) &#123;</span><br><span class="line">                participant.commit(); <span class="comment">// 让每个参与者提交事务</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            rollback(); <span class="comment">// 回滚事务</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> canCommit;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">rollback</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">for</span> (Participant participant : participants) &#123;</span><br><span class="line">            participant.rollback(); <span class="comment">// 让每个参与者回滚事务</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <br>
 
@@ -365,7 +192,7 @@
 
 
 <p>示例代码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SagaTransaction</span> &#123;<br>    <span class="hljs-keyword">private</span> List&lt;TransactionStep&gt; steps; <span class="hljs-comment">// 事务步骤列表</span><br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">SagaTransaction</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-built_in">this</span>.steps = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;(); <span class="hljs-comment">// 初始化事务步骤列表</span><br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">addStep</span><span class="hljs-params">(TransactionStep step)</span> &#123;<br>        steps.add(step); <span class="hljs-comment">// 添加事务步骤</span><br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">execute</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">for</span> (TransactionStep step : steps) &#123;<br>            <span class="hljs-keyword">try</span> &#123;<br>                step.execute(); <span class="hljs-comment">// 执行每个事务步骤</span><br>            &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>                step.rollback(); <span class="hljs-comment">// 如果执行失败，那么回滚事务</span><br>                <span class="hljs-keyword">break</span>;<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SagaTransaction</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> List&lt;TransactionStep&gt; steps; <span class="comment">// 事务步骤列表</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">SagaTransaction</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.steps = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;(); <span class="comment">// 初始化事务步骤列表</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addStep</span><span class="params">(TransactionStep step)</span> &#123;</span><br><span class="line">        steps.add(step); <span class="comment">// 添加事务步骤</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">execute</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">for</span> (TransactionStep step : steps) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                step.execute(); <span class="comment">// 执行每个事务步骤</span></span><br><span class="line">            &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                step.rollback(); <span class="comment">// 如果执行失败，那么回滚事务</span></span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <br>
 
@@ -408,14 +235,14 @@
 </li>
 <li>可重复性事务<br>关键性事务之后的事务就是可重复性事务，不需要回滚，并且保证能够执行完成。所以我们会通过一些机制来保证这类事务一定能执行成功，比如重试机制</li>
 </ul>
-<img src="/2024/06/14/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/image-20240630195541206.png" srcset="/img/loading.gif" lazyload alt="image-20240630195541206" style="zoom:67%;">
+<img src="/2024/06/14/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/image-20240630195541206.png" alt="image-20240630195541206" style="zoom:67%;">
 
 <br>
 
 
 
 <p>示例代码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SagaTransaction</span> &#123;<br>    <span class="hljs-keyword">private</span> List&lt;TransactionStep&gt; steps; <span class="hljs-comment">// 事务步骤列表</span><br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">SagaTransaction</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-built_in">this</span>.steps = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;(); <span class="hljs-comment">// 初始化事务步骤列表</span><br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">addStep</span><span class="hljs-params">(TransactionStep step)</span> &#123;<br>        steps.add(step); <span class="hljs-comment">// 添加事务步骤</span><br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">execute</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">for</span> (TransactionStep step : steps) &#123;<br>            <span class="hljs-keyword">try</span> &#123;<br>                step.execute(); <span class="hljs-comment">// 执行每个事务步骤</span><br>            &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>                step.rollback(); <span class="hljs-comment">// 如果执行失败，那么回滚事务</span><br>                <span class="hljs-keyword">break</span>;<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SagaTransaction</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> List&lt;TransactionStep&gt; steps; <span class="comment">// 事务步骤列表</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">SagaTransaction</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.steps = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;(); <span class="comment">// 初始化事务步骤列表</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addStep</span><span class="params">(TransactionStep step)</span> &#123;</span><br><span class="line">        steps.add(step); <span class="comment">// 添加事务步骤</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">execute</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">for</span> (TransactionStep step : steps) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                step.execute(); <span class="comment">// 执行每个事务步骤</span></span><br><span class="line">            &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                step.rollback(); <span class="comment">// 如果执行失败，那么回滚事务</span></span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <br>
 
@@ -432,7 +259,7 @@
 
 
 <p>示例代码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 定义消息表的数据结构</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Message</span> &#123;<br>    <span class="hljs-keyword">private</span> String id; <span class="hljs-comment">// 消息的唯一标识</span><br>    <span class="hljs-keyword">private</span> String content; <span class="hljs-comment">// 消息的内容</span><br>    <span class="hljs-keyword">private</span> String status; <span class="hljs-comment">// 消息的状态</span><br>    <span class="hljs-keyword">private</span> Date createTime; <span class="hljs-comment">// 消息的创建时间</span><br>    <span class="hljs-keyword">private</span> Date updateTime; <span class="hljs-comment">// 消息的更新时间</span><br>&#125;<br><br><span class="hljs-comment">// 在业务操作中，将消息记录插入本地消息表</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">BusinessService</span> &#123;<br>    <span class="hljs-meta">@Transactional</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">doBusinessOperation</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-comment">// 执行业务操作...</span><br><br>        <span class="hljs-comment">// 创建消息记录</span><br>        <span class="hljs-type">Message</span> <span class="hljs-variable">message</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Message</span>();<br>        message.setId(generateUniqueId());<br>        message.setContent(generateMessageContent());<br>        message.setStatus(<span class="hljs-string">&quot;NEW&quot;</span>);<br>        message.setCreateTime(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>());<br>        message.setUpdateTime(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>());<br><br>        <span class="hljs-comment">// 将消息记录插入本地消息表</span><br>        messageTable.insert(message);<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// 消息调度器，用于异步发送消息</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MessageScheduler</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">sendMessage</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-comment">// 从本地消息表中获取未发送的消息</span><br>        List&lt;Message&gt; messages = messageTable.getUnsentMessages();<br><br>        <span class="hljs-keyword">for</span> (Message message : messages) &#123;<br>            <span class="hljs-comment">// 将消息发送到消息队列</span><br>            messageQueue.send(message);<br><br>            <span class="hljs-comment">// 更新消息的状态为已发送</span><br>            message.setStatus(<span class="hljs-string">&quot;SENT&quot;</span>);<br>            message.setUpdateTime(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>());<br>            messageTable.update(message);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义消息表的数据结构</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Message</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String id; <span class="comment">// 消息的唯一标识</span></span><br><span class="line">    <span class="keyword">private</span> String content; <span class="comment">// 消息的内容</span></span><br><span class="line">    <span class="keyword">private</span> String status; <span class="comment">// 消息的状态</span></span><br><span class="line">    <span class="keyword">private</span> Date createTime; <span class="comment">// 消息的创建时间</span></span><br><span class="line">    <span class="keyword">private</span> Date updateTime; <span class="comment">// 消息的更新时间</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在业务操作中，将消息记录插入本地消息表</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BusinessService</span> &#123;</span><br><span class="line">    <span class="meta">@Transactional</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">doBusinessOperation</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 执行业务操作...</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建消息记录</span></span><br><span class="line">        <span class="type">Message</span> <span class="variable">message</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Message</span>();</span><br><span class="line">        message.setId(generateUniqueId());</span><br><span class="line">        message.setContent(generateMessageContent());</span><br><span class="line">        message.setStatus(<span class="string">&quot;NEW&quot;</span>);</span><br><span class="line">        message.setCreateTime(<span class="keyword">new</span> <span class="title class_">Date</span>());</span><br><span class="line">        message.setUpdateTime(<span class="keyword">new</span> <span class="title class_">Date</span>());</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 将消息记录插入本地消息表</span></span><br><span class="line">        messageTable.insert(message);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 消息调度器，用于异步发送消息</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MessageScheduler</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">sendMessage</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 从本地消息表中获取未发送的消息</span></span><br><span class="line">        List&lt;Message&gt; messages = messageTable.getUnsentMessages();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (Message message : messages) &#123;</span><br><span class="line">            <span class="comment">// 将消息发送到消息队列</span></span><br><span class="line">            messageQueue.send(message);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 更新消息的状态为已发送</span></span><br><span class="line">            message.setStatus(<span class="string">&quot;SENT&quot;</span>);</span><br><span class="line">            message.setUpdateTime(<span class="keyword">new</span> <span class="title class_">Date</span>());</span><br><span class="line">            messageTable.update(message);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <br>
 
@@ -512,365 +339,155 @@
 <p><a target="_blank" rel="noopener" href="http://t.csdnimg.cn/NCqW7">http://t.csdnimg.cn/NCqW7</a></p>
 <p><a target="_blank" rel="noopener" href="http://t.csdnimg.cn/Ac2LS">http://t.csdnimg.cn/Ac2LS</a></p>
 
-                
-              </div>
-            
-            <hr/>
-            <div>
-              <div class="post-metas my-3">
-  
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
       
-
-<span class="category-chains">
-  
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://lzhengjy.github.io/2024/06/14/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" data-id="clywa1f4p002gecve0jyefvq2" data-title="分布式事务的解决方案" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
   
     
-      <span class="category-chain">
+<nav id="article-nav">
+  
+    <a href="/2024/06/20/%E9%80%9A%E8%BF%87JWT%E5%AE%9E%E7%94%9F%E6%88%90Token/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
         
-  <a href="/categories/%E6%8A%80%E6%9C%AF%E7%BB%8F%E9%AA%8C/" class="category-chain-item">技术经验</a>
+          通过JWT实生成Token
+        
+      </div>
+    </a>
   
   
+    <a href="/2024/06/10/%E5%BB%B6%E6%97%B6%E9%98%9F%E5%88%97/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">延时队列</div>
+    </a>
+  
+</nav>
 
-      </span>
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
     
-  
-</span>
-
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JVM%E7%AF%87/">JVM篇</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E7%BB%8F%E9%AA%8C/">技术经验</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A1%86%E6%9E%B6%E5%92%8C%E4%B8%AD%E9%97%B4%E4%BB%B6/">框架和中间件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95%E7%AF%87/">面试篇</a></li></ul>
     </div>
-  
-  
-</div>
-
-
-              
-  
-
-  <div class="license-box my-3">
-    <div class="license-title">
-      <div>分布式事务的解决方案</div>
-      <div>https://lzhengjy.github.io/2024/06/14/分布式事务的解决方案/</div>
-    </div>
-    <div class="license-meta">
-      
-        <div class="license-meta-item">
-          <div>作者</div>
-          <div>Zheng</div>
-        </div>
-      
-      
-        <div class="license-meta-item license-meta-date">
-          <div>发布于</div>
-          <div>2024年6月14日</div>
-        </div>
-      
-      
-      
-        <div class="license-meta-item">
-          <div>许可协议</div>
-          <div>
-            
-              
-              
-                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
-                    <i class="iconfont icon-by"></i>
-                  </span>
-                </a>
-              
-            
-          </div>
-        </div>
-      
-    </div>
-    <div class="license-icon iconfont"></div>
   </div>
 
 
-
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2024/06/20/%E9%80%9A%E8%BF%87JWT%E5%AE%9E%E7%94%9F%E6%88%90Token/" title="通过JWT实生成Token">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">通过JWT实生成Token</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2024/06/10/%E5%BB%B6%E6%97%B6%E9%98%9F%E5%88%97/" title="延时队列">
-                        <span class="hidden-mobile">延时队列</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
-            </div>
-
-            
-          </article>
-        </div>
-      </div>
-    </div>
-
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header">
-    <i class="iconfont icon-list"></i>
-    <span>目录</span>
-  </p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
-
-
-
-  </aside>
-
-
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/" rel="tag">JVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kafka/" rel="tag">Kafka</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lambda/" rel="tag">Lambda</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mybatis/" rel="tag">Mybatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MybatisPlus/" rel="tag">MybatisPlus</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RabbitMQ/" rel="tag">RabbitMQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot3/" rel="tag">SpringBoot3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringCloud/" rel="tag">SpringCloud</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/excel/" rel="tag">excel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/" rel="tag">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" rel="tag">多线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/" rel="tag">权限管理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9B%86%E5%90%88/" rel="tag">集合</a></li></ul>
     </div>
   </div>
-</div>
-
-
-
 
 
   
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
     
-
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
-
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Kafka/" style="font-size: 10px;">Kafka</a> <a href="/tags/Lambda/" style="font-size: 10px;">Lambda</a> <a href="/tags/MySQL/" style="font-size: 13.33px;">MySQL</a> <a href="/tags/Mybatis/" style="font-size: 10px;">Mybatis</a> <a href="/tags/MybatisPlus/" style="font-size: 10px;">MybatisPlus</a> <a href="/tags/RabbitMQ/" style="font-size: 13.33px;">RabbitMQ</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/SpringBoot3/" style="font-size: 10px;">SpringBoot3</a> <a href="/tags/SpringCloud/" style="font-size: 10px;">SpringCloud</a> <a href="/tags/excel/" style="font-size: 10px;">excel</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/redis/" style="font-size: 16.67px;">redis</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 13.33px;">前端</a> <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 10px;">多线程</a> <a href="/tags/%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/" style="font-size: 10px;">权限管理</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">设计模式</a> <a href="/tags/%E9%9B%86%E5%90%88/" style="font-size: 10px;">集合</a>
     </div>
   </div>
-</div>
 
-    
-
-    
-  </main>
-
-  <footer>
-    <div class="footer-inner">
   
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">七月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">六月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">五月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">四月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">二月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">一月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">十二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">十一月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">十月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">九月 2023</a></li></ul>
     </div>
+  </div>
+
+
   
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/07/19/xxl-job/">xxl-job</a>
+          </li>
+        
+          <li>
+            <a href="/2024/07/01/ElasticSearch/">ElasticSearch</a>
+          </li>
+        
+          <li>
+            <a href="/2024/06/20/%E9%80%9A%E8%BF%87JWT%E5%AE%9E%E7%94%9F%E6%88%90Token/">通过JWT实生成Token</a>
+          </li>
+        
+          <li>
+            <a href="/2024/06/14/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">分布式事务的解决方案</a>
+          </li>
+        
+          <li>
+            <a href="/2024/06/10/%E5%BB%B6%E6%97%B6%E9%98%9F%E5%88%97/">延时队列</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
   
+</aside>
+        
+      </div>
+      <footer id="footer">
   
-  
-</div>
-
-  </footer>
-
-  <!-- Scripts -->
-  
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
-    })
-  </script>
-
-
-<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
-
-
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var subtitle = document.getElementById('subtitle');
-      if (!subtitle || !typing) {
-        return;
-      }
-      var text = subtitle.getAttribute('data-typed-text');
+  <div class="outer">
+    <div id="footer-info" class="inner">
       
-        typing(text);
-      
-    })(window, document);
-  </script>
+      &copy; 2024 Zheng<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
 
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
 
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
-  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
 
 
 
 
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
-    var toc = jQuery('#toc');
-    if (toc.length === 0 || !window.tocbot) { return; }
-    var boardCtn = jQuery('#board-ctn');
-    var boardTop = boardCtn.offset().top;
-
-    window.tocbot.init(Object.assign({
-      tocSelector     : '#toc-body',
-      contentSelector : '.markdown-body',
-      linkClass       : 'tocbot-link',
-      activeLinkClass : 'tocbot-active-link',
-      listClass       : 'tocbot-list',
-      isCollapsedClass: 'tocbot-is-collapsed',
-      collapsibleClass: 'tocbot-is-collapsible',
-      scrollSmooth    : true,
-      includeTitleTags: true,
-      headingsOffset  : -boardTop,
-    }, CONFIG.toc));
-    if (toc.find('.toc-list-item').length > 0) {
-      toc.css('visibility', 'visible');
-    }
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('tocbot' in window) {
-        tocbot.refresh();
-        var toc = jQuery('#toc');
-        if (toc.length === 0 || !tocbot) {
-          return;
-        }
-        if (toc.find('.toc-list-item').length > 0) {
-          toc.css('visibility', 'visible');
-        }
-      }
-    });
-  });
-</script>
-
-
-  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
-
-  <script>Fluid.plugins.codeWidget();</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
-    window.anchors.options = {
-      placement: CONFIG.anchorjs.placement,
-      visible  : CONFIG.anchorjs.visible
-    };
-    if (CONFIG.anchorjs.icon) {
-      window.anchors.options.icon = CONFIG.anchorjs.icon;
-    }
-    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-    var res = [];
-    for (var item of el) {
-      res.push('.markdown-body > ' + item.trim());
-    }
-    if (CONFIG.anchorjs.placement === 'left') {
-      window.anchors.options.class = 'anchorjs-link-left';
-    }
-    window.anchors.add(res.join(', '));
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('anchors' in window) {
-        anchors.removeAll();
-        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-        var res = [];
-        for (var item of el) {
-          res.push('.markdown-body > ' + item.trim());
-        }
-        if (CONFIG.anchorjs.placement === 'left') {
-          anchors.options.class = 'anchorjs-link-left';
-        }
-        anchors.add(res.join(', '));
-      }
-    });
-  });
-</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
-    Fluid.plugins.fancyBox();
-  });
-</script>
-
-
-  <script>Fluid.plugins.imageCaption();</script>
-
-  <script  src="/js/local-search.js" ></script>
+<script src="/js/script.js"></script>
 
 
 
 
 
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
-
-
-  
-
-  <noscript>
-    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
-  </noscript>
+  </div>
 </body>
 </html>
