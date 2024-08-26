@@ -1,0 +1,812 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zheng">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="常见解决方案在分布式系统中，生成全局唯一ID是非常重要的，这里通过几种解决方案  UUID：(Universally Unique Identifier)是基于当前时间、计数器（counter）和硬件标识（通常为无线网卡的MAC地址）等数据计算生成的。它包含32个16进制数字，以连字号分为五段，形式为8-4-4-4-12的36个字符，可以生成全球唯一的编码并且性能高效。但是，UUID在实际应用过程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="分布式ID">
+<meta property="og:url" content="https://lzhengjy.github.io/2024/07/10/%E5%88%86%E5%B8%83%E5%BC%8FID/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="常见解决方案在分布式系统中，生成全局唯一ID是非常重要的，这里通过几种解决方案  UUID：(Universally Unique Identifier)是基于当前时间、计数器（counter）和硬件标识（通常为无线网卡的MAC地址）等数据计算生成的。它包含32个16进制数字，以连字号分为五段，形式为8-4-4-4-12的36个字符，可以生成全球唯一的编码并且性能高效。但是，UUID在实际应用过程">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lzhengjy.github.io/2024/07/10/%E5%88%86%E5%B8%83%E5%BC%8FID/image-20240729172731107.png">
+<meta property="article:published_time" content="2024-07-10T00:59:04.000Z">
+<meta property="article:modified_time" content="2024-07-29T09:41:35.887Z">
+<meta property="article:author" content="Zheng">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lzhengjy.github.io/2024/07/10/%E5%88%86%E5%B8%83%E5%BC%8FID/image-20240729172731107.png">
+  
+  
+  
+  <title>分布式ID - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lzhengjy.github.io","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zheng</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="分布式ID"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-07-10 08:59" pubdate>
+          2024年7月10日 早上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          16 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">分布式ID</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h5 id="常见解决方案"><a href="#常见解决方案" class="headerlink" title="常见解决方案"></a>常见解决方案</h5><p>在分布式系统中，生成全局唯一ID是非常重要的，这里通过几种解决方案</p>
+<ul>
+<li><strong>UUID</strong>：(Universally Unique Identifier)是基于当前时间、计数器（counter）和硬件标识（通常为无线网卡的MAC地址）等数据计算生成的。它包含32个16进制数字，以连字号分为五段，形式为8-4-4-4-12的36个字符，可以生成全球唯一的编码并且性能高效。但是，UUID在实际应用过程中一般不采用，原因包括存储成本高、信息不安全以及不符合MySQL主键要求</li>
+<li><strong>数据库自增ID</strong>：利用Mysql的特性ID自增，可以达到数据唯一标识，但是分库分表后只能保证一个表中的ID的唯一，而不能保证整体的ID唯一。为了避免这种情况，我们有以下两种方式解决该问题：主键表和ID自增步长设置</li>
+<li><strong>号段模式</strong>：号段模式是当下分布式ID生成器的主流实现方式之一。其原理如下：号段模式每次从数据库取出一个号段范围，加载到服务内存中。业务获取时ID直接在这个范围递增取值即可。等这批号段ID用完，再次向数据库申请新号段，对max_id字段做一次update操作，新的号段范围是 (max_id ,max_id +step)。由于多业务端可能同时操作，所以采用版本号version乐观锁方式更新</li>
+<li><strong>Redis INCR</strong>：基于全局唯一ID的特性，我们可以通过Redis的INCR命令来生成全局唯一ID</li>
+<li><strong>雪花算法</strong>：Snowflake 中文的意思是雪花，所以常被称为雪花算法，是 Twitter 开源的分布式 ID 生成算法。Twitter 雪花算法生成后是一个 64bit 的 long 型的数值，组成部分引入了时间戳，基本保持了自增</li>
+</ul>
+<br>
+
+
+
+
+
+<h5 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h5><table>
+<thead>
+<tr>
+<th>优点</th>
+<th>缺点</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>UUID</td>
+<td>代码实现简单、没有网络开销，性能好</td>
+<td>占用空间大、无序</td>
+</tr>
+<tr>
+<td>数据库自增ID</td>
+<td>利用数据库系统的功能实现，成本小、ID自增有序</td>
+<td>并发性能受Mysql限制、强依赖DB，当DB异常时整个系统不可用，致命</td>
+</tr>
+<tr>
+<td>Redis INCR</td>
+<td>性能优于数据库、ID有序</td>
+<td>解决单点问题带来的数据一致性等问题使得复杂度提高</td>
+</tr>
+<tr>
+<td>雪花算法</td>
+<td>不依赖数据库等第三方系统，性能也是非高、可以根据自身业务特性分配bit位，非常灵活</td>
+<td>强依赖机器时钟，如果机器上时钟回拨，会导致发号重复或者服务会处于不可用状态。</td>
+</tr>
+<tr>
+<td>号段模式</td>
+<td>数据库的压力小</td>
+<td>单点故障ID不连续</td>
+</tr>
+</tbody></table>
+<br>
+
+
+
+
+
+<h5 id="UUID"><a href="#UUID" class="headerlink" title="UUID"></a>UUID</h5><p>UUID是一个长度为128位的<code>标志符</code>，能够在时间和空间上确保其唯一性。可让分布式系统可以不借助中心节点，就可以生成唯一标识， 比如唯一的ID进行日志记录</p>
+<p>由于UUID是一个128位的长的标志符，为了便于阅读和显示，通常会将这个大整数转换成32（不包含连接符）个<code>十六进制字符</code>组成的字符串形式</p>
+<br>
+
+
+
+<p><strong>结构</strong></p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>hexOctet（字节）</th>
+<th>位置</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>time_low</td>
+<td>4</td>
+<td>0-3</td>
+<td><strong>时间戳</strong> 的低位部分</td>
+</tr>
+<tr>
+<td>time_mid</td>
+<td>2</td>
+<td>4-5</td>
+<td>时间戳的中间部分</td>
+</tr>
+<tr>
+<td><strong>time_hi_and_version</strong></td>
+<td>2</td>
+<td>6-7</td>
+<td>时间戳高位部分与 <strong>版本</strong> 字段，其中12位代表时间戳的高12位，<strong>4位则用来标识UUID的版本号</strong></td>
+</tr>
+<tr>
+<td><strong>clock_seq_hi_and_reserved</strong></td>
+<td>1</td>
+<td>8</td>
+<td><strong>时钟序列</strong> 高位与 <strong>保留位</strong></td>
+</tr>
+<tr>
+<td>clock_seq_low</td>
+<td>1</td>
+<td>9</td>
+<td>时钟序列低位</td>
+</tr>
+<tr>
+<td>node</td>
+<td>6</td>
+<td>10-15</td>
+<td><strong>节点标识符</strong>，提供空间唯一性，通常基于MAC地址或随机数生成，以确保全局范围内的唯一性</td>
+</tr>
+</tbody></table>
+<p>UUID是通过时间和空间两层上来保证其唯一性</p>
+<ul>
+<li>时间：时间戳+时钟时序</li>
+<li>空间：节点标标志符</li>
+</ul>
+<br>
+
+
+
+
+
+<h5 id="雪花算法"><a href="#雪花算法" class="headerlink" title="雪花算法"></a>雪花算法</h5><p><strong>优点</strong></p>
+<ul>
+<li>高性能高可用：生成时不依赖于数据库，完全在内存中生成</li>
+<li>高吞吐：每秒钟能生成数百万的自增 ID</li>
+<li>ID 自增：存入数据库中，索引效率高</li>
+</ul>
+<br>
+
+
+
+<p><strong>缺点</strong></p>
+<ul>
+<li>依赖与系统时间的一致性，如果系统时间被回调，或者改变，可能会造成 ID 冲突或者重复</li>
+</ul>
+<br>
+
+
+
+<p><strong>组成</strong></p>
+<img src="/2024/07/10/%E5%88%86%E5%B8%83%E5%BC%8FID/image-20240729172731107.png" srcset="/img/loading.gif" lazyload alt="image-20240729172731107" style="zoom:67%;">
+
+<ul>
+<li><strong>不使用</strong>：1bit，最高位是符号位，0 表示正，1 表示负，固定为 0</li>
+<li><strong>时间戳</strong>：41bit，毫秒级的时间戳（41 位的长度可以使用 69 年）</li>
+<li><strong>标识位</strong>：5bit 数据中心 ID，5bit 工作机器 ID，两个标识位组合起来最多可以支持部署 1024 个节点</li>
+<li><strong>序列号</strong>：12bit 递增序列号，表示节点毫秒内生成重复，通过序列号表示唯一，12bit 每毫秒可产生 4096 个 ID。<ul>
+<li>通过序列号 1 毫秒可以产生 4096 个不重复 ID，则 1 秒可以生成 4096 * 1000 &#x3D; 409w ID</li>
+</ul>
+</li>
+</ul>
+<p>默认的雪花算法是 64 bit，具体的长度可以自行配置。如果希望运行更久，<strong>增加时间戳的位数</strong>；如果需要支持更多节点部署，<strong>增加标识位长度</strong>；如果并发很高，<strong>增加序列号位数</strong></p>
+<br>
+
+
+
+<p><strong>生成的ID重复时的条件</strong></p>
+<ol>
+<li>服务通过集群的方式部署，其中部分机器标识位一致。</li>
+<li>业务存在一定的并发量，没有并发量无法触发重复问题。</li>
+<li>生成 ID 的时机：同一毫秒下的序列号一致</li>
+</ol>
+<br>
+
+
+
+
+
+
+
+<hr>
+<p>参考文章：</p>
+<p><a target="_blank" rel="noopener" href="https://developer.aliyun.com/article/1310096">https://developer.aliyun.com/article/1310096</a></p>
+<p><a target="_blank" rel="noopener" href="http://t.csdnimg.cn/R4sJp">http://t.csdnimg.cn/R4sJp</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%8A%80%E6%9C%AF%E7%BB%8F%E9%AA%8C/" class="category-chain-item">技术经验</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>分布式ID</div>
+      <div>https://lzhengjy.github.io/2024/07/10/分布式ID/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zheng</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年7月10日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/07/13/ElasticSearch/" title="ElasticSearch">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">ElasticSearch</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/20/%E9%80%9A%E8%BF%87JWT%E5%AE%9E%E7%94%9F%E6%88%90Token/" title="通过JWT实生成Token">
+                        <span class="hidden-mobile">通过JWT实生成Token</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
