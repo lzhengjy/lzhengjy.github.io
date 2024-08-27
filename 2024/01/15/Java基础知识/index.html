@@ -25,10 +25,12 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="集合ArrayList保证线程安全的方法在Java中，ArrayList本身并不是线程安全的，如果多个线程同时修改同一个ArrayList实例，可以会导致数据不一致或者抛出异常，我们可以通过下面的方法来解决这个问题     ArrayList线程不安全产生的原因 12345public boolean add(E e) &amp;#123;    ensureCapacityInternal(size +">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lzhengjy.github.io/2024/01/15/Java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20240827104507440.png">
 <meta property="article:published_time" content="2024-01-15T01:25:36.000Z">
-<meta property="article:modified_time" content="2024-08-26T07:49:52.018Z">
+<meta property="article:modified_time" content="2024-08-27T09:11:39.166Z">
 <meta property="article:author" content="Zheng">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lzhengjy.github.io/2024/01/15/Java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20240827104507440.png">
   
   
   
@@ -221,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.5k 字
+          12k 字
         
       </span>
     
@@ -232,7 +234,7 @@
         
         
         
-          46 分钟
+          101 分钟
         
       </span>
     
@@ -607,7 +609,406 @@
 
 
 <hr>
+<h4 id="对象比较为什么重写hashCode和equals？"><a href="#对象比较为什么重写hashCode和equals？" class="headerlink" title="对象比较为什么重写hashCode和equals？"></a>对象比较为什么重写hashCode和equals？</h4><ul>
+<li>重写equals方法时需要重写hashCode方法，主要是针对Map、Set等集合类型的使用；<ul>
+<li>a: Map、Set等集合类型存放的对象必须是唯一的；</li>
+<li>b: 集合类判断两个对象是否相等，是先判断HashCode是否相等，如果HashCode返回TRUE，还要再判断equals返回值是否ture，只有两者都返回ture，才认为该两个对象是相等的。</li>
+</ul>
+</li>
+</ul>
+<br>
 
+
+
+
+
+
+
+<hr>
+<h3 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h3><h4 id="什么地方会用到多线程"><a href="#什么地方会用到多线程" class="headerlink" title="什么地方会用到多线程"></a>什么地方会用到多线程</h4><ul>
+<li>定时任务：定时处理数据进行统计等</li>
+<li>异步处理：发邮件， 记录日志， 发短信等。比如注册成功后发激活邮件</li>
+<li>批量处理，缩短响应时间</li>
+</ul>
+<br>
+
+
+
+
+
+<hr>
+<h4 id="什么是线程池"><a href="#什么是线程池" class="headerlink" title="什么是线程池"></a>什么是线程池</h4><p>线程池是一种管理线程的机制，它创建了一个线程的集合，这些线程可以被用来执行任务。线程池可以减少因频繁创建和销毁线程而产生的开销，提高资源利用率和应用程序的响应速度，线程池有下面的这些特性</p>
+<ul>
+<li><strong>重用线程</strong>：线程池中的线程在执行完一个任务后不会销毁，而是可以被重新用来执行其他任务</li>
+<li><strong>控制并发</strong>：线程池可以限制同时运行的线程数量，防止系统因创建过多线程而耗尽资源。</li>
+<li><strong>提高响应速度</strong>：由于线程池中的线程是预先创建的，因此可以立即执行任务，减少了创建线程所需的时间</li>
+<li><strong>更好的资源管理</strong>：线程池可以对线程的生命周期进行管理，包括线程的创建、销毁和复用</li>
+<li><strong>任务调度</strong>：线程池可以与任务队列配合使用，将任务排队并按顺序或优先级执行</li>
+<li><strong>灵活性</strong>：线程池可以根据需要配置不同的参数，如线程数量、任务队列的大小、线程的存活时间等</li>
+</ul>
+<br>
+
+
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.concurrent.ExecutorService;<br><span class="hljs-keyword">import</span> java.util.concurrent.Executors;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ThreadPoolExample</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-comment">// 创建一个固定大小的线程池</span><br>        <span class="hljs-type">ExecutorService</span> <span class="hljs-variable">executor</span> <span class="hljs-operator">=</span> Executors.newFixedThreadPool(<span class="hljs-number">4</span>);<br><br>        <span class="hljs-comment">// 提交任务给线程池执行</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) &#123;<br>            <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">taskNumber</span> <span class="hljs-operator">=</span> i;<br>            executor.submit(() -&gt; &#123;<br>                System.out.println(<span class="hljs-string">&quot;执行任务 &quot;</span> + taskNumber + <span class="hljs-string">&quot; 由线程 &quot;</span> + Thread.currentThread().getName());<br>            &#125;);<br>        &#125;<br><br>        <span class="hljs-comment">// 关闭线程池，不再接受新任务</span><br>        executor.shutdown();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<img src="/2024/01/15/Java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20240827104507440.png" srcset="/img/loading.gif" lazyload alt="image-20240827104507440" style="zoom:67%;">
+
+<br>
+
+
+
+
+
+<hr>
+<h4 id="线程池的优缺点"><a href="#线程池的优缺点" class="headerlink" title="线程池的优缺点"></a>线程池的优缺点</h4><p><strong>优点：</strong></p>
+<ul>
+<li><strong>资源节约</strong>：通过重用线程，减少了创建和销毁线程的开销，节省了系统资源</li>
+<li><strong>提高响应速度</strong>：线程池中的线程是预先创建的，可以立即执行任务，减少了线程创建的延迟。</li>
+<li><strong>控制并发级别</strong>：线程池可以限制同时运行的线程数量，避免因线程过多导致系统过载。</li>
+<li><strong>提高资源利用率</strong>：通过合理配置线程池参数，可以更高效地利用系统资源。</li>
+<li><strong>简化线程管理</strong>：线程池提供了统一的线程管理机制，简化了线程的创建和销毁过程。</li>
+<li><strong>可扩展性</strong>：线程池可以根据系统需求进行扩展，适应不同的工作负载。</li>
+<li><strong>任务调度</strong>：线程池可以与任务队列结合使用，实现任务的排队和优先级调度。</li>
+</ul>
+<p><strong>缺点：</strong></p>
+<ul>
+<li><strong>资源分配不均</strong>：如果线程池中的线程数量设置不当，可能会导致某些线程过载，而其他线程空闲。</li>
+<li><strong>死锁风险</strong>：线程池中的线程可能会因为等待资源而相互阻塞，导致死锁。</li>
+<li><strong>任务执行顺序不确定</strong>：线程池中的线程可能会以非预期的顺序执行任务，这可能会影响到任务的执行结果。</li>
+<li><strong>资源限制</strong>：线程池的线程数量限制可能会导致某些任务长时间等待执行，影响应用程序的响应性。</li>
+<li><strong>内存占用</strong>：线程池中的线程会占用系统内存，如果线程数量过多，可能会增加内存使用。</li>
+<li><strong>管理复杂性</strong>：虽然线程池简化了线程管理，但在配置和管理线程池时仍然需要考虑许多因素，如线程数量、任务队列大小等。</li>
+<li><strong>错误传播</strong>：线程池中的一个线程发生错误可能会影响其他线程或整个应用程序的稳定性。</li>
+</ul>
+<br>
+
+
+
+
+
+<hr>
+<h4 id="线程池的参数"><a href="#线程池的参数" class="headerlink" title="线程池的参数"></a>线程池的参数</h4><ul>
+<li><strong>Core Pool Size 核心线程数</strong>：线程池中允许的最小线程数。即使工作队列为空，这些线程也会被保留。</li>
+<li><strong>Maximum Pool Size 最大线程数</strong>：线程池中允许的最大线程数。如果队列满了，并且还需要更多的线程来处理任务，线程池会尝试创建新的线程，直到达到这个限制。</li>
+<li><strong>Work Queue 工作队列</strong>：一个阻塞队列，用于存储等待执行的任务。如果线程池中的线程都忙，新提交的任务将被放入这个队列中等待。</li>
+<li><strong>Keep-Alive Time 线程存活时间</strong>：当线程池中的线程数大于核心线程数时，如果这些多余的线程在一定时间内没有任务执行，它们将被终止。这个参数定义了这个时间间隔。</li>
+<li><strong>Thread Factory 线程工厂</strong>：用于创建新线程的工厂。可以自定义线程的名称、优先级等属性。</li>
+<li><strong>Rejected Execution Handler 拒绝策略</strong>：当任务太多，工作队列已满，且线程池中的线程数已达到最大值时，新提交的任务将被拒绝。拒绝策略定义了如何处理这些被拒绝的任务。</li>
+<li><strong>Task Executor 任务执行器</strong>：负责执行提交给线程池的任务。</li>
+<li><strong>Thread Priority 线程优先级</strong>：线程的优先级，影响线程调度的优先顺序。</li>
+<li><strong>Thread Name Prefix 线程名称前缀</strong>：线程的名称前缀，有助于在调试时识别线程池中的线程。</li>
+<li><strong>Allow Core Thread Timeout 允许核心线程超时</strong>：决定是否允许核心线程超时，如果设置为<code>true</code>，则核心线程在空闲时也会被终止。</li>
+</ul>
+<br>
+
+
+
+
+
+<hr>
+<h4 id="死锁产生的条件"><a href="#死锁产生的条件" class="headerlink" title="死锁产生的条件"></a>死锁产生的条件</h4><p><strong>产生原因</strong></p>
+<p>死锁是指两个或多个进程在执行过程中，因争夺资源而造成的一种僵局。当每个进程都持有一定的资源并等待其他进程释放它们所需的资源时，如果这些资源都被其他进程占有且不释放，那么所有进程都将无法继续执行。死锁产生的条件可以通过以下几个经典的条件来描述，这些条件被称为死锁的必要条件：</p>
+<ul>
+<li><strong>互斥条件（Mutual Exclusion）</strong>：系统中的资源分为两类，可重复利用的资源和不可重复利用的资源。死锁中的资源通常是不可重复利用的，即一次只能由一个进程使用。</li>
+<li><strong>占有和等待条件（Hold and Wait）</strong>：进程至少持有一个资源，并且正在等待获取其他进程持有的资源。</li>
+<li><strong>不可剥夺条件（No Preemption）</strong>：已经分配给一个进程的资源，在未使用完之前，不能被强行夺走，只能由该进程自己释放。</li>
+<li><strong>循环等待条件（Circular Wait）</strong>：存在一种进程资源的循环等待关系，即进程间形成了一个头尾相接的循环链，每个进程都在等待下一个进程所占有的资源。</li>
+</ul>
+<p>只有当这四个条件同时满足时，死锁才会发生。如果系统中的任何进程不满足这四个条件之一，就可以避免死锁的发生</p>
+<br>
+
+
+
+<p><strong>破坏死锁产生的条件</strong></p>
+<p>确保资源请求的一次性和顺序性，允许资源的临时释放或抢占，采用超时机制和锁排序，以及实现死锁检测和恢复机制。通过这些方法，可以破坏死锁产生的四个必要条件之一或多个，从而有效预防和解决多线程或多进程环境中的死锁问题</p>
+<br>
+
+
+
+
+
+<hr>
+<h4 id="什么时候触发最大线程条件"><a href="#什么时候触发最大线程条件" class="headerlink" title="什么时候触发最大线程条件"></a>什么时候触发最大线程条件</h4><p>在线程池中，触发最大线程条件的情况通常是指当线程池中的线程数量达到了其最大容量，即<code>maximumPoolSize</code>参数所设定的值。以下是一些触发最大线程条件的具体场景：</p>
+<ol>
+<li><strong>高负载情况</strong>：当线程池中的所有核心线程（<code>corePoolSize</code>）都在忙碌状态，并且工作队列（work queue）已满时，提交新任务会导致线程池尝试创建新的线程，直到达到<code>maximumPoolSize</code></li>
+<li><strong>任务提交速度超过处理速度</strong>：如果任务被提交到线程池的速度超过了线程池处理任务的速度，工作队列会逐渐填满，当填满后，线程池会开始创建新的线程，直到达到最大线程数</li>
+<li><strong>长时间运行的任务</strong>：如果线程池中的线程都卡在长时间运行的任务上，而新的短期任务持续提交，这可能导致需要更多的线程来处理这些新任务，直到达到最大线程数</li>
+<li><strong>资源限制</strong>：在某些情况下，系统资源（如内存或可创建的线程数量）的限制可能会间接导致触发最大线程条件</li>
+<li><strong>饱和策略</strong>：线程池的饱和策略（<code>RejectedExecutionHandler</code>）定义了当任务太多而不能同时执行时，如何处理这些任务。如果饱和策略允许线程池增长，那么在高负载情况下可能会达到最大线程数</li>
+</ol>
+<br>
+
+
+
+
+
+<hr>
+<h4 id="线程池拒绝策略有哪些"><a href="#线程池拒绝策略有哪些" class="headerlink" title="线程池拒绝策略有哪些"></a>线程池拒绝策略有哪些</h4><p>在Java的<code>ThreadPoolExecutor</code>中，当线程池达到最大线程数时，如果还有新的任务提交，将根据设置的饱和策略来处理这些任务。饱和策略可以是：</p>
+<ul>
+<li><strong>AbortPolicy</strong>：抛出<code>RejectedExecutionException</code>来拒绝新任务的处理</li>
+<li><strong>CallerRunsPolicy</strong>：由调用线程（提交任务的线程）运行该任务</li>
+<li><strong>DiscardPolicy</strong>：静默地丢弃无法处理的任务</li>
+<li><strong>DiscardOldestPolicy</strong>：丢弃工作队列中等待时间最长的任务，并尝试再次提交新任务</li>
+</ul>
+<br>
+
+
+
+
+
+
+
+<hr>
+<h3 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h3><h4 id="MyISAM-和-InnoDB的区别"><a href="#MyISAM-和-InnoDB的区别" class="headerlink" title="MyISAM 和 InnoDB的区别"></a>MyISAM 和 InnoDB的区别</h4><table>
+<thead>
+<tr>
+<th align="left">特性&#x2F;引擎</th>
+<th align="left">MyISAM</th>
+<th align="left">InnoDB</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>事务支持</strong></td>
+<td align="left">不支持</td>
+<td align="left">支持ACID事务</td>
+</tr>
+<tr>
+<td align="left"><strong>锁机制</strong></td>
+<td align="left">表级锁</td>
+<td align="left">行级锁和表级锁（默认行级锁）</td>
+</tr>
+<tr>
+<td align="left"><strong>外键约束</strong></td>
+<td align="left">不支持</td>
+<td align="left">支持外键</td>
+</tr>
+<tr>
+<td align="left"><strong>崩溃恢复</strong></td>
+<td align="left">崩溃恢复能力较弱</td>
+<td align="left">具有崩溃恢复能力</td>
+</tr>
+<tr>
+<td align="left"><strong>索引和数据存储</strong></td>
+<td align="left">索引和数据分离</td>
+<td align="left">索引包含数据，聚簇索引</td>
+</tr>
+<tr>
+<td align="left"><strong>全文索引</strong></td>
+<td align="left">支持（MySQL 5.6之前是MyISAM的特点）</td>
+<td align="left">支持（从MySQL 5.6开始支持）</td>
+</tr>
+<tr>
+<td align="left"><strong>存储空间和性能</strong></td>
+<td align="left">使用较少存储空间，读写速度快</td>
+<td align="left">可能需要更多存储空间，提供高并发写入和数据完整性</td>
+</tr>
+<tr>
+<td align="left"><strong>自动增长列</strong></td>
+<td align="left">支持</td>
+<td align="left">支持，实现方式更高效</td>
+</tr>
+<tr>
+<td align="left"><strong>读写操作</strong></td>
+<td align="left">适合读密集型应用</td>
+<td align="left">适合写密集型应用，提供更好的并发控制</td>
+</tr>
+<tr>
+<td align="left"><strong>数据缓存</strong></td>
+<td align="left">只缓存索引</td>
+<td align="left">缓存数据和索引</td>
+</tr>
+<tr>
+<td align="left"><strong>适用场景</strong></td>
+<td align="left">读多写少，不需要事务支持的场景</td>
+<td align="left">需要事务支持、外键约束和高并发写入的场景</td>
+</tr>
+</tbody></table>
+<br>
+
+
+
+
+
+<hr>
+<h4 id="事务隔离级别"><a href="#事务隔离级别" class="headerlink" title="事务隔离级别"></a>事务隔离级别</h4><p>事务并发场景下会产生的问题</p>
+<p><strong>脏读（Dirty Read）</strong>:</p>
+<ul>
+<li>定义: 当一个事务读取到另一个事务未提交的更改时，称为脏读。这意味着如果这些更改最终没有提交，那么读取的数据将是无效的。</li>
+<li>例子: 事务A更新了某行数据但尚未提交，事务B读取了这行更新后的数据，然后事务A回滚了更改。事务B读取的数据实际上是从未存在的。</li>
+</ul>
+<p><strong>不可重复读（Nonrepeatable Read）</strong>:</p>
+<ul>
+<li>定义: 当一个事务重新执行相同的查询，但由于另一个事务的更新导致结果集发生变化时，称为不可重复读。这通常发生在读取某一行数据后，该行数据被另一个事务修改并提交。</li>
+<li>例子: 事务A读取了一个值，然后事务B更新了这个值并提交了更改。当事务A再次读取相同的数据时，得到的结果与第一次不同。</li>
+</ul>
+<p><strong>幻读（Phantom Read）</strong>:</p>
+<ul>
+<li>定义: 当一个事务重新执行相同的查询，但由于另一个事务的插入或删除导致结果集的行数发生变化时，称为幻读。幻读主要涉及集合的变更，如新增或删除多行记录。</li>
+<li>例子: 事务A执行了一个查询，统计了某个条件的记录数，然后事务B插入或删除了一些符合该条件的记录并提交了更改。当事务A再次执行相同的查询时，记录数与之前不同，尽管具体的记录行并没有变化。</li>
+</ul>
+<br>
+
+
+
+<table>
+<thead>
+<tr>
+<th align="left">隔离级别</th>
+<th align="left">脏读</th>
+<th align="left">不可重复读</th>
+<th align="left">幻读</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">读未提交（Read Uncommitted）</td>
+<td align="left">允许</td>
+<td align="left">可能发生</td>
+<td align="left">可能发生</td>
+<td align="left">事务可以读取到其他未提交事务的更改。</td>
+</tr>
+<tr>
+<td align="left">读已提交（Read Committed）</td>
+<td align="left">不允许</td>
+<td align="left">可能发生</td>
+<td align="left">可能发生</td>
+<td align="left">事务只能读取到其他事务已经提交的更改。</td>
+</tr>
+<tr>
+<td align="left">可重复读（Repeatable Read）（默认管理级别）</td>
+<td align="left">不允许</td>
+<td align="left">不允许</td>
+<td align="left">可能发生</td>
+<td align="left">在同一事务中，多次读取同一数据的结果是一致的，除非数据被自身事务修改。</td>
+</tr>
+<tr>
+<td align="left">串行化（Serializable）</td>
+<td align="left">不允许</td>
+<td align="left">不允许</td>
+<td align="left">不允许</td>
+<td align="left">最高隔离级别，事务依次顺序执行，避免了所有并发问题。</td>
+</tr>
+</tbody></table>
+<br>
+
+
+
+
+
+<hr>
+<h4 id="ACID"><a href="#ACID" class="headerlink" title="ACID"></a>ACID</h4><ul>
+<li><strong>原子性（Atomicity）</strong>:事务中的所有操作要么全部完成，要么全部不完成，不会结束在中间某个点。这意味着事务是数据库状态的不可分割的单元。如果事务中的任何操作失败，整个事务将被回滚，就像它从未被执行过一样</li>
+<li><strong>一致性（Consistency）</strong>:事务必须保证数据库从一个一致的状态转移到另一个一致的状态。一致性确保了数据库的完整性约束在事务执行前后保持一致。这意味着所有事务的结果都必须符合预定义的规则和期望</li>
+<li><strong>隔离性（Isolation）</strong>:并发执行的事务之间不会互相影响。每个事务都与其他事务隔离开来，具有独立的执行环境。隔离性可以通过不同的事务隔离级别来实现，如读未提交、读已提交、可重复读和串行化</li>
+<li><strong>持久性（Durability）</strong>:一旦事务提交，则其结果就是永久性的，即使系统发生故障也不会丢失。这意味着事务对数据库的改变在提交后会被永久保存，不会因为任何原因（如系统崩溃、电源故障等）而撤销</li>
+</ul>
+<br>
+
+
+
+
+
+<hr>
+<h4 id="数据库使用索引的优缺点"><a href="#数据库使用索引的优缺点" class="headerlink" title="数据库使用索引的优缺点"></a>数据库使用索引的优缺点</h4><p><strong>优点</strong>：</p>
+<ul>
+<li>索引大大减少了服务器需要扫描的数据量</li>
+<li>索引可以帮助服务器避免排序和临时表</li>
+<li>索引可以将随机I&#x2F;O 变为顺序I&#x2F;O</li>
+</ul>
+<br>
+
+
+
+<p><strong>缺点</strong>：</p>
+<ul>
+<li>降低了数据写入的效率<ul>
+<li>原因：当对表中的数据进行增加、删除和修改的时候，索引也要动态的维护</li>
+</ul>
+</li>
+<li>索引增加了查询优化器的选择时间<ul>
+<li>查询优化器在对一条sql语句进行分析时，会结合一系列的分析计算出一条最优的查询sql</li>
+<li>添加了索引之后，相当于是在原来的基础上，添加了对索引因素的分析，若在很多字段上创建了索引会增加这个选择的时间</li>
+</ul>
+</li>
+<li>索引占物理空间<ul>
+<li>除了数据表占数据空间之外，每一个索引还要占一定的物理空间，如果要建立聚簇索引，那么需要的空间就会更大</li>
+</ul>
+</li>
+</ul>
+<br>
+
+
+
+
+
+<hr>
+<h4 id="索引的创建原则"><a href="#索引的创建原则" class="headerlink" title="索引的创建原则"></a>索引的创建原则</h4><ol>
+<li><strong>查询条件</strong>: 为WHERE子句和JOIN条件中常用列创建索引。</li>
+<li><strong>选择性</strong>: 优先索引选择性高的列（不同值占比较高）。</li>
+<li><strong>最左前缀</strong>: 在复合索引中，保持最左列的使用。</li>
+<li><strong>索引列顺序</strong>: 根据查询条件中列的出现频率和顺序安排索引列。</li>
+<li><strong>避免过度索引</strong>: 不要为每个列创建索引，特别是小表或更新频繁的列。</li>
+<li><strong>更新频率</strong>: 考虑列的更新频率，频繁更新的列维护索引成本高。</li>
+<li><strong>覆盖索引</strong>: 创建覆盖索引以包含查询中使用的所有列。</li>
+<li><strong>避免冗余索引</strong>: 避免创建功能重复或部分重叠的索引。</li>
+<li><strong>数据类型匹配</strong>: 确保索引列的数据类型与查询条件一致。</li>
+<li><strong>监控性能</strong>: 定期监控索引使用情况和查询性能。</li>
+<li><strong>维护成本</strong>: 考虑索引在数据变更时的维护成本。</li>
+<li><strong>唯一索引</strong>: 对于保证数据唯一性的列，使用唯一索引</li>
+</ol>
+<br>
+
+
+
+
+
+<hr>
+<h4 id="索引失效的场景"><a href="#索引失效的场景" class="headerlink" title="索引失效的场景"></a>索引失效的场景</h4><ol>
+<li>违反最左前缀法则：如果索引了多列，要遵守最左前缀法则。指的是查询从索引的最左前列开始，并且不跳过索引中的列。匹配最左前缀法则，走索引。如果符合最左法则，但是出现跳跃某一列，只有最左列索引生效</li>
+<li>范围查询右边的列，不能使用索引</li>
+<li>不要在索引列上进行运算操作， 索引将失效</li>
+<li>字符串不加单引号，造成索引失效。由于，在查询时没有对字符串加单引号， MySQL的查询优化器，会自动的进行类型转换，造成索引失效</li>
+<li>以%开头的Like模糊查询，索引失效。如果仅仅是尾部模糊匹配，索引不会失效。如果是头部模糊匹配，索引失效</li>
+<li>OR 语句前后没有同时使用索引。当OR 左右查询字段只有一个是索引，该索引失效，只有当OR 左右查询字段均为索引时，才会生效</li>
+</ol>
+<br>
+
+
+
+
+
+<hr>
+<h4 id="联合索引"><a href="#联合索引" class="headerlink" title="联合索引"></a>联合索引</h4><p>联合索引（Composite Index）是一种索引类型，它允许数据库查询操作根据多个列的值来快速检索数据。联合索引可以提高查询效率，尤其是当查询条件涉及到多个列时</p>
+<p>创建联合索引时，你需要指定多个列，这些列的组合将用于创建索引。索引的列顺序非常重要，因为它决定了索引的效率。通常，最频繁用于查询条件的列应该放在索引的最前面</p>
+<br>
+
+
+
+<p><strong>示例</strong></p>
+<p>如果你有一个包含用户信息的表，并且经常需要根据用户的姓（last_name）和名（first_name）来查询用户，你可以创建一个联合索引，将姓和名作为索引的列：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">CREATE INDEX idx_lastname_firstname ON users(last_name, first_name);<br></code></pre></td></tr></table></figure>
+
+<p>在这个例子中，<code>idx_lastname_firstname</code> 是索引的名称，<code>users</code> 是表的名称，而 <code>last_name</code> 和 <code>first_name</code> 是联合索引的列</p>
+<br>
+
+
+
+<p>使用联合索引时，需要注意以下几点：</p>
+<ol>
+<li><strong>选择性</strong>：索引的列应该具有较高的选择性，即列中的不同值应该比较多</li>
+<li><strong>列顺序</strong>：索引的列顺序应该反映查询中列的使用频率和顺序</li>
+<li><strong>维护成本</strong>：索引虽然可以提高查询速度，但会增加插入、删除和更新操作的开销，因为索引需要维护</li>
+<li><strong>覆盖索引</strong>：如果一个查询只需要访问索引列，那么可以使用覆盖索引来提高性能</li>
+</ol>
+<br>
+
+
+
+
+
+<hr>
+<h4 id="索引的优化-ORDER-BY"><a href="#索引的优化-ORDER-BY" class="headerlink" title="索引的优化-ORDER BY"></a>索引的优化-ORDER BY</h4><h4 id="索引的优化-LIKE模糊查询"><a href="#索引的优化-LIKE模糊查询" class="headerlink" title="索引的优化-LIKE模糊查询"></a>索引的优化-LIKE模糊查询</h4><h4 id="分库分表的规则"><a href="#分库分表的规则" class="headerlink" title="分库分表的规则"></a>分库分表的规则</h4><h4 id="如何维护全局的Id"><a href="#如何维护全局的Id" class="headerlink" title="如何维护全局的Id"></a>如何维护全局的Id</h4><h4 id="如何优化SQL效率"><a href="#如何优化SQL效率" class="headerlink" title="如何优化SQL效率"></a>如何优化SQL效率</h4><h4 id="OR与IN的效率"><a href="#OR与IN的效率" class="headerlink" title="OR与IN的效率"></a>OR与IN的效率</h4><h4 id="常见业务"><a href="#常见业务" class="headerlink" title="常见业务"></a>常见业务</h4><h4 id="内联结、全联结、左联结、右联结的区别"><a href="#内联结、全联结、左联结、右联结的区别" class="headerlink" title="内联结、全联结、左联结、右联结的区别"></a>内联结、全联结、左联结、右联结的区别</h4>
                 
               </div>
             
