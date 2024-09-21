@@ -18,22 +18,22 @@
   <meta name="author" content="Zheng">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1. 概述官方文档 官方代码地址 参考API文档 引入方式： 如果你想像Spring-Boot一样引入Hutool，再由子模块决定用到哪些模块，你可以在父模块中加入： 123456789101112&lt;dependencyManagement&gt;    &lt;dependencies&gt;        &lt;dependency&gt;            &lt;groupId">
+    <meta name="description" content="**方式一 ** 1234567891011121314151617181920212223242526 &#x2F;&#x2F; 创建一个RestTemplate对象，用来发起http请求RestTemplate restTemplate &#x3D;new RestTemplate();&#x2F;&#x2F; 创建一个RequestEntity对象，指定了请求的URL、设置请求体的格式为JSON、并设置了请求体RequestEntity&amp;l">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hutool工具">
-<meta property="og:url" content="https://lzhengjy.github.io/2024/08/12/Hutool%E5%B7%A5%E5%85%B7/index.html">
+<meta property="og:title" content="Java中发起http的几种方式">
+<meta property="og:url" content="https://lzhengjy.github.io/2024/09/16/Java%E4%B8%AD%E5%8F%91%E8%B5%B7http%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="1. 概述官方文档 官方代码地址 参考API文档 引入方式： 如果你想像Spring-Boot一样引入Hutool，再由子模块决定用到哪些模块，你可以在父模块中加入： 123456789101112&lt;dependencyManagement&gt;    &lt;dependencies&gt;        &lt;dependency&gt;            &lt;groupId">
+<meta property="og:description" content="**方式一 ** 1234567891011121314151617181920212223242526 &#x2F;&#x2F; 创建一个RestTemplate对象，用来发起http请求RestTemplate restTemplate &#x3D;new RestTemplate();&#x2F;&#x2F; 创建一个RequestEntity对象，指定了请求的URL、设置请求体的格式为JSON、并设置了请求体RequestEntity&amp;l">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-08-12T02:28:08.000Z">
-<meta property="article:modified_time" content="2024-08-12T09:26:06.686Z">
+<meta property="article:published_time" content="2024-09-16T06:27:38.000Z">
+<meta property="article:modified_time" content="2024-09-21T09:34:46.126Z">
 <meta property="article:author" content="Zheng">
-<meta property="article:tag" content="框架和中间件">
+<meta property="article:tag" content="技术经验">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>Hutool工具 - Hexo</title>
+  <title>Java中发起http的几种方式 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -239,7 +239,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Hutool工具"></span>
+            <span id="subtitle" data-typed-text="Java中发起http的几种方式"></span>
           
         </div>
 
@@ -250,8 +250,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-08-12 10:28" pubdate>
-          2024年8月12日 上午
+        <time datetime="2024-09-16 14:27" pubdate>
+          2024年9月16日 下午
         </time>
       </span>
     
@@ -262,7 +262,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2k 字
+          1.4k 字
         
       </span>
     
@@ -273,7 +273,7 @@
         
         
         
-          17 分钟
+          12 分钟
         
       </span>
     
@@ -310,131 +310,13 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Hutool工具</h1>
+            <h1 id="seo-header">Java中发起http的几种方式</h1>
             
             
               <div class="markdown-body">
                 
-                <h4 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h4><p><a href="https://lzhengjy.github.io/categories/">官方文档</a></p>
-<p><a target="_blank" rel="noopener" href="https://gitee.com/dromara/hutool">官方代码地址</a></p>
-<p><a target="_blank" rel="noopener" href="https://apidoc.gitee.com/dromara/hutool/">参考API文档</a></p>
-<p>引入方式：</p>
-<p>如果你想像Spring-Boot一样引入Hutool，再由子模块决定用到哪些模块，你可以在父模块中加入：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencyManagement</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>cn.hutool<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>hutool-bom<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>$&#123;hutool.version&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">type</span>&gt;</span>pom<span class="hljs-tag">&lt;/<span class="hljs-name">type</span>&gt;</span><br>            <span class="hljs-comment">&lt;!-- 注意这里是import --&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>import<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependencyManagement</span>&gt;</span><br></code></pre></td></tr></table></figure>
-
-<p>在子模块中就可以引入自己需要的模块了：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>cn.hutool<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>hutool-http<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span><br></code></pre></td></tr></table></figure>
-
-<br>
-
-
-
-
-
-<p>如果你引入的模块比较多，但是某几个模块没用，你可以：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>cn.hutool<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>hutool-bom<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>$&#123;hutool.version&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>        <span class="hljs-comment">&lt;!-- 加不加这句都能跑，区别只有是否告警  --&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">type</span>&gt;</span>pom<span class="hljs-tag">&lt;/<span class="hljs-name">type</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">exclusions</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">exclusion</span>&gt;</span><br>                    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>cn.hutool<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>                    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>hutool-system<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">exclusion</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">exclusions</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span><br></code></pre></td></tr></table></figure>
-
-<br>
-
-
-
-<p>全部引入</p>
-<p>在项目的pom.xml的dependencies中加入以下内容:</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>cn.hutool<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>hutool-all<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>5.8.16<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
-
-<br>
-
-
-
-<p><strong>所包括的模块</strong></p>
-<p>一个Java基础工具类，对文件、流、加密解密、转码、正则、线程、XML等JDK方法进行封装，组成各种Util工具类，同时提供以下组件：</p>
-<table>
-<thead>
-<tr>
-<th>模块</th>
-<th>介绍</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>hutool-aop</td>
-<td>JDK动态代理封装，提供非IOC下的切面支持</td>
-</tr>
-<tr>
-<td>hutool-bloomFilter</td>
-<td>布隆过滤，提供一些Hash算法的布隆过滤</td>
-</tr>
-<tr>
-<td>hutool-cache</td>
-<td>简单缓存实现</td>
-</tr>
-<tr>
-<td>hutool-core</td>
-<td>核心，包括Bean操作、日期、各种Util等</td>
-</tr>
-<tr>
-<td>hutool-cron</td>
-<td>定时任务模块，提供类Crontab表达式的定时任务</td>
-</tr>
-<tr>
-<td>hutool-crypto</td>
-<td>加密解密模块，提供对称、非对称和摘要算法封装</td>
-</tr>
-<tr>
-<td>hutool-db</td>
-<td>JDBC封装后的数据操作，基于ActiveRecord思想</td>
-</tr>
-<tr>
-<td>hutool-dfa</td>
-<td>基于DFA模型的多关键字查找</td>
-</tr>
-<tr>
-<td>hutool-extra</td>
-<td>扩展模块，对第三方封装（模板引擎、邮件、Servlet、二维码、Emoji、FTP、分词等）</td>
-</tr>
-<tr>
-<td>hutool-http</td>
-<td>基于HttpUrlConnection的Http客户端封装</td>
-</tr>
-<tr>
-<td>hutool-log</td>
-<td>自动识别日志实现的日志门面</td>
-</tr>
-<tr>
-<td>hutool-script</td>
-<td>脚本执行封装，例如Javascript</td>
-</tr>
-<tr>
-<td>hutool-setting</td>
-<td>功能更强大的Setting配置文件和Properties封装</td>
-</tr>
-<tr>
-<td>hutool-system</td>
-<td>系统参数调用封装（JVM信息等）</td>
-</tr>
-<tr>
-<td>hutool-json</td>
-<td>JSON实现</td>
-</tr>
-<tr>
-<td>hutool-captcha</td>
-<td>图片验证码实现</td>
-</tr>
-<tr>
-<td>hutool-poi</td>
-<td>针对POI中Excel和Word的封装</td>
-</tr>
-<tr>
-<td>hutool-socket</td>
-<td>基于Java的NIO和AIO的Socket封装</td>
-</tr>
-<tr>
-<td>hutool-jwt</td>
-<td>JSON Web Token (JWT)封装实现</td>
-</tr>
-</tbody></table>
-<br>
-
-
+                <p>**方式一 **</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs java"> <span class="hljs-comment">// 创建一个RestTemplate对象，用来发起http请求</span><br><span class="hljs-type">RestTemplate</span> <span class="hljs-variable">restTemplate</span> <span class="hljs-operator">=</span><span class="hljs-keyword">new</span> <span class="hljs-title class_">RestTemplate</span>();<br><span class="hljs-comment">// 创建一个RequestEntity对象，指定了请求的URL、设置请求体的格式为JSON、并设置了请求体</span><br>RequestEntity&lt;String&gt; tokenRequest = RequestEntity.post(URI.create(jwInfo.getTokenUrl()))<br>    .contentType(MediaType.APPLICATION_JSON)<br>    .body(<span class="hljs-string">&quot;&#123;\&quot;userId\&quot;:\&quot;&quot;</span>+jwInfo.getTokenAppId()+<span class="hljs-string">&quot;\&quot;,\&quot;password\&quot;:\&quot;&quot;</span>+jwInfo.getTokenAppKey()+<span class="hljs-string">&quot;\&quot;&#125;&quot;</span>);<br><span class="hljs-comment">// 发起请求并接收响应，包含了HTTP响应的状态码、响应头和响应体（已被转换为字符串）</span><br>ResponseEntity&lt;String&gt; exchange = restTemplate.exchange(tokenRequest, String.class);<br><span class="hljs-comment">// 解析出响应体</span><br><span class="hljs-type">JSONObject</span> <span class="hljs-variable">jsonA</span> <span class="hljs-operator">=</span> JSONObject.parseObject(exchange.getBody());<br><span class="hljs-comment">// 响应成功</span><br><span class="hljs-keyword">if</span> (jsonA.get(<span class="hljs-string">&quot;code&quot;</span>).toString().equals(<span class="hljs-string">&quot;200&quot;</span>)) &#123;<br>    <span class="hljs-comment">// 获取响应体中的数据</span><br>    <span class="hljs-type">JSONObject</span> <span class="hljs-variable">jsonB</span> <span class="hljs-operator">=</span> JSONObject.parseObject(jsonA.get(<span class="hljs-string">&quot;data&quot;</span>).toString());<br>    <span class="hljs-comment">// 如果 jsonB 包含数据，则使用jwInfo.getIndexUrl()作为基础URL并附加从jsonB中获取的token字段的值来构造一个新的URL tmpUrl</span><br>    <span class="hljs-keyword">if</span> (!jsonB.isEmpty()) &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">tmpUrl</span> <span class="hljs-operator">=</span> jwInfo.getIndexUrl() + jsonB.get(<span class="hljs-string">&quot;token&quot;</span>).toString();<br>        <span class="hljs-keyword">if</span>(isNewTab!=<span class="hljs-literal">null</span> &amp;&amp; isNewTab.equals(<span class="hljs-string">&quot;1&quot;</span>))&#123;<br>            <span class="hljs-comment">// 如果变量 isNewTab 不为 null 并且等于字符串 &quot;1&quot;，则打开一个新的浏览器标签页并导航到 tmpUrl</span><br>            response.getWriter().print(<span class="hljs-string">&quot;&lt;script&gt;window.open(&#x27;&quot;</span> + tmpUrl + <span class="hljs-string">&quot;&#x27;,&#x27;_blank&#x27;)&lt;/script&gt;&quot;</span> );<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-comment">// 否则重定向到tmpUrl</span><br>            response.sendRedirect(tmpUrl);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
                 
@@ -448,7 +330,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E6%A1%86%E6%9E%B6%E5%92%8C%E4%B8%AD%E9%97%B4%E4%BB%B6/" class="print-no-link">#框架和中间件</a>
+        <a href="/tags/%E6%8A%80%E6%9C%AF%E7%BB%8F%E9%AA%8C/" class="print-no-link">#技术经验</a>
       
     </div>
   
@@ -460,8 +342,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Hutool工具</div>
-      <div>https://lzhengjy.github.io/2024/08/12/Hutool工具/</div>
+      <div>Java中发起http的几种方式</div>
+      <div>https://lzhengjy.github.io/2024/09/16/Java中发起http的几种方式/</div>
     </div>
     <div class="license-meta">
       
@@ -473,7 +355,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年8月12日</div>
+          <div>2024年9月16日</div>
         </div>
       
       
@@ -505,18 +387,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/09/01/EasyExcel%E7%BB%93%E5%90%88validation%E5%AE%9E%E7%8E%B0%E5%AF%BC%E5%85%A5%E6%95%B0%E6%8D%AE%E7%9A%84%E6%A0%A1%E9%AA%8C/" title="EasyExcel结合validation实现导入数据的校验">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">EasyExcel结合validation实现导入数据的校验</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/08/07/%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/" title="单点登录">
-                        <span class="hidden-mobile">单点登录</span>
+                      <a href="/2024/09/11/Validation%E5%AE%9E%E7%8E%B0%E5%AD%97%E6%AE%B5%E6%A0%A1%E9%AA%8C/" title="Validation实现字段校验">
+                        <span class="hidden-mobile">Validation实现字段校验</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

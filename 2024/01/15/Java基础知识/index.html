@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lzhengjy.github.io/2024/01/15/Java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20240827104507440.png">
 <meta property="article:published_time" content="2024-01-15T01:25:36.000Z">
-<meta property="article:modified_time" content="2024-08-31T02:43:06.090Z">
+<meta property="article:modified_time" content="2024-09-04T03:43:00.503Z">
 <meta property="article:author" content="Zheng">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://lzhengjy.github.io/2024/01/15/Java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20240827104507440.png">
@@ -263,7 +263,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          14k 字
+          16k 字
         
       </span>
     
@@ -274,7 +274,7 @@
         
         
         
-          119 分钟
+          138 分钟
         
       </span>
     
@@ -1181,14 +1181,175 @@
 
 
 <hr>
-<h4 id="RDB-和-AOF"><a href="#RDB-和-AOF" class="headerlink" title="RDB 和 AOF"></a>RDB 和 AOF</h4><p><strong>RDB</strong></p>
-<p>Redis Database Backup file Redis数据库备份文件</p>
-<p>RDB的工作原理是在Redis需要进行持久化时，它会fork出一个子进程，这个子进程会将当前的数据集写入到一个临时的RDB文件中。当写入操作完成后，临时文件会替换掉旧的RDB文件。这个过程中，主进程不进行任何磁盘IO操作，因此不会影响Redis的性能。这种工作方式也使得Redis可以从写时复制（copy-on-write）机制中获益，即在fork操作时，父子进程共享相同的内存数据，只有当数据需要修改时，才会复制一份数据，从而节省内存资源</p>
-<h4 id="缓存穿透"><a href="#缓存穿透" class="headerlink" title="缓存穿透"></a>缓存穿透</h4><h4 id="缓存击穿"><a href="#缓存击穿" class="headerlink" title="缓存击穿"></a>缓存击穿</h4><h4 id="缓存雪崩"><a href="#缓存雪崩" class="headerlink" title="缓存雪崩"></a>缓存雪崩</h4><h4 id="无底洞"><a href="#无底洞" class="headerlink" title="无底洞"></a>无底洞</h4><h4 id="内存淘汰策略"><a href="#内存淘汰策略" class="headerlink" title="内存淘汰策略"></a>内存淘汰策略</h4><h4 id="Redis、Memcache、MongoDB的区别"><a href="#Redis、Memcache、MongoDB的区别" class="headerlink" title="Redis、Memcache、MongoDB的区别"></a>Redis、Memcache、MongoDB的区别</h4><h4 id="缓存一致性"><a href="#缓存一致性" class="headerlink" title="缓存一致性"></a>缓存一致性</h4><h4 id="秒杀的设计方案"><a href="#秒杀的设计方案" class="headerlink" title="秒杀的设计方案"></a>秒杀的设计方案</h4><h4 id="布隆过滤器"><a href="#布隆过滤器" class="headerlink" title="布隆过滤器"></a>布隆过滤器</h4><h4 id="分布式锁"><a href="#分布式锁" class="headerlink" title="分布式锁"></a>分布式锁</h4><p>72648885900684613</p>
+<h4 id="RDB"><a href="#RDB" class="headerlink" title="RDB"></a>RDB</h4><p><code>Redis Database Backup file</code>, Redis数据库备份文件</p>
+<p><strong>RDB的工作原理</strong>是在Redis需要进行持久化时，它会fork出一个子进程，这个子进程会将当前的数据集写入到一个临时的RDB文件中。当写入操作完成后，临时文件会替换掉旧的RDB文件。这个过程中，主进程不进行任何磁盘IO操作，因此不会影响Redis的性能。这种工作方式也使得Redis可以从写时复制（copy-on-write）机制中获益，即在fork操作时，父子进程共享相同的内存数据，只有当数据需要修改时，才会复制一份数据，从而节省内存资源</p>
+<br>
+
+
+
+<p>RDB的配置主要在Redis的配置文件<code>redis.conf</code>中进行，其中有几个重要的配置项：</p>
+<ol>
+<li><code>save &lt;seconds&gt; &lt;changes&gt;</code>：这个指令定义了自动触发RDB持久化的条件。例如，<code>save 900 1</code>表示如果在900秒内有至少1个key被修改，则触发持久化。</li>
+<li><code>dbfilename dump.rdb</code>：定义了RDB文件的名称，默认为<code>dump.rdb</code>。</li>
+<li><code>dir ./</code>：定义了RDB文件存放的目录，默认是当前工作目录。</li>
+<li><code>rdbcompression yes</code>：表示在创建RDB文件时是否进行数据压缩，默认是开启的。</li>
+<li><code>rdbchecksum yes</code>：表示在RDB文件中是否包含校验和，默认也是开启的，这有助于检测文件在写入过程中是否出现错误。</li>
+</ol>
+<br>
+
+
+
+<p>手动触发RDB持久化可以使用<code>SAVE</code>或<code>BGSAVE</code>命令。<code>SAVE</code>命令会阻塞主进程直到持久化完成，而<code>BGSAVE</code>命令则通过创建子进程异步完成持久化，不会阻塞主进程,<code>BGSAVE</code>或fork一个子进程来进行持久化</p>
+<br>
+
+
+
+<p><strong>RDB的优点包括</strong>：</p>
+<ul>
+<li>适合于大规模数据恢复</li>
+<li>恢复速度快于AOF</li>
+<li>只包含一个文件，便于备份</li>
+</ul>
+<p><strong>RDB的缺点包括</strong>：</p>
+<ul>
+<li>在故障情况下可能会丢失最近的数据</li>
+<li>fork子进程可能会短时间内影响性能</li>
+<li>备份时会占用额外的内存资源</li>
+</ul>
+<br>
+
+
+
+
+
+<hr>
+<h4 id="AOF"><a href="#AOF" class="headerlink" title="AOF"></a>AOF</h4><p><code>Append Only File</code>，追加文件</p>
+<p><strong>AOF持久化的工作流程</strong>大致如下：</p>
+<ol>
+<li><p><strong>命令追加</strong>：每当Redis执行一个写命令，它会被追加到AOF缓冲区。</p>
+</li>
+<li><p><strong>文件写入</strong>：AOF缓冲区中的内容会根据配置的同步策略周期性地写入到AOF文件中</p>
+</li>
+<li><p>文件同步</p>
+<p>：根据配置，AOF文件的数据会被同步到磁盘。Redis提供了三种同步选项：</p>
+<ul>
+<li><code>always</code>：每个写命令执行完立即同步到磁盘，数据安全性最高，但性能影响较大</li>
+<li><code>everysec</code>：每秒同步一次，这是默认设置，兼顾数据安全性和性能</li>
+<li><code>no</code>：让操作系统决定何时同步，可能会在系统崩溃时丢失数据，但性能最好</li>
+</ul>
+</li>
+<li><p><strong>文件重写</strong>：随着时间的推移，AOF文件可能会变得非常大，因为其中包含了很多不必要的命令。Redis提供了AOF重写功能，它可以创建一个新的AOF文件，其中只包含恢复当前数据集所需的最小命令集</p>
+</li>
+</ol>
+<br>
+
+
+
+<p><strong>AOF相关配置</strong></p>
+<ul>
+<li><code>appendonly yes</code>：开启AOF持久化</li>
+<li><code>appendfilename &quot;appendonly.aof&quot;</code>：设置AOF文件的名称，默认为<code>appendonly.aof</code></li>
+<li><code>appendfsync always</code>：每次有数据修改发生时都会写入AOF文件</li>
+<li><code>appendfsync everysec</code>：每秒钟同步一次，这是默认策略</li>
+<li><code>appendfsync no</code>：从不同步，让操作系统决定何时同步</li>
+<li><code>auto-aof-rewrite-percentage 100</code>：当AOF文件大小是上一次重写后大小的一倍时，触发重写</li>
+<li><code>auto-aof-rewrite-min-size 64mb</code>：当AOF文件大小达到该值时，才会触发重写</li>
+<li><code>aof-load-truncated yes</code>：如果AOF文件损坏，Redis启动时是否加载AOF文件</li>
+</ul>
+<br>
+
+
+
+<p><strong>AOF的优点</strong></p>
+<ul>
+<li>提供了更高的数据安全性，可以设置为每秒同步一次，最多丢失一秒的数据</li>
+<li>AOF文件易于理解，它是一个只追加数据的日志文件，可以被轻易地分析和阅读</li>
+</ul>
+<p><strong>AOF的缺点</strong></p>
+<ul>
+<li>对于相同的数据集，AOF文件通常比RDB文件大</li>
+<li>在高负载下，AOF可能会影响Redis的性能，因为它需要不断地写入命令到磁盘</li>
+<li>恢复数据可能比&#96;RDB慢，因为需要逐条执行命令</li>
+</ul>
+<br>
+
+
+
+
+
+<hr>
+<h4 id="缓存穿透"><a href="#缓存穿透" class="headerlink" title="缓存穿透"></a>缓存穿透</h4><p>缓存穿透是指查询一个在缓存和数据库中都不存在的数据，由于缓存中找不到，每次请求都要到数据库查询，然后返回空结果。这种情况会导致数据库压力增大，甚至可能因为大量的数据库查询而造成数据库服务的不稳定或崩溃。</p>
+<br>
+
+
+
+<p><strong>解决方案</strong></p>
+<p>布隆过滤器：</p>
+<ul>
+<li>使用布隆过滤器可以判断一个元素是否在一个集合中。</li>
+<li>在请求到达之前，先经过布隆过滤器，如果布隆过滤器认为该元素不存在，则直接返回，不进行后续的数据库查询。</li>
+</ul>
+<p>缓存空对象：</p>
+<ul>
+<li>当查询数据库发现数据不存在时，仍然将一个空对象或特定的标记存入缓存，这样再次查询时可以直接从缓存中获取结果，避免对数据库的访问。</li>
+<li>这种方法的缺点是可能会占用缓存空间存储无效数据。</li>
+</ul>
+<br>
+
+
+
+
+
+<hr>
+<h4 id="缓存击穿"><a href="#缓存击穿" class="headerlink" title="缓存击穿"></a>缓存击穿</h4><p>缓存击穿是指一个热点缓存数据到期或被删除的瞬间，大量请求同时到达，导致这些请求直接穿透缓存，进而对数据库等后端存储系统造成巨大压力的现象。这种情况通常发生在高流量的Web服务中，当某个热点数据失效时，可能会导致数据库短时间内承受大量查询请求，从而影响服务的稳定性</p>
+<br>
+
+
+
+<p><strong>解决方案</strong></p>
+<p>互斥锁（Mutex Key）：</p>
+<ul>
+<li>当缓存数据失效时，通过设置一个互斥锁来保证只有一个请求能够访问数据库并加载数据，其他请求等待或重试</li>
+<li>这种方法可以避免多个请求同时击穿缓存</li>
+</ul>
+<p>延迟加载：</p>
+<ul>
+<li>在缓存数据失效后，不是立即加载新的数据，而是等待一定时间，让其他请求也有机会获取锁或等待数据加载</li>
+<li>这样可以分散请求，减少数据库的压力</li>
+</ul>
+<p>热点数据不过期：</p>
+<ul>
+<li>对于热点数据，可以设置永不过期，或者使用更长的过期时间，减少击穿发生的概率</li>
+<li>这种方法适用于那些不经常变化的数据</li>
+</ul>
+<br>
+
+
+
+
+
+<hr>
+<h4 id="缓存雪崩"><a href="#缓存雪崩" class="headerlink" title="缓存雪崩"></a>缓存雪崩</h4><p>缓存数据大规模同时失效，或者Redis服务器宕机，导致大量请求穿透缓存直接访问数据库等后端存储系统，从而对后端系统造成巨大压力，甚至导致系统崩溃的现象</p>
+<p><strong>解决方案</strong></p>
+<ul>
+<li>数据分级缓存：将数据分级，不同级别的数据设置不同的缓存策略和过期时间，避免同时失效</li>
+<li>设置随机过期时间：为缓存数据设置随机的过期时间，避免大量数据同时过期</li>
+<li>读写分离和数据库负载均衡：通过数据库的读写分离，将查询请求分散到多个数据库副本上，减轻单个数据库的压力</li>
+<li>缓存服务高可用：部署缓存服务的集群，确保缓存服务的高可用性，避免单点故障</li>
+</ul>
+<br>
+
+
+
+
+
+<hr>
+<h4 id="内存淘汰策略"><a href="#内存淘汰策略" class="headerlink" title="内存淘汰策略"></a>内存淘汰策略</h4><h4 id="Redis、Memcache、MongoDB的区别"><a href="#Redis、Memcache、MongoDB的区别" class="headerlink" title="Redis、Memcache、MongoDB的区别"></a>Redis、Memcache、MongoDB的区别</h4><h4 id="缓存一致性"><a href="#缓存一致性" class="headerlink" title="缓存一致性"></a>缓存一致性</h4><h4 id="秒杀的设计方案"><a href="#秒杀的设计方案" class="headerlink" title="秒杀的设计方案"></a>秒杀的设计方案</h4><h4 id="布隆过滤器"><a href="#布隆过滤器" class="headerlink" title="布隆过滤器"></a>布隆过滤器</h4><h4 id="分布式锁"><a href="#分布式锁" class="headerlink" title="分布式锁"></a>分布式锁</h4><p>72648885900684613</p>
 <p>iot_screen&#x2F;jianwuBigScreen</p>
 <p>?showlogo&#x3D;false#&#x2F;</p>
 <p><a target="_blank" rel="noopener" href="https://bim-jw.xatasoft.com/?showlogo=false">https://bim-jw.xatasoft.com/?showlogo=false</a></p>
 <p><a target="_blank" rel="noopener" href="https://api.jizhibao.com.cn/jwuser/lcBmi?orgid=70692244487726981&showlogo=false#/">https://api.jizhibao.com.cn/jwuser/lcBmi?orgid=70692244487726981&amp;showlogo=false#/</a></p>
+<p>修改单位</p>
 
                 
               </div>

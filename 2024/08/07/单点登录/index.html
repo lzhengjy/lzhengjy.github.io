@@ -26,7 +26,7 @@
 <meta property="og:description" content="SSO，单点登录是指多个系统中间，一个系统登录了，所有系统就登录了；一个系统退出了，所有的系统就退出了 有多种实现方式       机密客户端适用于能够安全存储客户端密钥的应用类型。这种模式通常用于服务器到服务器的通信，其中客户端（如后端服务或API）需要代表用户或自身访问受保护的资源 例如：要在系统A实现访问系统B时免密登录 措施：在系统A的客户端中保存一个系统B提供的账号和密码，系统B要提供生">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-08-07T01:36:03.000Z">
-<meta property="article:modified_time" content="2024-08-12T02:27:21.082Z">
+<meta property="article:modified_time" content="2024-09-11T06:32:21.742Z">
 <meta property="article:author" content="Zheng">
 <meta property="article:tag" content="技术经验">
 <meta name="twitter:card" content="summary_large_image">
@@ -262,7 +262,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.7k 字
+          4.5k 字
         
       </span>
     
@@ -273,7 +273,7 @@
         
         
         
-          14 分钟
+          38 分钟
         
       </span>
     
@@ -401,8 +401,35 @@
 <li><strong>用户授权</strong>：用户登录后，授权服务器展示授权页面，用户同意授权后发放授权码。</li>
 <li><strong>获取访问令牌</strong>：客户端使用授权码向授权服务器请求访问令牌。</li>
 <li><strong>访问资源</strong>：客户端使用访问令牌请求资源服务器上的资源。</li>
-<li><strong>刷新令牌</strong>：在访问令牌过期后，使用刷新令牌获取新的访问令牌</li>
+<li><strong>刷新令牌</strong>：在访问令牌过期后，使用刷新令牌获取新的访问令牌<br></li>
 </ol>
+<h5 id="单方面的免密单点登录"><a href="#单方面的免密单点登录" class="headerlink" title="单方面的免密单点登录"></a>单方面的免密单点登录</h5><p>需求：在一个系统中，点击一个菜单或者按钮后可以免密登录到第三方系统中。<br>实现方式：获取对面系统的访问token、拼接到对面系统要展示的页面的请求URL中，然后重定向访问这个URL即可（这里获取token的请求URL和要展示的页面请求URL都需要对面系统提供）<br><br></p>
+<p><strong>参考案例</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">jwuser</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>    <span class="hljs-type">String</span> <span class="hljs-variable">orgId</span> <span class="hljs-operator">=</span> request.getParameter(<span class="hljs-string">&quot;orgid&quot;</span>); <span class="hljs-comment">//组织id</span><br>    <span class="hljs-type">String</span> <span class="hljs-variable">staffId</span> <span class="hljs-operator">=</span> request.getParameter(<span class="hljs-string">&quot;userid&quot;</span>); <span class="hljs-comment">//用户id</span><br>    <span class="hljs-type">String</span> <span class="hljs-variable">isNewTab</span> <span class="hljs-operator">=</span> request.getParameter(<span class="hljs-string">&quot;isnewtab&quot;</span>); <span class="hljs-comment">//是否以新选项卡的方式弹出</span><br><br>    <span class="hljs-comment">// 判断jwInfo中是否存在request中的组织ID，也就是当前登录的用户是否是建武组织的</span><br>   			<span class="hljs-keyword">if</span>(jwInfo.getJzbYzOrgIds().contains(orgId)||jwInfo.getJzbJlOrgIds().contains(orgId)||jwInfo.getJzbSgOrgIds().contains(orgId))&#123;<br>        <span class="hljs-comment">// 根据用户ID获取建武用户，查看我方的建武用户数据中是否有该用户</span><br>        <span class="hljs-type">JwUser</span> <span class="hljs-variable">jwUser</span> <span class="hljs-operator">=</span> jwUserMapper.getByStaffId(staffId);<br>        <span class="hljs-keyword">if</span>(jwUser != <span class="hljs-literal">null</span>) &#123;<br>            <span class="hljs-comment">// 创建一个RestTemplate对象，用来发起http请求</span><br>            <span class="hljs-type">RestTemplate</span> <span class="hljs-variable">restTemplate</span> <span class="hljs-operator">=</span><span class="hljs-keyword">new</span> <span class="hljs-title class_">RestTemplate</span>();<br>            <span class="hljs-comment">// 创建一个RequestEntity对象，指定了请求的URL、设置请求体的格式为JSON、并设置了请求体</span><br>            RequestEntity&lt;String&gt; tokenRequest = RequestEntity.post(URI.create(jwInfo.getTokenUrl()))<br>                .contentType(MediaType.APPLICATION_JSON)<br>                .body(<span class="hljs-string">&quot;&#123;\&quot;userId\&quot;:\&quot;&quot;</span>+jwInfo.getTokenAppId()+<span class="hljs-string">&quot;\&quot;,\&quot;password\&quot;:\&quot;&quot;</span>+jwInfo.getTokenAppKey()+<span class="hljs-string">&quot;\&quot;&#125;&quot;</span>);<br>            <span class="hljs-comment">// 发起请求并接收响应，包含了HTTP响应的状态码、响应头和响应体（已被转换为字符串）</span><br>            ResponseEntity&lt;String&gt; exchange = restTemplate.exchange(tokenRequest, String.class);<br>            <span class="hljs-comment">// 解析出响应体</span><br>            <span class="hljs-type">JSONObject</span> <span class="hljs-variable">jsonA</span> <span class="hljs-operator">=</span> JSONObject.parseObject(exchange.getBody());<br>            <span class="hljs-comment">// 响应成功</span><br>            <span class="hljs-keyword">if</span> (jsonA.get(<span class="hljs-string">&quot;code&quot;</span>).toString().equals(<span class="hljs-string">&quot;200&quot;</span>)) &#123;<br>                <span class="hljs-comment">// 获取响应体中的数据</span><br>                <span class="hljs-type">JSONObject</span> <span class="hljs-variable">jsonB</span> <span class="hljs-operator">=</span> JSONObject.parseObject(jsonA.get(<span class="hljs-string">&quot;data&quot;</span>).toString());<br>                <span class="hljs-comment">// 如果 jsonB 包含数据，则使用jwInfo.getIndexUrl()作为基础URL并附加从jsonB中获取的token字段的值来构造一个新的URL tmpUrl</span><br>                <span class="hljs-keyword">if</span> (!jsonB.isEmpty()) &#123;<br>                    <span class="hljs-type">String</span> <span class="hljs-variable">tmpUrl</span> <span class="hljs-operator">=</span> jwInfo.getIndexUrl() + jsonB.get(<span class="hljs-string">&quot;token&quot;</span>).toString();<br>                    <span class="hljs-keyword">if</span>(isNewTab!=<span class="hljs-literal">null</span> &amp;&amp; isNewTab.equals(<span class="hljs-string">&quot;1&quot;</span>))&#123;<br>                        <span class="hljs-comment">// 如果变量 isNewTab 不为 null 并且等于字符串 &quot;1&quot;，则打开一个新的浏览器标签页并导航到 tmpUrl</span><br>                        response.getWriter().print(<span class="hljs-string">&quot;&lt;script&gt;window.open(&#x27;&quot;</span> + tmpUrl + <span class="hljs-string">&quot;&#x27;,&#x27;_blank&#x27;)&lt;/script&gt;&quot;</span> );<br>                    &#125; <span class="hljs-keyword">else</span> &#123;<br>                        <span class="hljs-comment">// 否则重定向到tmpUrl</span><br>                        response.sendRedirect(tmpUrl);<br>                    &#125;<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">else</span> &#123; <span class="hljs-comment">// 建武用户不存在</span><br>            response.setContentType(<span class="hljs-string">&quot;text/html;charset=utf-8&quot;</span>);<br>            response.getWriter().println(<span class="hljs-string">&quot;您的账号无法访问!&quot;</span>);<br>        &#125;<br>    &#125; <span class="hljs-keyword">else</span>&#123; <span class="hljs-comment">// jwInfo中的组织信息与传递过来的组织信息不匹配</span><br>        response.setContentType(<span class="hljs-string">&quot;text/html;charset=utf-8&quot;</span>);<br>        response.getWriter().println(<span class="hljs-string">&quot;orgId为空或您当前orgId无权限访问!&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<br>
+
+
+
+
+
+<blockquote>
+<p>先获取请求中的当前登录人员的组织id、用户id、以及是否以新选项卡的方式弹出</p>
+<p>判定登录用户的组织是否和jwInfo中的组织相同（当前登录用户是否属于建武这个组织）</p>
+<p>—属于建武这个组织</p>
+<p>​	根据用户id查询tb_jwuser数据库表中是否有这个用户</p>
+<p>​		—有这个用户</p>
+<p>​		   向认证服务发起认证请求，并接收响应解析出响应体</p>
+<p>​		   	—响应成功，状态码为200</p>
+<p>​				  	—如果响应体中包含数据</p>
+<p>​						 使用jwInfo.getIndexUrl()作为基础URL并附加从响应体中获取的token字段的值来构造一个新的URL tmpUrl</p>
+<p>​						 	—如果变量 isNewTab 不为 null 并且等于字符串 “1”，则打开一个新的浏览器标签页并导航到 tmpUrl</p>
+<p>​							 —否则直接重定向到tmpUrl</p>
+<p>​		—建武用户不存在：您的账号无法访问!</p>
+<p>—jwInfo中的组织信息与传递过来的组织信息不匹配：orgId为空或您当前orgId无权限访问!</p>
+</blockquote>
+<br>
+
 
                 
               </div>
